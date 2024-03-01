@@ -10,6 +10,8 @@ export default function Header() {
                     <h2>nombre</h2> {/* Visible only from md to xl */}
                 </div>
                 <div className="col-6 col-md-4 d-flex justify-content-end">
+
+                    <div className="p-2">mis events</div>
                     <div className="p-2">login</div>
                 </div>
             </div>

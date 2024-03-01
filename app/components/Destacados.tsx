@@ -20,7 +20,7 @@ export default function Destacados() {
 
             {destacados.map((event, index) => (
                     <div key={index}>
-                        <p>{event.id} {event.name} onclick -{">"} event info</p>
+                        <p>{event.id} {event.name} onclick -{">"} event info -{">"} save metric</p>
                     </div>
                 )
             )}
