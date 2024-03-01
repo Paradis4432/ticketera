@@ -4,33 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "95aa29ac538fa3f1",
+        "id": "c00bfc8bde6a164f",
         "type": "tabs",
         "children": [
           {
-            "id": "2a3ec9df0179cd17",
+            "id": "4e919599bf06494a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Welcome.md",
-                "mode": "source",
-                "source": false
+                "file": "idea.canvas",
+                "viewState": {
+                  "x": 163,
+                  "y": -623.8373126851588,
+                  "zoom": 0
+                }
               }
-            }
-          }
-        ]
-      },
-      {
-        "id": "7179117a5f27a162",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "50db5a2106e3917e",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
             }
           }
         ]
@@ -99,7 +88,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Welcome.md",
+                "file": "idea.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +105,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Welcome.md",
+                "file": "idea.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +128,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md"
+                "file": "idea.canvas"
               }
             }
           }
@@ -160,8 +149,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2a3ec9df0179cd17",
+  "active": "4e919599bf06494a",
   "lastOpenFiles": [
-    "Welcome.md"
+    "idea.canvas",
+    "Welcome.md",
+    "create a link.md"
   ]
 }

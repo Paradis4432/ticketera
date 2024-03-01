@@ -1,0 +1,35 @@
+{
+	"nodes":[
+		{"id":"13fb0917fdec6be4","type":"text","text":"event = TEvent\n","x":-304,"y":-1126,"width":250,"height":60},
+		{"id":"17c4a8e94a3560f0","type":"text","text":"event id\nname\np18\nphone\ndirection\ncuit\ncategory","x":-92,"y":-938,"width":250,"height":207},
+		{"id":"8d4aadea7a3dcb16","type":"text","text":"tickets","x":-460,"y":-938,"width":250,"height":60},
+		{"id":"3563216c3df45cea","type":"text","text":"ticket id\nname\nremaining\nbought\nreturned\nfree\nprice","x":-460,"y":-798,"width":250,"height":207},
+		{"id":"128a0d89a6cfa112","type":"text","text":"promotores\n","x":240,"y":-1126,"width":250,"height":60},
+		{"id":"cf0bc058e4f88d2c","type":"text","text":"promotor id\nname\nemail\nlink sale? \nlink invite?\nfree\nsold\ninvitations\nstate","x":240,"y":-938,"width":250,"height":267},
+		{"id":"523a583c58f03121","type":"text","text":"some builder to recreate or send any ticket","x":-840,"y":-938,"width":250,"height":60},
+		{"id":"1c9ed61e78dfb06b","type":"text","text":"user","x":-304,"y":-1640,"width":250,"height":60},
+		{"id":"ecdcbac035b853da","type":"text","text":"name\nemail\nage\n","x":-303,"y":-1528,"width":250,"height":87},
+		{"id":"9dee8a5da4d5cbcb","type":"text","text":"login","x":240,"y":-1640,"width":250,"height":60},
+		{"id":"4b3deb708be0e543","type":"text","text":"for admins","x":365,"y":-1505,"width":250,"height":60},
+		{"id":"5192f764b82cbe07","type":"text","text":"for users","x":115,"y":-1505,"width":250,"height":60},
+		{"id":"7c32db97402ff025","type":"text","text":"gmail quick login\n2fa?","x":365,"y":-1400,"width":250,"height":60},
+		{"id":"ca7491254551c5da","type":"text","text":"gmail quick login\nhttps://www.youtube.com/watch?v=A53T9_V8aFk","x":115,"y":-1396,"width":250,"height":87},
+		{"id":"8605a63e9afbcc89","type":"text","text":"metrics","x":-304,"y":-500,"width":250,"height":60},
+		{"id":"7192f96c80bd56c4","type":"text","text":"graph builder?\nviews\nbuys\n","x":-304,"y":-360,"width":250,"height":87}
+	],
+	"edges":[
+		{"id":"05ca39ac66e6dbc4","fromNode":"13fb0917fdec6be4","fromSide":"bottom","toNode":"17c4a8e94a3560f0","toSide":"top","toEnd":"none","label":"1:1"},
+		{"id":"f872300a1db7c455","fromNode":"13fb0917fdec6be4","fromSide":"bottom","toNode":"8d4aadea7a3dcb16","toSide":"top","toEnd":"none","label":"1:N"},
+		{"id":"5c85610d05f07b21","fromNode":"8d4aadea7a3dcb16","fromSide":"bottom","toNode":"3563216c3df45cea","toSide":"top"},
+		{"id":"01233a4dcbd2b748","fromNode":"13fb0917fdec6be4","fromSide":"right","toNode":"128a0d89a6cfa112","toSide":"left","toEnd":"none","label":"1:N"},
+		{"id":"34283ba5b1492876","fromNode":"128a0d89a6cfa112","fromSide":"bottom","toNode":"cf0bc058e4f88d2c","toSide":"top"},
+		{"id":"8b0f0df1dda64913","fromNode":"8d4aadea7a3dcb16","fromSide":"left","toNode":"523a583c58f03121","toSide":"right"},
+		{"id":"2761629437067aa3","fromNode":"8d4aadea7a3dcb16","fromSide":"right","toNode":"8605a63e9afbcc89","toSide":"top"},
+		{"id":"7ee66b4b042c9c22","fromNode":"8605a63e9afbcc89","fromSide":"bottom","toNode":"7192f96c80bd56c4","toSide":"top"},
+		{"id":"960f1b7ac70e1267","fromNode":"1c9ed61e78dfb06b","fromSide":"bottom","toNode":"ecdcbac035b853da","toSide":"top"},
+		{"id":"d985d9a0fd5a7f9c","fromNode":"9dee8a5da4d5cbcb","fromSide":"bottom","toNode":"5192f764b82cbe07","toSide":"top"},
+		{"id":"88ea080d09809746","fromNode":"9dee8a5da4d5cbcb","fromSide":"bottom","toNode":"4b3deb708be0e543","toSide":"top"},
+		{"id":"e2cce0c388b4b411","fromNode":"4b3deb708be0e543","fromSide":"bottom","toNode":"7c32db97402ff025","toSide":"top"},
+		{"id":"b1616374b1707cb5","fromNode":"5192f764b82cbe07","fromSide":"bottom","toNode":"ca7491254551c5da","toSide":"top"}
+	]
+}
