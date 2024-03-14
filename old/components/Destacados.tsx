@@ -1,10 +1,10 @@
 "use client"
-import {fetchDestacados} from "@/data/DataManager";
+import {fetchDestacados} from "@/old/data/DataManager";
 import {useEffect, useState} from "react";
-import {TEvent} from "@/data/TEvent";
+import {NormalEvent} from "@/old/data/events/impls/NormalEvent";
 
 export default function Destacados() {
-    const [destacados, setDestacados] = useState<TEvent[]>([]);
+    const [destacados, setDestacados] = useState<NormalEvent[]>([]);
 
     const setupDestacados = async () => {
         const data = await fetchDestacados();

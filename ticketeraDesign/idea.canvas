@@ -1,21 +1,29 @@
 {
 	"nodes":[
 		{"id":"13fb0917fdec6be4","type":"text","text":"event = TEvent\n","x":-304,"y":-1126,"width":250,"height":60},
-		{"id":"17c4a8e94a3560f0","type":"text","text":"event id\nname\np18\nphone\ndirection\ncuit\ncategory","x":-92,"y":-938,"width":250,"height":207},
+		{"id":"17c4a8e94a3560f0","type":"text","text":"event id\nname\nplus 18\nphone\ndirection\ncuit\ncategory","x":-92,"y":-938,"width":250,"height":207},
 		{"id":"8d4aadea7a3dcb16","type":"text","text":"tickets","x":-460,"y":-938,"width":250,"height":60},
 		{"id":"3563216c3df45cea","type":"text","text":"ticket id\nname\nremaining\nbought\nreturned\nfree\nprice","x":-460,"y":-798,"width":250,"height":207},
 		{"id":"128a0d89a6cfa112","type":"text","text":"promotores\n","x":240,"y":-1126,"width":250,"height":60},
 		{"id":"cf0bc058e4f88d2c","type":"text","text":"promotor id\nname\nemail\nlink sale? \nlink invite?\nfree\nsold\ninvitations\nstate","x":240,"y":-938,"width":250,"height":267},
 		{"id":"523a583c58f03121","type":"text","text":"some builder to recreate or send any ticket","x":-840,"y":-938,"width":250,"height":60},
-		{"id":"1c9ed61e78dfb06b","type":"text","text":"user","x":-304,"y":-1640,"width":250,"height":60},
-		{"id":"ecdcbac035b853da","type":"text","text":"name\nemail\nage\n","x":-303,"y":-1528,"width":250,"height":87},
-		{"id":"9dee8a5da4d5cbcb","type":"text","text":"login","x":240,"y":-1640,"width":250,"height":60},
-		{"id":"4b3deb708be0e543","type":"text","text":"for admins","x":365,"y":-1505,"width":250,"height":60},
-		{"id":"5192f764b82cbe07","type":"text","text":"for users","x":115,"y":-1505,"width":250,"height":60},
-		{"id":"7c32db97402ff025","type":"text","text":"gmail quick login\n2fa?","x":365,"y":-1400,"width":250,"height":60},
-		{"id":"ca7491254551c5da","type":"text","text":"gmail quick login\nhttps://www.youtube.com/watch?v=A53T9_V8aFk","x":115,"y":-1396,"width":250,"height":87},
+		{"id":"9dee8a5da4d5cbcb","type":"text","text":"login","x":240,"y":-1800,"width":250,"height":60},
+		{"id":"4b3deb708be0e543","type":"text","text":"for admins","x":365,"y":-1665,"width":250,"height":60},
+		{"id":"5192f764b82cbe07","type":"text","text":"for users","x":115,"y":-1665,"width":250,"height":60},
 		{"id":"8605a63e9afbcc89","type":"text","text":"metrics","x":-304,"y":-500,"width":250,"height":60},
-		{"id":"7192f96c80bd56c4","type":"text","text":"graph builder?\nviews\nbuys\n","x":-304,"y":-360,"width":250,"height":87}
+		{"id":"7192f96c80bd56c4","type":"text","text":"graph builder?\nviews\nbuys\n","x":-304,"y":-360,"width":250,"height":87},
+		{"id":"b07d7c094cbff25b","type":"text","text":"NextAuth","x":115,"y":-1440,"width":250,"height":60},
+		{"id":"2eff02488f06181b","type":"text","text":"qr codes for login and sharing?","x":115,"y":-1340,"width":250,"height":60},
+		{"id":"ca7491254551c5da","type":"text","text":"gmail quick login\nhttps://www.youtube.com/watch?v=A53T9_V8aFk","x":115,"y":-1564,"width":250,"height":87},
+		{"id":"7c32db97402ff025","type":"text","text":"gmail quick login\n2fa opcional","x":365,"y":-1564,"width":250,"height":60},
+		{"id":"cea10393f35b6d93","type":"text","text":"exporter and importer","x":33,"y":-500,"width":250,"height":60},
+		{"id":"1c9ed61e78dfb06b","type":"text","text":"user","x":-304,"y":-1800,"width":250,"height":60},
+		{"id":"ecdcbac035b853da","type":"text","text":"name\nemail\nage\nsexo\nList< perm >\nList< rank >  ","x":-303,"y":-1688,"width":250,"height":177},
+		{"id":"e870b4753f137924","type":"text","text":"qr codes","x":980,"y":-1800,"width":250,"height":60},
+		{"id":"41e7e6ff1dce84fe","type":"text","text":"https://www.npmjs.com/package/react-qr-code","x":980,"y":-1665,"width":250,"height":60},
+		{"id":"927ff544ccf14a84","type":"text","text":"hidden qr codes","x":980,"y":-1564,"width":250,"height":60},
+		{"id":"d2a85782b778b7a0","x":240,"y":-1940,"width":250,"height":60,"type":"text","text":"multi cuentas"},
+		{"id":"6ed0acb243414bca","x":660,"y":-1800,"width":250,"height":60,"type":"text","text":"discord like perm system with ranks"}
 	],
 	"edges":[
 		{"id":"05ca39ac66e6dbc4","fromNode":"13fb0917fdec6be4","fromSide":"bottom","toNode":"17c4a8e94a3560f0","toSide":"top","toEnd":"none","label":"1:1"},
@@ -30,6 +38,12 @@
 		{"id":"d985d9a0fd5a7f9c","fromNode":"9dee8a5da4d5cbcb","fromSide":"bottom","toNode":"5192f764b82cbe07","toSide":"top"},
 		{"id":"88ea080d09809746","fromNode":"9dee8a5da4d5cbcb","fromSide":"bottom","toNode":"4b3deb708be0e543","toSide":"top"},
 		{"id":"e2cce0c388b4b411","fromNode":"4b3deb708be0e543","fromSide":"bottom","toNode":"7c32db97402ff025","toSide":"top"},
-		{"id":"b1616374b1707cb5","fromNode":"5192f764b82cbe07","fromSide":"bottom","toNode":"ca7491254551c5da","toSide":"top"}
+		{"id":"b1616374b1707cb5","fromNode":"5192f764b82cbe07","fromSide":"bottom","toNode":"ca7491254551c5da","toSide":"top"},
+		{"id":"18af7fffa0201fe0","fromNode":"ca7491254551c5da","fromSide":"bottom","toNode":"b07d7c094cbff25b","toSide":"top"},
+		{"id":"06b4223455a311dc","fromNode":"b07d7c094cbff25b","fromSide":"bottom","toNode":"2eff02488f06181b","toSide":"top"},
+		{"id":"7c83b7a706392206","fromNode":"e870b4753f137924","fromSide":"bottom","toNode":"41e7e6ff1dce84fe","toSide":"top"},
+		{"id":"29f03d864fb33d5e","fromNode":"41e7e6ff1dce84fe","fromSide":"bottom","toNode":"927ff544ccf14a84","toSide":"top"},
+		{"id":"0037c3db1669b479","fromNode":"8605a63e9afbcc89","fromSide":"right","toNode":"cea10393f35b6d93","toSide":"left"},
+		{"id":"e49473e8156f064c","fromNode":"d2a85782b778b7a0","fromSide":"bottom","toNode":"9dee8a5da4d5cbcb","toSide":"top","label":"switch"}
 	]
 }

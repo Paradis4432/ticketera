@@ -1,13 +1,17 @@
-import Header from "@/app/components/Header";
-import Destacados from "@/app/components/Destacados";
+import Link from "next/link";
 
-export default function page(){
-    return(
+export default function page() {
+    return (
         <div className="container-fluid">
-            <Header></Header>
+            <div className="row">
+                <div className="col-12">
 
-            <Destacados></Destacados>
+                    <h1>Tests</h1>
 
+                    <Link href={"/testing/events"}>testing</Link>
+
+                </div>
+            </div>
         </div>
     )
 }

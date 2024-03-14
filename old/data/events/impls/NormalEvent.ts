@@ -1,4 +1,6 @@
-export class TEvent {
+import {IEvent} from "@/old/data/events/IEvent";
+
+export class NormalEvent implements IEvent {
     id: number;
     name: string;
 
