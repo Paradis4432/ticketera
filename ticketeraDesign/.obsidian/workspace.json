@@ -15,9 +15,9 @@
               "state": {
                 "file": "idea.canvas",
                 "viewState": {
-                  "x": 330.09243357907144,
-                  "y": -1199.4964121101668,
-                  "zoom": -1.1102230246251565e-16
+                  "x": 2664.635530758322,
+                  "y": -850.0052055990614,
+                  "zoom": 0.16666666666666657
                 }
               }
             }
@@ -68,11 +68,13 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "cde466ebcc7aae5e",

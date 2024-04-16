@@ -5,12 +5,11 @@ export default function page() {
         <div className="container-fluid">
             <p>testing events</p>
 
-            <p> create new event</p>
-            <Link href={"/testing/events/create"}>create</Link>
+            <Link href={"/testing/events/create"}>create new event</Link>
             <hr/>
             <p> search event</p>
             <hr/>
-            <p> event list</p>
+            <Link href={"/testing/events/view"}>view all evens</Link>
             <hr/>
             <p> event info</p>
             <hr/>
