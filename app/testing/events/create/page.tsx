@@ -4,7 +4,7 @@ import db from "@/utils/db";
 
 function Button() {
     return (
-        <button onclick={handleClick}>Click me</button>
+        <></>
     )
 }
 
