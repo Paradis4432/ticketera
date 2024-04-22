@@ -38,16 +38,16 @@
 		{"id":"94dae230de3eefe9","type":"text","text":"qrs","x":2380,"y":-845,"width":250,"height":60},
 		{"id":"658623ed08c65c10","type":"text","text":"qrs","x":2679,"y":-845,"width":250,"height":60},
 		{"id":"9e8eb7a772fb7637","type":"text","text":"qrs","x":2978,"y":-845,"width":250,"height":60},
-		{"id":"28d9794553961451","type":"text","text":"how to make any view","x":3079,"y":-3820,"width":250,"height":60},
-		{"id":"bddc759a847e34fe","type":"text","text":"add header\nadd footer","x":3079,"y":-3680,"width":250,"height":60},
-		{"id":"1d8347fc5425f799","type":"text","text":"how to make header","x":3578,"y":-3715,"width":250,"height":60},
+		{"id":"28d9794553961451","type":"text","text":"how to make any view","x":3079,"y":-3820,"width":250,"height":60,"color":"4"},
+		{"id":"bddc759a847e34fe","type":"text","text":"add header\nadd footer","x":3079,"y":-3680,"width":250,"height":60,"color":"4"},
+		{"id":"1d8347fc5425f799","type":"text","text":"how to make header","x":3578,"y":-3715,"width":250,"height":60,"color":"4"},
 		{"id":"d3990db88fdec6f9","type":"text","text":"how to make footer","x":3578,"y":-3620,"width":250,"height":60,"color":"5"},
-		{"id":"8c4c02df812eb247","type":"text","text":"name - buttons? - profile","x":4000,"y":-3715,"width":250,"height":60},
-		{"id":"2accd2cbdab945c5","type":"text","text":"how to make buttons","x":4000,"y":-3933,"width":250,"height":60},
+		{"id":"8c4c02df812eb247","type":"text","text":"name - buttons? - profile","x":4000,"y":-3715,"width":250,"height":60,"color":"4"},
+		{"id":"2accd2cbdab945c5","type":"text","text":"how to make buttons","x":4000,"y":-3933,"width":250,"height":60,"color":"4"},
 		{"id":"a8b0f686b3258c59","type":"text","text":"my events","x":5000,"y":-3615,"width":250,"height":60},
 		{"id":"fdc5072104e20e7a","type":"file","file":"event.md","x":5540,"y":-3940,"width":400,"height":395},
 		{"id":"25030a263a457e31","type":"text","text":"how to create events","x":5615,"y":-3440,"width":250,"height":60},
-		{"id":"2885805f5b6efab5","type":"text","text":"header button ","x":4000,"y":-4100,"width":250,"height":60,"color":"5"},
+		{"id":"2885805f5b6efab5","type":"text","text":"header button ","x":4000,"y":-4100,"width":250,"height":60,"color":"4"},
 		{"id":"c13b9b315b6c12b0","type":"text","text":"how to make promotores","x":6318,"y":-4039,"width":250,"height":60},
 		{"id":"1ff440b0a1af8332","type":"text","text":"how to make users","x":6318,"y":-4180,"width":250,"height":60},
 		{"id":"31dcf92a0d1ba545","type":"text","text":"how to make TicketType","x":6318,"y":-3906,"width":250,"height":60},
@@ -58,10 +58,10 @@
 		{"id":"e02b4514ed2df4b8","type":"text","text":"mysql select user","x":4660,"y":-3555,"width":250,"height":60},
 		{"id":"f71c2002855555ae","type":"text","text":"how to serialize and display in view \nas backend ","x":5614,"y":-4232,"width":250,"height":87,"color":"5"},
 		{"id":"4ea165010ebcc530","type":"text","text":"mysql insert events\nmysql update user (add new user event)","x":6400,"y":-3451,"width":250,"height":87},
-		{"id":"5f060f03fac29633","type":"text","text":"what should the home have","x":3578,"y":-3320,"width":250,"height":60},
-		{"id":"34aa8cb9cd6ac3bc","type":"text","text":"how to make home\n","x":3079,"y":-3320,"width":250,"height":60},
-		{"id":"76f75bc44582c774","type":"text","text":"mysql select events","x":3920,"y":-3320,"width":250,"height":60},
-		{"id":"d98db2242c2dcda4","type":"text","text":"how to serialize and display events \nas frontend","x":3578,"y":-3160,"width":250,"height":87},
+		{"id":"5f060f03fac29633","type":"text","text":"what should the home have","x":3578,"y":-3320,"width":250,"height":60,"color":"4"},
+		{"id":"34aa8cb9cd6ac3bc","type":"text","text":"how to make home\n","x":3079,"y":-3320,"width":250,"height":60,"color":"4"},
+		{"id":"76f75bc44582c774","type":"text","text":"mysql select events","x":3920,"y":-3320,"width":250,"height":60,"color":"4"},
+		{"id":"d98db2242c2dcda4","type":"text","text":"how to serialize and display events \nas frontend","x":3578,"y":-3160,"width":250,"height":87,"color":"5"},
 		{"id":"78dff155949dc41c","type":"text","text":"for users","x":3920,"y":-3146,"width":250,"height":60},
 		{"id":"edabb4b440c9ae0e","type":"text","text":"...","x":3578,"y":-3000,"width":250,"height":60,"color":"5"},
 		{"id":"b6c110c224155c64","type":"text","text":"on click of event","x":3578,"y":-2860,"width":250,"height":60},
@@ -107,7 +107,8 @@
 		{"id":"6ab3fdcf09be0509","type":"text","text":"how to make middleware","x":5040,"y":-2932,"width":250,"height":60},
 		{"id":"47141999415ae07f","type":"text","text":"https://nextjs.org/docs/app/api-reference/file-conventions/middleware","x":5365,"y":-2960,"width":250,"height":117},
 		{"id":"2d6bfef7dacad5eb","type":"text","text":"esta la idea de poder cambiar de cuenta facilmente, esto seria similar a discord","x":5250,"y":-3160,"width":250,"height":117,"color":"3"},
-		{"id":"94dc744f4f1225ff","type":"text","text":"mercado libre?","x":4410,"y":-2656,"width":250,"height":60,"color":"3"}
+		{"id":"94dc744f4f1225ff","type":"text","text":"mercado libre?","x":4410,"y":-2656,"width":250,"height":60,"color":"3"},
+		{"id":"397ebe25139fc533","type":"text","text":"under /events atm","x":3329,"y":-3400,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"960f1b7ac70e1267","fromNode":"1c9ed61e78dfb06b","fromSide":"bottom","toNode":"ecdcbac035b853da","toSide":"top"},
@@ -211,6 +212,8 @@
 		{"id":"1f0e88091a0e0338","fromNode":"923ea3be5a9c59a8","fromSide":"right","toNode":"6ab3fdcf09be0509","toSide":"left"},
 		{"id":"d30d85cdc5ce35a0","fromNode":"6ab3fdcf09be0509","fromSide":"right","toNode":"47141999415ae07f","toSide":"left"},
 		{"id":"d5522595f395d0e4","fromNode":"47141999415ae07f","fromSide":"right","toNode":"fdc5072104e20e7a","toSide":"left"},
-		{"id":"632f18951acad534","fromNode":"c699e23bec32621e","fromSide":"right","toNode":"923ea3be5a9c59a8","toSide":"left"}
+		{"id":"632f18951acad534","fromNode":"c699e23bec32621e","fromSide":"right","toNode":"923ea3be5a9c59a8","toSide":"left"},
+		{"id":"47300c89b04a0bc7","fromNode":"34aa8cb9cd6ac3bc","fromSide":"right","toNode":"397ebe25139fc533","toSide":"left"},
+		{"id":"9062e23ec55bc3d6","fromNode":"397ebe25139fc533","fromSide":"right","toNode":"5f060f03fac29633","toSide":"left"}
 	]
 }

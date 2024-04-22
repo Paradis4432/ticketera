@@ -1,17 +1,10 @@
-import Link from "next/link";
+import Header from "@/app/componentes/header";
+import Footer from "@/app/componentes/footer";
 
-export default function page() {
+export default function Page() {
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-12">
-
-                    <h1>Tests</h1>
-
-                    <Link href={"/testing/events"}>testing</Link>
-
-                </div>
-            </div>
-        </div>
+        <>
+            main events
+        </>
     )
 }
