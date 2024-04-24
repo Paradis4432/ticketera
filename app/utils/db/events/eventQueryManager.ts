@@ -2,6 +2,8 @@
 
 import db from "@/app/utils/db/DB";
 
+let testingDelay = true;
+
 interface IEvent {
     id: number,
     name: string,
@@ -39,7 +41,7 @@ const demo = [
 
 export default async function getEvents(): Promise<IQueryResponse<IEvent[]>> {
     try {
-        await new Promise(resolve => setTimeout(resolve, 2000))
+        if (testingDelay) await new Promise(resolve => setTimeout(resolve, 2000))
         const data = await db.query("SELECT * FROM events");
         return {
             message: "success",

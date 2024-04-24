@@ -2,7 +2,6 @@
 
 import getEvents, {IEvent} from "@/app/utils/db/events/eventQueryManager";
 import {useEffect, useState} from "react";
-import Link from "next/link";
 
 export default function Page() {
     // TODO fix this suspense
