@@ -107,7 +107,23 @@
 		{"id":"6ab3fdcf09be0509","type":"text","text":"how to make middleware","x":5040,"y":-2932,"width":250,"height":60},
 		{"id":"47141999415ae07f","type":"text","text":"https://nextjs.org/docs/app/api-reference/file-conventions/middleware","x":5365,"y":-2960,"width":250,"height":117},
 		{"id":"2d6bfef7dacad5eb","type":"text","text":"esta la idea de poder cambiar de cuenta facilmente, esto seria similar a discord","x":5250,"y":-3160,"width":250,"height":117,"color":"3"},
-		{"id":"94dc744f4f1225ff","type":"text","text":"mercado libre?","x":4410,"y":-2656,"width":250,"height":60,"color":"3"}
+		{"id":"94dc744f4f1225ff","type":"text","text":"mercado libre?","x":4410,"y":-2656,"width":250,"height":60,"color":"3"},
+		{"id":"95b48680f378c073","type":"text","text":"layout.jsx\npage.jsx","x":6131,"y":-5717,"width":250,"height":60},
+		{"id":"1b7749aec1ae0eeb","type":"text","text":"api","x":6131,"y":-5537,"width":250,"height":60},
+		{"id":"39f1915b23b7fcf4","type":"file","file":"Pasted image 20240426132355.png","x":6751,"y":-5507,"width":400,"height":241},
+		{"id":"c0bc4d9f6c46cd46","type":"text","text":"components for any children","x":6131,"y":-5137,"width":250,"height":60},
+		{"id":"e6a58f56a5feac00","type":"text","text":"utils for any children","x":6131,"y":-5057,"width":250,"height":60},
+		{"id":"8894ea326a8fedd9","type":"text","text":"styles.css","x":6131,"y":-4977,"width":250,"height":60},
+		{"id":"292f60734a4949e7","type":"text","text":"endpoints","x":6431,"y":-5417,"width":250,"height":60},
+		{"id":"7b1ccb5434792e1c","x":6711,"y":-4877,"width":960,"height":324,"type":"text","text":"la idea es evitar el:\n```\n      <div className=\"relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]\">\n```\ny reemplazarlo en un archivo css usando ``import \"./styles.css\"``"},
+		{"id":"9c4de99061f484e1","type":"text","text":"public / assets","x":5499,"y":-4977,"width":250,"height":60},
+		{"id":"509584663d490f7b","type":"text","text":"agregar \"import ./styles.css\" al layout para que todos los endpoints importen su css local mas los globales o padres","x":6131,"y":-4877,"width":250,"height":147},
+		{"id":"f177ed4af8e9a0a1","type":"text","text":"import ./components\nimport ./utils\n?","x":6411,"y":-4877,"width":250,"height":87,"color":"5"},
+		{"id":"803b93cde0bbcf88","type":"text","text":"project structure\n","x":5065,"y":-5262,"width":250,"height":60},
+		{"id":"b49783e249c89ddd","type":"text","text":"app","x":5461,"y":-5457,"width":250,"height":60},
+		{"id":"9e7900c5cacfd2d0","type":"text","text":"models","x":5499,"y":-5099,"width":250,"height":60},
+		{"id":"e7255b923dda796c","type":"text","text":"folder / endpoint","x":5851,"y":-5262,"width":250,"height":60},
+		{"id":"c979972c01883d8f","type":"text","text":"## DDD principles\nlas cosas se agrupan por dominio y no por funcionalidad:\n\"Instead of having broad folders like `components` or `utils`, slice your features vertically so each domain has everything it needs **encapsulated** within its directory. For example, anything specific to 'events' should be within the 'events' directory, including its specific utilities and components.\"\n```\napp/\n\tapi/\n\t\tendpoint/\n\t\t\tendpoint/\n\t\t\t\troute.js\n\t\t\troute.js\n\tendpoint/\n\t\tetc/ (no se llama literalmente etc, se reemplaza etc con el nombre del grupo de elementos particulaes)\n\t\t\t-> 1 o mas carpetas para cosas mas particulares, interfaces, hooks, types, services, etc. para local e hijos\n\t\tcomponentes/ (components) -> componentes del endpoint, solo para local e hijos\n\t\tutils/ -> utils del endpoint, solo para padre e hijos\n\t\tstyles.css\n\t\tpage.jsx -> import ./styles.css\n\t\tendpoint/\n\t\t\tcomponentes/ (components) -> componentes del endpoint, solo para local e hijos\n\t\t\tutils/ -> utils del endpoint, solo para padre e hijos\n\t\t\tstyles.css\n\t\t\tpage.jsx -> import ./styles.css (tiene el local y el padre)\n\tpage.jsx\n\tstyles.css\n\tlayout.jsx\n\tcomponents/ -> serian los componentes, utils y stilos globales, misma logica de carpeta padre pero en la ruta root\n\tutils/\n\t\tmysql.ts\n\t\tcualquier otro ts que sea global y que deba estar presente en todos los endpoitns tanto de la pagina como de la api\npublic/\n\tassets/\n\t\timages/\n\t\tsounds/\n\t\tetc/\nmodels/\n\tevents.ts -> lista de queries, solo strings para despues importarlo y ejecutar \n\t\t\tex: string getEvents = \"select * from events\" -> utils.db.query(mysql.events.getEvents)\ntests/\n\tTODO\n```","x":4634,"y":-6617,"width":1115,"height":1051}
 	],
 	"edges":[
 		{"id":"960f1b7ac70e1267","fromNode":"1c9ed61e78dfb06b","fromSide":"bottom","toNode":"ecdcbac035b853da","toSide":"top"},
@@ -211,6 +227,22 @@
 		{"id":"1f0e88091a0e0338","fromNode":"923ea3be5a9c59a8","fromSide":"right","toNode":"6ab3fdcf09be0509","toSide":"left"},
 		{"id":"d30d85cdc5ce35a0","fromNode":"6ab3fdcf09be0509","fromSide":"right","toNode":"47141999415ae07f","toSide":"left"},
 		{"id":"d5522595f395d0e4","fromNode":"47141999415ae07f","fromSide":"right","toNode":"fdc5072104e20e7a","toSide":"left"},
-		{"id":"632f18951acad534","fromNode":"c699e23bec32621e","fromSide":"right","toNode":"923ea3be5a9c59a8","toSide":"left"}
+		{"id":"632f18951acad534","fromNode":"c699e23bec32621e","fromSide":"right","toNode":"923ea3be5a9c59a8","toSide":"left"},
+		{"id":"eb42962c16e9c83a","fromNode":"e7255b923dda796c","fromSide":"bottom","toNode":"c0bc4d9f6c46cd46","toSide":"left"},
+		{"id":"8a79b3dee88c1634","fromNode":"e7255b923dda796c","fromSide":"bottom","toNode":"e6a58f56a5feac00","toSide":"left"},
+		{"id":"4a5a7c18a81b9f8d","fromNode":"803b93cde0bbcf88","fromSide":"right","toNode":"e7255b923dda796c","toSide":"left"},
+		{"id":"13791cef69a1efbe","fromNode":"e7255b923dda796c","fromSide":"bottom","toNode":"8894ea326a8fedd9","toSide":"left"},
+		{"id":"2b4d9c5e1269503d","fromNode":"803b93cde0bbcf88","fromSide":"right","toNode":"9e7900c5cacfd2d0","toSide":"left"},
+		{"id":"13c1bc8b539cec94","fromNode":"803b93cde0bbcf88","fromSide":"right","toNode":"b49783e249c89ddd","toSide":"left"},
+		{"id":"69f3af62d33db171","fromNode":"b49783e249c89ddd","fromSide":"right","toNode":"1b7749aec1ae0eeb","toSide":"left"},
+		{"id":"c7927c2c92e0a3d5","fromNode":"1b7749aec1ae0eeb","fromSide":"bottom","toNode":"292f60734a4949e7","toSide":"left"},
+		{"id":"a93589d79b5b5bfb","fromNode":"292f60734a4949e7","fromSide":"right","toNode":"39f1915b23b7fcf4","toSide":"left"},
+		{"id":"65c2cf20e57e571a","fromNode":"803b93cde0bbcf88","fromSide":"right","toNode":"9c4de99061f484e1","toSide":"left"},
+		{"id":"4bbcf02537711d16","fromNode":"b49783e249c89ddd","fromSide":"right","toNode":"95b48680f378c073","toSide":"left"},
+		{"id":"48e38b12f191523b","fromNode":"8894ea326a8fedd9","fromSide":"bottom","toNode":"509584663d490f7b","toSide":"top"},
+		{"id":"0b342b9777de0977","fromNode":"e6a58f56a5feac00","fromSide":"right","toNode":"f177ed4af8e9a0a1","toSide":"top"},
+		{"id":"cd16aa0ad099ae0d","fromNode":"c0bc4d9f6c46cd46","fromSide":"right","toNode":"f177ed4af8e9a0a1","toSide":"top"},
+		{"id":"b9797325951ea00a","fromNode":"509584663d490f7b","fromSide":"bottom","toNode":"7b1ccb5434792e1c","toSide":"left"},
+		{"id":"db82903c10631e38","fromNode":"803b93cde0bbcf88","fromSide":"top","toNode":"c979972c01883d8f","toSide":"bottom"}
 	]
 }

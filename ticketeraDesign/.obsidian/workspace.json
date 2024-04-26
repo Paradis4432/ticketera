@@ -15,20 +15,10 @@
               "state": {
                 "file": "idea.canvas",
                 "viewState": {
-                  "x": 5351.459866667889,
-                  "y": -4128.551388377998,
-                  "zoom": -0.8341301012253437
+                  "x": 5267.306020340522,
+                  "y": -6054.308923912813,
+                  "zoom": 0.3333333333333332
                 }
-              }
-            }
-          },
-          {
-            "id": "74badcb690f3ca1c",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.5.8"
               }
             }
           }
@@ -161,6 +151,7 @@
   },
   "active": "4e919599bf06494a",
   "lastOpenFiles": [
+    "Pasted image 20240426132355.png",
     "Welcome.md",
     "idea.canvas",
     "home.md",
