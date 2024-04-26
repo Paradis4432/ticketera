@@ -1,17 +1,11 @@
-import Link from "next/link";
+import "./styles.css"
 
-export default function page() {
+function Page() {
     return (
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-12">
-
-                    <h1>Tests</h1>
-
-                    <Link href={"/testing/events"}>testing</Link>
-
-                </div>
-            </div>
+            <h1 className={"test"}>Tests</h1>
         </div>
     )
 }
+
+export default Page;
