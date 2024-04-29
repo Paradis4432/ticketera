@@ -28,7 +28,7 @@ export const GET = async (req : any, {params} : any) => {
         // TODO add message and status for no error but not found
 
         if (delay) await new Promise(resolve => setTimeout(resolve, 2000))
-        const data = await db.query(queries.selEvents);
+        const data = await db.query(queries.selAll);
         return Response.json({
             message: "success",
             code: 200,
