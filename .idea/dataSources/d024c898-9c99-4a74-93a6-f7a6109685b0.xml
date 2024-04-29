@@ -1083,7 +1083,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="317" parent="1" name="testytreact">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-04-26.17:24:42</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-04-29.22:49:16</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="318" parent="1" name="pi_smashsqllib">
@@ -1128,12 +1128,12 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="329" parent="327" name="id">
-      <AutoIncrement>11</AutoIncrement>
+      <AutoIncrement>17</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="330" parent="327" name="name">
+    <column id="330" parent="327" name="names">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>

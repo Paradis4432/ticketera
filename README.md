@@ -20,3 +20,5 @@ que se puede usar para simular post y get requests?
 ## TODO low prio
 
 - [ ] mejorar los mensajes de los endpoints, son muy basicos y no dicen mucho 
+
+## fran
