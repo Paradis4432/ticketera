@@ -9,7 +9,7 @@ que se puede usar para simular post y get requests?
 - [ ] revisar que endpoitns se pueden convertir a dynamics
 - [ ] stress test mysql, no tiene auto reconnect y no esta usando pooling, creo. goal: undefined
 - [ ] me gustaria tener un sistema de ids para errores, ej: "E00001". documentarlos
-- [ ] documentar los endpoints
+- [x] documentar los endpoints
 - [ ] index for mysql tables
 - [ ] validation for arguments via body or params, use zod?
 - [ ] cuidado con open endpoints sin validacion, cuialquiera puede simplemente hacer requests a la api, limitar por
