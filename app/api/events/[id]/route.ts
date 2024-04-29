@@ -28,3 +28,5 @@ export const GET = async (req : any, {params} : any) => {
         })
     }
 }
+
+// TODO delete and patch

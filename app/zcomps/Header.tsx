@@ -14,7 +14,7 @@ function Header() {
                     <HeaderButton value={"EVENTS"} href={"/events"}></HeaderButton>
                 </div>
                 <div className="col">
-                    <HeaderButton value={"CREATE"} href={"/events/crate"}></HeaderButton>
+                    <HeaderButton value={"CREATE"} href={"/events/create"}></HeaderButton>
                 </div>
                 <div className="col">
                     <HeaderButton value={"ETC"} href={"/events"}></HeaderButton>
