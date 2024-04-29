@@ -1,17 +1,21 @@
-import Link from "next/link";
+"use client"
+import "./styles.css"
 
-export default function page() {
+function Page() {
+    // TODO convert finder by id to component and load this server side, but the component client side
     return (
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-12">
+            <h1 className={"test"}>Tests</h1>
 
-                    <h1>Tests</h1>
-
-                    <Link href={"/testing/events"}>testing</Link>
-
-                </div>
-            </div>
+            <h1>find by id:</h1>
+            <input type="text" id="find-by-id" placeholder="id"/>
+            <button onClick={() => {
+                const id = (document.getElementById("find-by-id") as HTMLInputElement).value
+                window.location.href = `/events/${id}`
+            }}>find
+            </button>
         </div>
     )
 }
+
+export default Page;
