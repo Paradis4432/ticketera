@@ -14,7 +14,7 @@ que se puede usar para simular post y get requests?
 - [ ] validation for arguments via body or params, use zod?
 - [ ] cuidado con open endpoints sin validacion, cuialquiera puede simplemente hacer requests a la api, limitar por
   cuenta. usar algun token
-- [ ] login por cuenta de google
+- [ ] login por cuenta de google, logout, cambio de contraseña, etc. en "la biblia" muestra como hacer para preparar esto
 - [ ] generacion de codigos qr por entradas
 - [ ] emails y notificaciones
 - [ ] hay un sector en el must read del obsidian "metrics" tiene un par de links sobre charts y cosas
