@@ -149,7 +149,7 @@
 		{"id":"6cb9ce9fab23b209","type":"text","text":"visitas = cuanta gente vio el evento en la pagina principal TBD\n\nstarted_but_denied = cuanta gente empezo a comprar la entrada pero cancelo\n\nin_favs = cuanta gente tiene este evento en favoritos","x":9050,"y":1577,"width":250,"height":324},
 		{"id":"3b27fea40fa91ed2","x":9050,"y":2409,"width":250,"height":448,"color":"3","type":"text","text":"**metric_of_promoters**"},
 		{"id":"8500b17292e8ca01","type":"text","text":"**user**\n\nuser_id PK\nname\nemail\ncreation_date\nsex","x":8195,"y":502,"width":250,"height":448,"color":"4"},
-		{"id":"433318f216f5da1a","x":7590,"y":-203,"width":250,"height":60,"color":"6","type":"text","text":"TODO"}
+		{"id":"433318f216f5da1a","x":7590,"y":-203,"width":250,"height":60,"color":"6","type":"text","text":"TODO / TBD "}
 	],
 	"edges":[
 		{"id":"d985d9a0fd5a7f9c","fromNode":"9dee8a5da4d5cbcb","fromSide":"bottom","toNode":"5192f764b82cbe07","toSide":"top"},
