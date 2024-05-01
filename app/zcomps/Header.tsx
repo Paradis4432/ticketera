@@ -4,7 +4,7 @@ function Header() {
     return (
         // TODO space between logo, buttons and profile pic
         // TODO add profile pic
-        // TODO add mobile version -> add dropdown menu
+        // TODO add mobile version -> add dropdown menuasd
         <div className="container">
             <div className="row">
                 <div className="col">
