@@ -1,4 +1,4 @@
-import queries from "@/models/QueriesRepository";
+import queries from "@/models/QueriesModels";
 import db from "@/app/zutils/db";
 import {delay} from "@/app/api/config";
 import IEvent from "@/app/zints/IEvent";
