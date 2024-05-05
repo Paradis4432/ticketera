@@ -20,7 +20,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <div className="app">
+        <div className="app" style={{backgroundColor:"grey", height:"100vh"}}>
             <Header></Header>
             {children}
             <Footer></Footer>

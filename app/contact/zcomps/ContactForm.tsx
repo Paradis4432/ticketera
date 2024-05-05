@@ -7,18 +7,13 @@ import {z} from 'zod'
 
 
 import {toast, Toaster} from 'sonner'
-import {ContactFormSchema} from "@/app/contact/zcomps/ContactSchema";
-import {sendEmail} from "@/app/contact/zcomps/actions";
+import {sendEmail} from "@/app/contact/zutils/SendEmail";
+import {ContactFormSchema} from "@/app/contact/zutils/ContactSchemas";
+
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>
 
 function ContactForm() {
-
-    const testToat = () => {
-        console.log("testing")
-        toast.success('Email sent!')
-    }
-
     const {
         register,
         handleSubmit,
@@ -47,19 +42,9 @@ function ContactForm() {
         <div>
             <Toaster/>
 
-            <button onClick={testToat}>
-                testtoast
-            </button>
-
-            <form
-                onSubmit={handleSubmit(processForm)}
-            >
-
+            <form onSubmit={handleSubmit(processForm)}>
                 <div>
-                    <input
-                        placeholder='name'
-                        {...register('name')}
-                    />
+                    <input placeholder='name' value={"test00"} {...register('name')}/>
                     {errors.name?.message && (
                         <p>
                             {errors.name.message}
@@ -68,11 +53,7 @@ function ContactForm() {
                 </div>
 
                 <div>
-                    <input
-                        placeholder='email'
-                        className='w-full rounded-lg'
-                        {...register('email')}
-                    />
+                    <input placeholder='email' value={"Lucasezequiel120202@gmail.com"}{...register('email')}/>
                     {errors.email?.message && (
                         <p className='ml-1 mt-1 text-sm text-red-400'>
                             {errors.email.message}
@@ -81,22 +62,13 @@ function ContactForm() {
                 </div>
 
                 <div>
-        <textarea
-            rows={5}
-            cols={5}
-            placeholder='message'
-            className='w-full rounded-lg'
-            {...register('message')}
-        />
+                    <textarea placeholder='message' value={"test message"} {...register('message')}/>
                     {errors.message?.message && (
-                        <p className='ml-1 text-sm text-red-400'>{errors.message.message}</p>
+                        <p>{errors.message.message}</p>
                     )}
                 </div>
 
-                <button
-                    disabled={isSubmitting}
-                    className='rounded-lg border border-black bg-black py-2.5 font-medium text-white transition-colors hover:bg-black/80 disabled:cursor-not-allowed disabled:opacity-50'
-                >
+                <button disabled={isSubmitting}>
                     {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
             </form>
