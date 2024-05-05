@@ -38,11 +38,31 @@ que se puede usar para simular post y get requests?
 - [x] Docker
 - [ ] Google login usando la biblia
 
-## Docker
-1. Descargar [DockerDesktop](https://www.docker.com/products/docker-desktop/)
-2. En la terminal correr ```docker compose up -d``` (d --> detach) para correr el contenedor en background
-3. Para eliminar el contenedor correr ```docker compose down```
-   
+### 1. Descargar Docker Desktop
+
+- Descarga e instala [Docker Desktop](https://www.docker.com/products/docker-desktop/) para tu sistema operativo.
+
+### 2. Iniciar los servicios
+- Ejecuta el siguiente comando para iniciar los servicios en modo "detached" (en segundo plano):
+    ```bash
+    docker compose up -d
+    ```
+
+
+### 4. Detener los servicios
+
+- Para detener y eliminar los contenedores, utiliza el siguiente comando:
+    ```bash
+    docker compose down
+    ```
+
+## Notas adicionales
+
+```yaml
+  docker-compose.yml 
+```  
+crea automaticamente un volumen para que los datos en la base de datos persista,
+en el caso de querrer borrar los datos se debe borrar el volumen y volver a correr el comando de docker compose up
 
 
 
