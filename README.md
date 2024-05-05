@@ -42,7 +42,14 @@ que se puede usar para simular post y get requests?
 
 - Descarga e instala [Docker Desktop](https://www.docker.com/products/docker-desktop/) para tu sistema operativo.
 
-### 2. Iniciar los servicios
+### 2. Descargar imagen de MySQL
+- Ejecuta el siguiente comando para iniciar los servicios en modo "detached" (en segundo plano):
+    ```bash
+    docker pull mysql:oracle
+    ```
+
+
+### 3. Iniciar los servicios
 - Ejecuta el siguiente comando para iniciar los servicios en modo "detached" (en segundo plano):
     ```bash
     docker compose up -d
