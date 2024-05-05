@@ -1,0 +1,15 @@
+
+services:
+  db:
+    container_name: ticketera-container
+    image: mysql:oracle
+    volumes:
+      - ticketera-volume:/var/lib/mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env  # Esto carga todas las variables de entorno desde el archivo .env
+
+volumes:
+  ticketera-volume:

@@ -34,9 +34,18 @@ que se puede usar para simular post y get requests?
 
 - [ ] mejorar los mensajes de los endpoints, son muy basicos y no dicen mucho
 
-## facu
+## Facu
+- [x] Docker
+- [ ] Google login usando la biblia
 
-- docker / google login usando la biblia
+## Docker
+1. Descargar [DockerDesktop](https://www.docker.com/products/docker-desktop/)
+2. En la terminal correr ```docker compose up -d``` (d --> detach) para correr el contenedor en background
+3. Para eliminar el contenedor correr ```docker compose down```
+   
+
+
+
 
 ## lucas
 
