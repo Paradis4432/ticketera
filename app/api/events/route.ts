@@ -1,7 +1,7 @@
 import db from "@/app/zutils/db";
 import {delay} from "@/app/api/config";
 import IEvent from "@/app/zints/IEvent";
-import queries from "@/models/events";
+import queries from "@/models/QueriesModels";
 
 export const GET = async (req: any, {params}: any) => {
     try {
