@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./global.css"
 import Header from "@/app/zcomps/Header";
 import Footer from "@/app/zcomps/Footer";
+import {Providers} from "@/app/Providers";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -21,9 +22,11 @@ export default function RootLayout({
         <html lang="en">
         <body className={inter.className}>
         <div className="app">
-            <Header></Header>
-            {children}
-            <Footer></Footer>
+            <Providers>
+                <Header/>
+                {children}
+                <Footer/>
+            </Providers>
         </div>
         </body>
         </html>
