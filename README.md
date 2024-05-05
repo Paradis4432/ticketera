@@ -36,7 +36,7 @@ que se puede usar para simular post y get requests?
 
 ## Facu
 - [x] Docker
-- [ ] Google login usando la biblia
+- [x] Google login usando la biblia
 
 ### 1. Descargar Docker Desktop
 
