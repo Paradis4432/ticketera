@@ -7,6 +7,6 @@ export async function  GET (): Promise<NextResponse> {
     return NextResponse.json({
         message: "success",
         code: 200,
-        data: data
+        data: data[0]
     })
 }
