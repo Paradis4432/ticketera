@@ -1,6 +1,11 @@
+"use client"
+
 import Link from "next/link";
+import {signIn, signOut} from "next-auth/react"
+import {useSession} from "next-auth/react";
 
 function Header() {
+    const {data: session} = useSession();
     return (
         // TODO space between logo, buttons and profile pic
         // TODO add profile pic
@@ -22,6 +27,16 @@ function Header() {
                 <div className="col">
                     <HeaderButton value={"PROFILE_PIC"} href={"/profile"}></HeaderButton>
                 </div>
+                {!session?.user &&
+                    <div className="col">
+                        <button onClick={() => signIn()} className="btn btn-primary">Sign in</button>
+                    </div>
+                }
+                <div className="col">
+                    <button onClick={() => signOut()} className="btn btn-primary">Log out</button>
+                </div>
+
+
             </div>
         </div>
     )

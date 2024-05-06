@@ -35,9 +35,45 @@ que se puede usar para simular post y get requests?
 
 - [ ] mejorar los mensajes de los endpoints, son muy basicos y no dicen mucho
 
-## facu
+## Facu
+- [x] Docker
+- [x] Google login usando la biblia
 
-- docker / google login usando la biblia
+### 1. Descargar Docker Desktop
+
+- Descarga e instala [Docker Desktop](https://www.docker.com/products/docker-desktop/) para tu sistema operativo.
+
+### 2. Descargar imagen de MySQL
+- Ejecuta el siguiente comando para iniciar los servicios en modo "detached" (en segundo plano):
+    ```bash
+    docker pull mysql:oracle
+    ```
+
+
+### 3. Iniciar los servicios
+- Ejecuta el siguiente comando para iniciar los servicios en modo "detached" (en segundo plano):
+    ```bash
+    docker compose up -d
+    ```
+
+
+### 4. Detener los servicios
+
+- Para detener y eliminar los contenedores, utiliza el siguiente comando:
+    ```bash
+    docker compose down
+    ```
+
+## Notas adicionales
+
+```yaml
+  docker-compose.yml 
+```  
+crea automaticamente un volumen para que los datos en la base de datos persista,
+en el caso de querrer borrar los datos se debe borrar el volumen y volver a correr el comando de docker compose up
+
+
+
 
 ## lucas
 

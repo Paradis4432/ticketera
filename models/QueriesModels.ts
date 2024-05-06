@@ -1,7 +1,7 @@
 // language=MySQL
 enum queries {
-    selAll = "select * from events;",
-    selByID = "select * from events where id = ?;",
+    selAll = "select * from event;",
+    selByID = "select * from event where id = ?;",
 
 
     isFound = "select * from users where id = ?;",

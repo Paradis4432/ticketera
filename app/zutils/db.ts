@@ -1,10 +1,10 @@
-import mysql from "mysql2/promise";
+import mysql, {Pool} from "mysql2/promise";
 
-const db = mysql.createPool({
+const db: Pool = mysql.createPool({
     host: "localhost",
-    user: "root",
-    password: "password",
-    database: "testYTReact"
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 });
 
 export default db;
