@@ -5,7 +5,7 @@ import Link from "next/link";
 import {useSession} from "next-auth/react";
 
 function Page() {
-            const {data: session} = useSession();
+    const {data: session} = useSession();
     return (
             <div className="container">
                 <h1>Profile</h1>

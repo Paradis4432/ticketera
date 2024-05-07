@@ -6,12 +6,8 @@ que se puede usar para simular post y get requests?
 
 ## TODO high prio
 
-- [ ] ver como hacer pagos con mercado pago y primsa
-- [ ] emails y notificaciones, que usar, server secundario? aws?
-- [ ] generacion de codigos qr por entradas. verificar que el usuario esta logeado. como crear un qr que
-- [ ] login por cuenta de google, logout, etc. en "la biblia" muestra como hacer para preparar
-  esto
-- [ ] secure most to all endpoints, use middlewares for this?
+# - [ ] generacion de codigos qr por entradas. verificar que el usuario esta logeado. como crear un qr que
+- [ ] secure most to all endpoints
 
 ## TODO mid prio
 
@@ -22,12 +18,13 @@ que se puede usar para simular post y get requests?
 
 ## TODO
 
+- [ ] middleware para verificar que el usuario esta
+  logeado https://nextjs.org/docs/pages/building-your-application/routing/middleware
 - [ ] revisar que endpoitns se pueden convertir a dynamics
 - [ ] stress test mysql, no tiene auto reconnect y no esta usando pooling, creo. goal: undefined
 - [ ] me gustaria tener un sistema de ids para errores, ej: "E00001". documentarlos
 - [ ] documentar los endpoints
-- [x] index for mysql tables
-- [ ] validation for arguments via body or params, use zod?
+
 - [ ] cuidado con open endpoints sin validacion, cuialquiera puede simplemente hacer requests a la api, limitar por
   cuenta. usar algun token
 
@@ -36,26 +33,44 @@ que se puede usar para simular post y get requests?
 - [ ] mejorar los mensajes de los endpoints, son muy basicos y no dicen mucho
 
 ## Facu
-- [x] Docker
-- [x] Google login usando la biblia
+
+branch "tablas" -> tablas -> PR to dev -> branch de tablas "dashboard" -> PR to dev 
+
+- [ ] tablas para metrics of sales and of users
+- [ ] dashboard /myevents -> validacion de user
+- [ ] dashboard /meevents/eventID/metrics -> validacion de user -> pide metrics of sales y of users
+- [ ] dashboard /myprofile/mytickets -> validacion de user -> list of tickets
+
+## Lucas
+
+- [ ] validation for arguments via body or params, use zod?
+- [ ] ver como hacer pagos con mercado pago y primsa
+
+## For testing
+
+- [ ] Docker
+- [ ] Google login usando la biblia
+- [ ] emails y notificaciones, que usar, server secundario? aws?
+- [-] login por cuenta de google, logout, etc. en "la biblia" muestra como hacer para preparar
+  esto
 
 ### 1. Descargar Docker Desktop
 
 - Descarga e instala [Docker Desktop](https://www.docker.com/products/docker-desktop/) para tu sistema operativo.
 
 ### 2. Descargar imagen de MySQL
+
 - Ejecuta el siguiente comando para iniciar los servicios en modo "detached" (en segundo plano):
     ```bash
     docker pull mysql:oracle
     ```
 
-
 ### 3. Iniciar los servicios
+
 - Ejecuta el siguiente comando para iniciar los servicios en modo "detached" (en segundo plano):
     ```bash
     docker compose up -d
     ```
-
 
 ### 4. Detener los servicios
 
@@ -69,11 +84,9 @@ que se puede usar para simular post y get requests?
 ```yaml
   docker-compose.yml 
 ```  
+
 crea automaticamente un volumen para que los datos en la base de datos persista,
 en el caso de querrer borrar los datos se debe borrar el volumen y volver a correr el comando de docker compose up
-
-
-
 
 ## lucas
 
