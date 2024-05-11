@@ -11,8 +11,9 @@ function Page() {
                 <h1>Profile</h1>
                 <h2>user: {session?.user?.name}</h2>
                 <h2>email: {session?.user?.email}</h2>
-                <img src={(session?.user?.image) as string}/>
+                <img src={(session?.user?.image) as string} alt={"profilePic"}/>
 
+                <br/>
                 <Link href={"/events/create"}>create event</Link>
             </div>
     )

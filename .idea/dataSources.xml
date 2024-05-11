@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="testytreact@localhost" uuid="d024c898-9c99-4a74-93a6-f7a6109685b0">
+    <data-source source="LOCAL" name="ticketera@localhost" uuid="56646b66-c450-4b73-9e30-a25dbfcab602">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/testytreact</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/ticketera</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

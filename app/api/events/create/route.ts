@@ -13,7 +13,7 @@ export const POST = async (request: any) => {
             data: []
         })
     }
-    const data = await db.query(queries.create, name);
+    const data = await db.query(queries.create, [name, "email", "1"]);
     return Response.json({
         message: "success",
         code: 200,
