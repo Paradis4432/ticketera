@@ -14,4 +14,4 @@ export const Providers = ({children}: providersProps) => {
             {children}
         </SessionProvider>
     );
-};
+}; 
