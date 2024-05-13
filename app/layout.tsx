@@ -2,9 +2,6 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./global.css"
-import Header from "@/app/zcomps/Header";
-import Footer from "@/app/zcomps/Footer";
-import {Providers} from "@/app/Providers";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -21,13 +18,8 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <div className="app" style={{backgroundColor: "grey", height: "100vh"}}>
-            <Providers>
-                <Header/>
-                {children}
-                <Footer/>
-            </Providers>
-        </div>
+        {children}
+
         </body>
         </html>
     );
