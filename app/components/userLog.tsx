@@ -1,6 +1,7 @@
 "use client"
 
 import {signIn, signOut, useSession} from "next-auth/react";
+import {saveUser} from "@/app/components/actions";
 
 function LogIn() {
     const {data: session} = useSession();
@@ -11,7 +12,9 @@ function LogIn() {
                 session ? (
                     <p>logged in</p>
                 ) : (
-                    <button onClick={() => signIn()} className="btn btn-primary">Log in</button>
+                    <button onClick={() => signIn().then(() => {
+                        //saveUser(session?.user?.email)
+                    })} className="btn btn-primary">Log in</button>
                 )
             }
         </div>

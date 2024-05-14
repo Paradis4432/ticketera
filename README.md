@@ -1,4 +1,5 @@
 la biblia: https://github.com/adrianhajdin/project_next_14_ai_prompt_sharing
+la nueva biblia: https://github.com/RiskyMH/EmailThing/tree/main/app
 que se puede usar para simular post y get requests?
 
 ## TODO high prio
@@ -33,9 +34,9 @@ que se puede usar para simular post y get requests?
 branch "tablas" -> tablas -> PR to dev -> branch de tablas "dashboard" -> PR to dev 
 
 - [ ] tablas para metrics of sales and of users
-- [ ] dashboard /myevents -> validacion de user
-- [ ] dashboard /meevents/eventID/metrics -> validacion de user -> pide metrics of sales y of users
-- [ ] dashboard /myprofile/mytickets -> validacion de user -> list of tickets
+- [ ] dashboard /profile/events -> validacion de user
+- [ ] dashboard /profile/events/id/metrics -> validacion de user -> pide metrics of sales y of users
+- [ ] dashboard /profile/tickets -> validacion de user -> list of tickets
 
 ## Lucas
 
@@ -83,12 +84,3 @@ branch "tablas" -> tablas -> PR to dev -> branch de tablas "dashboard" -> PR to 
 
 crea automaticamente un volumen para que los datos en la base de datos persista,
 en el caso de querrer borrar los datos se debe borrar el volumen y volver a correr el comando de docker compose up
-
-## lucas
-
-- schemas
-- notificaciones
-
-````mysql
-
-````

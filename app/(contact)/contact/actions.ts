@@ -1,3 +1,5 @@
+"use server"
+
 import {SubmitHandler} from "react-hook-form";
 import {ContactFormInputs} from "@/app/validations/mails";
 import {sendEmail} from "@/app/utils/emails";
