@@ -1,10 +1,11 @@
 create table if not exists user
 (
     user_id       bigint primary key auto_increment, -- index
-    name          varchar(50) not null,
-    email         varchar(50) not null,
-    creation_date datetime    not null default current_timestamp,
-    sex           varchar(1)  not null
+    name          varchar(50)        not null,
+    email         varchar(50) unique not null,
+    creation_date datetime           not null default current_timestamp,
+    sex           varchar(1),
+    index (email)
 );
 
 create table if not exists event
@@ -31,6 +32,7 @@ create table if not exists user_event
 create table if not exists ticket
 (
     ticket_id       bigint primary key auto_increment, -- index
+    event_id        bigint         not null,
     user_id         bigint         not null,
     name            varchar(50)    not null,
     reason          varchar(50)    not null,
@@ -39,7 +41,8 @@ create table if not exists ticket
     uses            int            not null,
     max_uses        int            not null,
     price           decimal(10, 2) not null,
-    foreign key (user_id) references user (user_id)
+    foreign key (user_id) references user (user_id),
+    foreign key (event_id) references event (event_id)
 );
 
 create table if not exists metrics
@@ -50,8 +53,28 @@ create table if not exists metrics
     foreign key (event_id) references event (event_id)
 );
 
-drop table if exists user_event;
-drop table if exists event;
-drop table if exists ticket;
-drop table if exists user;
-drop table if exists metrics;
+create table if not exists metrics_sales
+(
+    metric_sale_id bigint primary key auto_increment, -- index
+    metric_id      bigint         not null,
+    ticket_id      bigint unique,
+    ticket_name    VARCHAR(100),
+    sold           int default 0,
+    courtesies     int default 0,
+    cancelled      int default 0,
+    not_claimed    int default 0,
+    price          decimal(10, 2) not null,
+    total          decimal(10, 2) not null,
+    foreign key (metric_id) references metrics (metric_id)
+);
+
+create table if not exists metrics_users
+(
+    metric_user_id     bigint primary key auto_increment, -- index
+    metric_id          bigint not null,
+    visits             int default 0,
+    started_but_denied int default 0,
+    in_fav             int default 0,
+    foreign key (metric_id) references metrics (metric_id)
+);
+
