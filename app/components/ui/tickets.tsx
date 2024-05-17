@@ -1,4 +1,4 @@
-function Ticket({ticket}: { ticket: ITickets }) {
+function Ticket({ticket}: { ticket: ITicket }) {
     return (
         <p>ticket: {ticket.event_name}</p>
     )
