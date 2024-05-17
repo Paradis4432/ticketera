@@ -22,7 +22,7 @@ function Page() {
             // redirect / login
         }
     }, [session]);
-    console.log(events)
+
     return (
         <div className="container">
             <h1>tus eventos</h1>

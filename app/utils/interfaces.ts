@@ -23,3 +23,13 @@ interface ITicket {
     expiration_date: Date
     creation_date: Date
 }
+
+interface IMetricSales {
+    ticket_name: string,
+    sold: number,
+    courtesies: number,
+    cancelled: number,
+    not_claimed: number,
+    price: number,
+    total: number
+}

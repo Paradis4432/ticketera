@@ -21,6 +21,7 @@ function Page() {
             // redirect / login
         }
     }, [session]);
+
     return (
         <div className="container">
             <h1>tus tickets</h1>
