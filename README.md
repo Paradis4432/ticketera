@@ -33,10 +33,10 @@ que se puede usar para simular post y get requests?
 
 branch "tablas" -> tablas -> PR to dev -> branch de tablas "dashboard" -> PR to dev 
 
-- [ ] tablas para metrics of sales and of users
-- [ ] dashboard /profile/events -> validacion de user
+- [x] tablas para metrics of sales and of users
+- [x] dashboard /profile/events -> validacion de user
 - [ ] dashboard /profile/events/id/metrics -> validacion de user -> pide metrics of sales y of users
-- [ ] dashboard /profile/tickets -> validacion de user -> list of tickets
+- [x] dashboard /profile/tickets -> validacion de user -> list of tickets
 
 ## Lucas
 

@@ -15,5 +15,27 @@ export enum users {
             event e on ue.event_id = e.event_id
         where
             u.email = ?;
-    `
+    `,
+
+    selUserTickets=`  
+        select
+            e.name as event_name,
+            t.name as ticket_name,
+            t.uses,
+            t.max_uses,
+            t.price,
+            t.reason,
+            t.creation_date,
+            t.expiration_date
+        
+        from
+            user u
+        join
+        ticket t on u.user_id = t.user_id
+        join
+        event e on t.event_id = e.event_id
+        where
+        u.email = 'facumartinezvidal@gmail.com';
+    
+    `,
 }

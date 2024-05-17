@@ -1,9 +1,6 @@
 "use client"
 
 import {useSession} from "next-auth/react";
-import {useEffect, useState} from "react";
-import {getUserTickets} from "@/app/(profile)/profile/actions";
-import {Ticket} from "@/app/components/ui/tickets";
 import Link from "next/link";
 
 function Page() {
@@ -22,7 +19,10 @@ function Page() {
             <Link href={"profile/events"}>
                 <h2>Tus eventos</h2>
             </Link>
-            <br/>   
+            <br/>
+            <Link href={"profile/tickets"}>
+                <h2>Tus tickets</h2>
+            </Link>
 
         </div>
     )

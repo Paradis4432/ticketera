@@ -16,6 +16,10 @@ interface ITicket {
     ticket_id:number
     ticket_name: string,
     event_name: string,
-    location: string,
-    starting_date: string
+    uses: number,
+    max_uses: number,
+    price: number,
+    reason: string,
+    expiration_date: Date
+    creation_date: Date
 }
