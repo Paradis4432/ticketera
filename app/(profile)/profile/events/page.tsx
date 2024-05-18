@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {Ticket} from "@/app/components/ui/tickets";
 import {UserEvents} from "@/app/components/ui/events";
 import {getUserEvent} from "@/app/(profile)/profile/events/actions";
+import Link from "next/link";
 
 function Page() {
     const {data: session} = useSession();
@@ -32,6 +33,7 @@ function Page() {
                 ) : (
                     events.map((event, id) => (
                         <UserEvents event={event} key={id}/>
+
                     ))
                 )
             }

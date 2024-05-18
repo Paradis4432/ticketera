@@ -10,10 +10,10 @@ async function getEventMetricSale(event_id: number | null | undefined): Promise<
     return data[0] as IMetricSales[]
 }
 
-async function getEventMetricUser(event_id: number | null | undefined): Promise<IEvent[]> {
+async function getEventMetricUser(event_id: number | null | undefined): Promise<IMetricUsers[]> {
     if (!event_id) return []
     const data = await db.query(metrics.selByEventUsers, event_id);
-    return data[0] as IEvent[]
+    return data[0] as IMetricUsers[]
 }
 
 export {

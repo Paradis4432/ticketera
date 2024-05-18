@@ -1,38 +1,70 @@
 "use client"
 import {useSession} from "next-auth/react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {getUserEvent} from "@/app/(profile)/profile/events/actions";
 import {UserEvents} from "@/app/components/ui/events";
 import {useParams} from "next/navigation";
-import {getEventMetricSale} from "@/app/(profile)/profile/events/[id]/actions";
+import {getEventMetricSale, getEventMetricUser} from "@/app/(profile)/profile/events/[id]/actions";
+import {MetricSales} from "@/app/components/ui/metrics";
+import {fetchEventByID} from "@/app/(events)/events/[id]/actions";
 
-function Page() {
+function Page({params}: { params: { id: string } }) {
     const {data: session} = useSession();
-    const params = useParams()
-    const id: number = parseInt(params.id as string)
-
     const [metricSales, setMetricSales] = useState<IMetricSales[]>([]);
+    const [metricUsers, setMetricUsers] = useState<IMetricUsers[]>([]);
 
-    if (session?.user) {
-        getEventMetricSale(id)
-            .then(metricSales => {
-                setMetricSales(metricSales);
-            })
-    } else {
-        // redirect / login
-    }
+    useEffect(() => {
+        if (session?.user) {
+            getEventMetricSale(Number(params.id))
+                .then(metricSales => {
+                    setMetricSales(metricSales);
+                })
+            getEventMetricUser(Number(params.id))
+                .then(metricUsers => {
+                    setMetricUsers(metricUsers);
+                })
+        } else {
+            // redirect / login
+        }
+    }, [params.id, session]);
+
+
+
+
     return (
         <div className="container">
-            <h1>metrics</h1>
+            <h2>metrics sales</h2>
             {
                 metricSales.length == 0 ? (
                     <h2>loading</h2>
                 ) : (
                     metricSales.map((metricSale, id) => (
-                        <></> //TODO: implement UI for metricSale
+                        <MetricSales metricSales={metricSale} key={id}/>
                     ))
                 )
             }
+
+            <h2>metric users</h2>
+            if (!metricUsers) {
+                <ul>
+                    <li>
+                        <h3>Visitas: {metricUsers[0]?.visits}</h3>
+                    </li>
+                    <li>
+                        <h3>Empezaron pero no compraron: {metricUsers[0]?.started_but_denied}</h3>
+                    </li>
+                    <li>
+                        <h3>En favoritos: {metricUsers[0]?.in_fav}</h3>
+                    </li>
+                </ul>
+            }
+            else{
+                <h2>loading</h2>
+            }
+
+
+
+
         </div>
     )
 }

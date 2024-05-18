@@ -29,7 +29,7 @@ export enum metrics {
                 join
             metrics_users mu on m.metric_id = mu.metric_id
         where
-            m.event_id = 1;
+            m.event_id = ?;
     `,
 
 }

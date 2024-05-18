@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function PublicEvent({event}: { event: IEvent | undefined }) {
     return (
         <div>{
@@ -25,7 +27,10 @@ function RenderPublicEvents(events: IEvent[]) {
 function UserEvents({event}: { event: IEvent }) {
     return (
         <>
-            <h4>{event.event_name}</h4>
+            <Link href={`/profile/events/${event.event_id}`}>
+                <h4>{event.event_name}</h4>
+            </Link>
+
             <ul>
 
                 <li>

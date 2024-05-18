@@ -33,3 +33,9 @@ interface IMetricSales {
     price: number,
     total: number
 }
+
+interface IMetricUsers {
+    visits: number,
+    started_but_denied: number,
+    in_fav: number
+}
