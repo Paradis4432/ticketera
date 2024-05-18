@@ -3,6 +3,7 @@ export enum users {
     selUserEvents=`
         select
             e.name as event_name,
+            e.event_id as event_id,
             e.description,
             e.location,
             e.starting_date,
@@ -20,6 +21,7 @@ export enum users {
     selUserTickets=`  
         select
             e.name as event_name,
+            e.event_id as event_id,
             t.name as ticket_name,
             t.uses,
             t.max_uses,

@@ -45,7 +45,8 @@ function Page({params}: { params: { id: string } }) {
             }
 
             <h2>metric users</h2>
-            if (!metricUsers) {
+            {metricUsers ? (
+
                 <ul>
                     <li>
                         <h3>Visitas: {metricUsers[0]?.visits}</h3>
@@ -57,12 +58,11 @@ function Page({params}: { params: { id: string } }) {
                         <h3>En favoritos: {metricUsers[0]?.in_fav}</h3>
                     </li>
                 </ul>
-            }
-            else{
+            ) : (
                 <h2>loading</h2>
+            )
+
             }
-
-
 
 
         </div>
