@@ -8,9 +8,9 @@ function Page() {
     // TODO convert finder by id to component and load this server side, but the component client side
     const [events, setEvents] = useState<IEvent[]>([])
     useEffect(() => {
-        fetchAllEvents().then(data => {
+        /*fetchAllEvents().then(data => {
             setEvents(data);
-        })
+        })*/
     }, []);
 
 
