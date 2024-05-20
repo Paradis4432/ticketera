@@ -33,18 +33,19 @@ que se puede usar para simular post y get requests?
 
 branch "tablas" -> tablas -> PR to dev -> branch de tablas "dashboard" -> PR to dev
 
-- [ ] al hacer click en evento en /profile/events/ -> redirect -> /profile/events/<eventID>/qrcode -> mostrar codigo
-  qr -> qr = link /use/<userID>/<eventID>/<ticketID>
-  https://www.npmjs.com/package/qrcode.react
-  (NOTE quiza en el futuro este link se cambie a algo como /use/<QR_CODE_UUID> que va a ser una FK al id guardado en
-  otro servidor, es scanner toma ese UUID y usa el segundo servidor para validarlo, por ahora vamos a lo simple y facil)
 - [ ] endpoint /use/[...data], creo que es asi, para tomar todos los argumentos, en este caso userID, eventID, ticketID
 - [ ] middleware para validar si el usuario esta logeado, esar esto cuando se entra a /profile /scanner
+- [ ] create qr code
 
 ## Lucas
 
 - [ ] validation for arguments via body or params, use zod?
 - [ ] ver como hacer pagos con mercado pago y primsa
+- [ ] en /profile/events if user == client mostrar codigo qr -> qr = link /use/<userID>/<eventID>/<ticketID>
+  https://www.npmjs.com/package/qrcode.react
+  (NOTE quiza en el futuro este link se cambie a algo como /use/<QR_CODE_UUID> que va a ser una FK al id guardado en
+  otro servidor, es scanner toma ese UUID y usa el segundo servidor para validarlo, por ahora vamos a lo simple y facil)
+- if user.id == event.id.owner se usa el FK para saber si el user es el dueño del evento
 
 ## For testing
 

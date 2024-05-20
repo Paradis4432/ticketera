@@ -27,12 +27,7 @@ function RenderPublicEvents(events: IEvent[]) {
 function UserEvents({event}: { event: IEvent }) {
     return (
         <>
-            <Link href={`/profile/events/${event.event_id}`}>
-                <h4>{event.event_name}</h4>
-            </Link>
-
             <ul>
-
                 <li>
                     {event.location}
                 </li>
