@@ -20,7 +20,7 @@ function Page() {
                     setEvents(events);
                 })
         } else {
-            // redirect / login
+            // redirect / [...login]
         }
     }, [session]);
 

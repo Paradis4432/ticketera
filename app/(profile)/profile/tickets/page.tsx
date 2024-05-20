@@ -18,7 +18,7 @@ function Page() {
                     setEvents(tickets);
                 })
         } else {
-            // redirect / login
+            // redirect / [...login]
         }
     }, [session]);
 

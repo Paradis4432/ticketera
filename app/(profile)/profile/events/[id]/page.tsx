@@ -1,12 +1,8 @@
 "use client"
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
-import {getUserEvent} from "@/app/(profile)/profile/events/actions";
-import {UserEvents} from "@/app/components/ui/events";
-import {useParams} from "next/navigation";
 import {getEventMetricSale, getEventMetricUser} from "@/app/(profile)/profile/events/[id]/actions";
 import {MetricSales} from "@/app/components/ui/metrics";
-import {fetchEventByID} from "@/app/(events)/events/[id]/actions";
 
 function Page({params}: { params: { id: string } }) {
     const {data: session} = useSession();
@@ -24,16 +20,15 @@ function Page({params}: { params: { id: string } }) {
                     setMetricUsers(metricUsers);
                 })
         } else {
-            // redirect / login
+            // redirect / [...login]
         }
     }, [params.id, session]);
-
-
 
 
     return (
         <div className="container">
             <h2>metrics sales</h2>
+
             {
                 metricSales.length == 0 ? (
                     <h2>loading</h2>

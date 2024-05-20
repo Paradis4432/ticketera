@@ -18,7 +18,7 @@ export enum users {
             u.email = ?;
     `,
 
-    selUserTickets=`  
+    selUserTickets=`
         select
             e.name as event_name,
             e.event_id as event_id,
@@ -29,7 +29,6 @@ export enum users {
             t.reason,
             t.creation_date,
             t.expiration_date
-        
         from
             user u
         join
@@ -38,6 +37,5 @@ export enum users {
         event e on t.event_id = e.event_id
         where
         u.email = 'facumartinezvidal@gmail.com';
-    
     `,
 }
