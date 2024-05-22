@@ -1,7 +1,7 @@
 "use client"
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
-import {getEventMetricSale, getEventMetricUser} from "@/app/(profile)/profile/events/[id]/actions";
+import {getEventMetricSale, getEventMetricUser} from "@/app/(profile)/profile/myevents/[id]/actions";
 import {MetricSales} from "@/app/components/ui/metrics";
 
 function Page({params}: { params: { id: string } }) {
@@ -55,9 +55,7 @@ function Page({params}: { params: { id: string } }) {
                 </ul>
             ) : (
                 <h2>loading</h2>
-            )
-
-            }
+            )}
 
 
         </div>

@@ -3,7 +3,7 @@ insert into user (name, email, sex)
 values
     ('facundo martinez vidal', 'facumartinezvidal@gmail.com', 'm');
 
--- events
+-- myevents
 insert into event (name, description, location, starting_date, state)
 values
     ('music festival', 'a grand music festival', 'central park', '2024-07-20 16:00:00', 1),
