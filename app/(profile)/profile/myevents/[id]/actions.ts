@@ -3,6 +3,7 @@
 import db from "@/app/db/db";
 
 import {metrics} from "@/models/queries/metrics";
+import {sql} from "@vercel/postgres";
 
 async function getEventMetricSale(event_id: number | null | undefined): Promise<IMetricSales[]> {
     if (!event_id) return []
