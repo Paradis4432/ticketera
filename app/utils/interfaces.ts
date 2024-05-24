@@ -58,6 +58,7 @@ interface IUserData {
     event_description: string,
     event_location: string,
     event_starting_date: Date,
+    event_state: number
     user_name: string,
     user_email: string,
 }

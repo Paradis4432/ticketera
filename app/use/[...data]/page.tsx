@@ -15,6 +15,7 @@ function Page (params:IParamsUse) {
     const event_id = params.params.data[1];
     const ticket_id = params.params.data[2];
 
+    console.log(user_id, event_id, ticket_id)
     useEffect(() => {
         if (session?.user) {
             getUserData(Number(user_id), Number(event_id), Number(ticket_id))
@@ -27,8 +28,61 @@ function Page (params:IParamsUse) {
             setStatus("not logged in")
         }
     }, [session, params]);
+    console.log(userData)
     return (
-        <h2>Page</h2>
+        <ul>
+            <li>
+                <h3>User:</h3>
+                <ul>
+                    <li>
+                        <h3>Name: {userData[0]?.user_name}</h3>
+                    </li>
+                    <li>
+                        <h3>Email: {userData[0]?.user_email}</h3>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>Ticket Name: {userData[0]?.ticket_name}</h3>
+                <ul>
+                    <li>
+                        <h3>Reason: {userData[0]?.ticket_reason}</h3>
+                    </li>
+                    <li>
+                        <h3>Creation Date: {userData[0]?.ticket_creation_date.toLocaleString()}</h3>
+                    </li>
+                    <li>
+                        <h3>Expiration Date: {userData[0]?.ticket_expiration_date.toLocaleString()}</h3>
+                    </li>
+                    <li>
+                        <h3>Uses: {userData[0]?.ticket_uses}</h3>
+                    </li>
+                    <li>
+                        <h3>Max Uses: {userData[0]?.ticket_max_uses}</h3>
+                    </li>
+                    <li>
+                        <h3>Price: {userData[0]?.ticket_price}</h3>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>Event Name: {userData[0]?.event_name}</h3>
+                <ul>
+                    <li>
+                        <h3>Description: {userData[0]?.event_description}</h3>
+                    </li>
+                    <li>
+                        <h3>Location: {userData[0]?.event_location}</h3>
+                    </li>
+                    <li>
+                        <h3>Starting Date: {userData[0]?.event_starting_date.toLocaleString()}</h3>
+                    </li>
+                    <li>
+                        <h3>State: {userData[0]?.event_state}</h3>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 
     )
 
