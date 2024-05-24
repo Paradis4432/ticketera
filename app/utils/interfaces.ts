@@ -39,3 +39,25 @@ interface IMetricUsers {
     started_but_denied: number,
     in_fav: number
 }
+
+interface IParamsUse {
+    params: {
+        data: string[]
+    }
+}
+
+interface IUserData {
+    ticket_name: string,
+    ticket_reason: string,
+    ticket_creation_date: Date,
+    ticket_expiration_date: Date,
+    ticket_uses: number,
+    ticket_max_uses: number,
+    ticket_price: number,
+    event_name: string,
+    event_description: string,
+    event_location: string,
+    event_starting_date: Date,
+    user_name: string,
+    user_email: string,
+}
