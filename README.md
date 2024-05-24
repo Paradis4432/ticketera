@@ -47,6 +47,10 @@ branch "tablas" -> tablas -> PR to dev -> branch de tablas "dashboard" -> PR to 
   otro servidor, es scanner toma ese UUID y usa el segundo servidor para validarlo, por ahora vamos a lo simple y facil)
 - if user.id == event.id.owner se usa el FK para saber si el user es el dueño del evento
 
+## notes
+
+- eliminar todo lo relacionado a docker mysql, ya no es necesario por ahora
+
 ## For testing
 
 - [ ] Docker
