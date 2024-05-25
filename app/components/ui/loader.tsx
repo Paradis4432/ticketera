@@ -1,15 +1,16 @@
-function Loadable<T extends any[]>(values: T) {
-    if (values.length == 0) {
-        return <Loading></Loading>
-    } else {
-
+// of is list, children is components
+const LoadingWrapper = ({of, children}: { of: any | boolean, children: any }) => {
+    if ((Array.isArray(of) && of.length === 0) || of === true) {
+        return <Loading/>
     }
+    return children
 }
 
 function Loading() {
-    return <h2>loading</h2>
+    // anim of loading?
+    return <h2>loading...</h2>
 }
 
 export {
-    Loadable
+    LoadingWrapper
 }
