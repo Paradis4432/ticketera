@@ -14,5 +14,5 @@ export async function middleware(ctx: NextRequest) {
 }
 
 export const config = {
-    matcher: '/test/log/mid',
+    matcher: '/test/log/mid/',
 }

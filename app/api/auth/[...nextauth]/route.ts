@@ -14,6 +14,7 @@ const handler = NextaAuth({
             session.user.id = token.id;
             //session.user.test = "test" // estoy casi seguro que aca se pueden agregar cosas para el user
             // actualizando un par de cosas, a considerar
+
             return session;
         },
         async jwt({token, user}: { token: any, user: any }) {

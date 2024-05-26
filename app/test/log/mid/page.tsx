@@ -4,6 +4,8 @@ import {useSession} from "next-auth/react";
 
 function Page() {
     const {data: session, status} = useSession();
+
+
     return (
         <div>
             <p>validated by middleware</p>

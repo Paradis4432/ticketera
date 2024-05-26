@@ -24,27 +24,60 @@ export enum users {
                  join users u on ue.user_id = u.user_id
         where u.email = ?
     `,
-/*    selUserTickets = `
-        select e.name     as event_name,
-               e.event_id as event_id,
-               t.name     as ticket_name,
-               t.uses,
-               t.max_uses,
-               t.price,
-               t.reason,
-               t.creation_date,
-               t.expiration_date
-        from user u
-                 join
-             ticket t on u.user_id = t.user_id
-                 join
-             event e on t.event_id = e.event_id
-        where u.email = 'facumartinezvidal@gmail.com';
-    `,*/
+    /*    selUserTickets = `
+            select e.name     as event_name,
+                   e.event_id as event_id,
+                   t.name     as ticket_name,
+                   t.uses,
+                   t.max_uses,
+                   t.price,
+                   t.reason,
+                   t.creation_date,
+                   t.expiration_date
+            from user u
+                     join
+                 ticket t on u.user_id = t.user_id
+                     join
+                 event e on t.event_id = e.event_id
+            where u.email = 'facumartinezvidal@gmail.com';
+        `,*/
     selUserTickets = `
         select t.*
         from tickets t
                  join users u on t.user_id = u.user_id
         where u.email = ?
+    `,
+
+    selUserData = `
+        SELECT t.*, e.*, u.*
+        FROM tickets t
+                 JOIN
+             events e ON t.event_id = e.event_id
+                 JOIN
+             users u ON t.user_id = u.user_id
+        WHERE t.user_id = $1
+          AND t.event_id = $2
+          AND t.ticket_id = $3;
+    `,
+    selTicketDataByID = `
+        select t.*, e.*
+        from tickets t
+                 join events e on t.event_id = e.event_id
+        where user_id = ?
+          and ticket_id = ?
+    `,
+    selAllUserTickets = `
+        select t.*
+        from tickets t
+        where user_id = ?
+    `,
+    // tecnicamente esto no hace falta
+    selTicketEventById = `
+        select t.*, e.*
+        from tickets t
+                 join events e on t.event_id = e.event_id and e.event_id = ?
+        where user_id = ?
+          and ticket_id = ?
     `
+
 }

@@ -22,7 +22,7 @@ function Page() {
     return (
         <div>
             <h1>Page</h1>
-            <LoadingWrapper of={loading}>
+            <LoadingWrapper of={data}>
                 <div>
                     <p>loaded: data</p>
                 </div>

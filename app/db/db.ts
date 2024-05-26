@@ -7,4 +7,4 @@ const db: Pool = mysql.createPool({
     database: process.env.POSTGRES_DATABASE
 });
 
-export default db;
+export default db;z

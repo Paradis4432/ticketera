@@ -1,6 +1,5 @@
 function Page() {
-    return <p>login</p>
-
+    return <p>logeate</p>
 }
 
 export default Page
