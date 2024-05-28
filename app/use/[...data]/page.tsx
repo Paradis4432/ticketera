@@ -23,23 +23,11 @@ function Page(params: IParamsUse) {
         } else {
         }
     }, [session, user_id, ticket_id]);
-    
+
     return (
         <div>
-            <h1>User Data</h1>
             <LoadingWrapper of={userData}>
                 <ul>
-                    <li>
-                        <h3>User:</h3>
-                        <ul>
-                            <li>
-                                <h3>Name: {userData[0]?.user_name}</h3>
-                            </li>
-                            <li>
-                                <h3>Email: {userData[0]?.user_email}</h3>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
                         <h3>Ticket Name: {userData[0]?.ticket_name}</h3>
                         <ul>
