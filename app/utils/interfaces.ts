@@ -23,12 +23,6 @@ interface ITicket {
     ticket_max_uses: number,
     ticket_price: number
     event_name: string,
-    uses: number,
-    max_uses: number,
-    price: number,
-    reason: string,
-    expiration_date: Date
-    creation_date: Date
 }
 
 interface IMetricSales {
