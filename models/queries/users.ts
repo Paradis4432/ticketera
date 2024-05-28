@@ -48,29 +48,10 @@ export enum users {
         where u.email = ?
     `,
 
-    selUserData= `
-        SELECT
-            t.name AS ticket_name,
-            t.reason AS ticket_reason,
-            t.creation_date AS ticket_creation_date,
-            t.expiration_date AS ticket_expiration_date,
-            t.uses AS ticket_uses,
-            t.max_uses AS ticket_max_uses,
-            t.price AS ticket_price,
-            e.name AS event_name,
-            e.description AS event_description,
-            e.location AS event_location,
-            e.starting_date AS event_starting_date,
-            e.state AS event_state,
-            u.name AS user_name,
-            u.email AS user_email
-        FROM
-            tickets t
-        JOIN
-            events e ON t.event_id = e.event_id
-        JOIN
-            users u ON t.user_id = u.user_id
-        WHERE
-            t.user_id = $1 AND t.event_id = $2 AND t.ticket_id = $3;
+    selUserData=  `
+        select t.*, e.*
+        from tickets t
+                 join events e on t.event_id = e.event_id
+        where user_id = $1 and ticket_id = $2
     `
 }
