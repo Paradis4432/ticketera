@@ -1,11 +1,11 @@
 
 interface IEvent {
-    event_id: number,
-    event_name: string,
-    event_description: string,
-    event_location: string,
-    event_starting_date: Date,
-    event_state: number,
+    id: number,
+    name: string,
+    description: string,
+    location: string,
+    starting_date: Date,
+    state: number,
 }
 
 interface IContactFormEmailProps {
@@ -15,14 +15,14 @@ interface IContactFormEmailProps {
 }
 
 interface ITicket {
-    ticket_id:number
-    ticket_name: string,
-    ticket_reason: string,
-    ticket_creation_date: Date,
-    ticket_expiration_date: Date,
-    ticket_uses: number,
-    ticket_max_uses: number,
-    ticket_price: number
+    id:number
+    name: string,
+    reason: string,
+    creation_date: Date,
+    expiration_date: Date,
+    uses: number,
+    max_uses: number,
+    price: number
     event_name: string,
 }
 
