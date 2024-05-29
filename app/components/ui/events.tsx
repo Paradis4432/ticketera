@@ -5,6 +5,7 @@ function PublicEvent({event}: { event: IEvent | undefined }) {
         <div>{
             event ? (
                 <p>event with name: {event.event_name}, id: {event.event_id}</p>
+                <Link href={/events/id}>detalles del evento -> comprar ticket etc</Link>
             ) : (
                 <p>not found</p>
             )

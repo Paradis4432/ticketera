@@ -24,6 +24,8 @@ function Ticket({ticket}: { ticket: ITicket }) {
                 <li>
                     {ticket.expiration_date.toString()}
                 </li>
+
+                qr code
             </ul>
         </>
     )
