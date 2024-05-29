@@ -1,6 +1,9 @@
 export enum events {
-    selAll = "select * from myevents;",
-    selByID = "select * from myevents where event_id = ?;",
+    selAll = `
+        select *
+        from events;
+    `,
+    selByID = "select * from events where event_id = ?;",
 
 
     isFound = "select * from users where user_id = ?;",

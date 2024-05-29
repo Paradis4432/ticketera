@@ -16,7 +16,7 @@ function Page({params}: { params: { id: string } }) {
 
     return (
         <div>
-            <PublicEvent event={event}/>
+            {/*<PublicEvent event={event}/>*/}
         </div>
     )
 }

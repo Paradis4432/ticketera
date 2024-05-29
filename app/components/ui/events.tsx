@@ -1,28 +1,23 @@
 import Link from "next/link";
 
-function PublicEvent({event}: { event: IEvent | undefined }) {
+
+// evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
+function PublicEvent({event}: { event: IEvent }) {
     return (
         <div>{
             event ? (
-                <p>event with name: {event.event_name}, id: {event.event_id}</p>
+                    <p>event with name: {event.event_name}, id: {event.event_id}</p>
                 <Link href={/events/id}>detalles del evento -> comprar ticket etc</Link>
             ) : (
-                <p>not found</p>
+            <p>not found</p>
             )
         }
         </div>
-
     )
 }
 
-function RenderPublicEvents(events: IEvent[]) {
-    return (
-        events.map((e, i) => (
-            <div key={i}>
-                <PublicEvent event={e}/>
-            </div>
-        ))
-    )
+function PublicEventDetailed() {
+    // lo mismo que el public event pero mas detaallado
 }
 
 function UserEvents({event}: { event: IEvent }) {
@@ -47,7 +42,5 @@ function UserEvents({event}: { event: IEvent }) {
 
 export {
     PublicEvent,
-    RenderPublicEvents,
     UserEvents
-
 }
