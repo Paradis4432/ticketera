@@ -6,23 +6,19 @@ import {MetricSales} from "@/app/components/ui/metrics";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 
 function Page({params}: { params: { id: string } }) {
-    const {data: session }  = useSession();
+    const {data: session} = useSession();
     const [metricSales, setMetricSales] = useState<IMetricSales[]>([]);
     const [metricUsers, setMetricUsers] = useState<IMetricUsers[]>([]);
 
     useEffect(() => {
-        if (session?.user) {
-            getEventMetricSale(Number(params.id))
-                .then(metricSales => {
-                    setMetricSales(metricSales);
-                })
-            getEventMetricUser(Number(params.id))
-                .then(metricUsers => {
-                    setMetricUsers(metricUsers);
-                })
-        } else {
-            // redirect / [...login]
-        }
+        getEventMetricSale(Number(params.id))
+            .then(metricSales => {
+                setMetricSales(metricSales);
+            })
+        getEventMetricUser(Number(params.id))
+            .then(metricUsers => {
+                setMetricUsers(metricUsers);
+            })
     }, [params.id, session]);
 
 
@@ -46,9 +42,8 @@ function Page({params}: { params: { id: string } }) {
             </LoadingWrapper>
 
 
-
             <h2>metric users</h2>
-{/*            {metricUsers ? (
+            {/*            {metricUsers ? (
 
                 <ul>
                     <li>
