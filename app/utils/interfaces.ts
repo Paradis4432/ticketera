@@ -1,6 +1,6 @@
 
 interface IEvent {
-    id: number,
+    event_id: number,
     name: string,
     description: string,
     location: string,
@@ -15,7 +15,7 @@ interface IContactFormEmailProps {
 }
 
 interface ITicket {
-    id:number
+    ticket_id:number
     name: string,
     reason: string,
     creation_date: Date,

@@ -1,7 +1,6 @@
 "use client"
 import {useEffect, useState} from "react";
 import {fetchEventByID} from "@/app/(events)/events/[id]/actions";
-import {PublicEvent} from "@/app/components/ui/events";
 
 function Page({params}: { params: { id: string } }) {
     const [event, setEvent] = useState<IEvent>();
@@ -16,6 +15,7 @@ function Page({params}: { params: { id: string } }) {
 
     return (
         <div>
+            public event detailed
             {/*<PublicEvent event={event}/>*/}
         </div>
     )

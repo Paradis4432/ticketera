@@ -1,7 +1,8 @@
 export enum events {
     selAll = `
         select *
-        from events;
+        from events
+        limit 10;
     `,
     selByID = "select * from events where event_id = ?;",
 

@@ -6,8 +6,8 @@ function PublicEvent({event}: { event: IEvent }) {
     return (
         <div>{
             event ? (
-                    <p>event with name: {event.event_name}, id: {event.event_id}</p>
-                <Link href={/events/id}>detalles del evento -> comprar ticket etc</Link>
+                    <p>event with name: {event.name}, id: {event.event_id}</p>
+                /*<Link href={/events/id}>detalles del evento -> comprar ticket etc</Link>*/
             ) : (
             <p>not found</p>
             )
@@ -17,7 +17,7 @@ function PublicEvent({event}: { event: IEvent }) {
 }
 
 function PublicEventDetailed() {
-    // lo mismo que el public event pero mas detaallado
+    // lo mismo que el public event pero mas detallado
 }
 
 function UserEvents({event}: { event: IEvent }) {
