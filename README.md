@@ -36,7 +36,7 @@ que se puede usar para simular post y get requests?
 
 branch "tablas" -> tablas -> PR to dev -> branch de tablas "dashboard" -> PR to dev
 
-- [ ] endpoint /use/[...data], creo que es asi, para tomar todos los argumentos, en este caso userID, eventID, ticketID
+- [x] endpoint /use/[...data], creo que es asi, para tomar todos los argumentos, en este caso userID, eventID, ticketID
 - [ ] middleware para validar si el usuario esta logeado, esar esto cuando se entra a /profile /scanner
 - [ ] create qr code
 

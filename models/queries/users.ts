@@ -47,7 +47,6 @@ export enum users {
                  join users u on t.user_id = u.user_id
         where u.email = ?
     `,
-
     selUserData = `
         SELECT t.*, e.*, u.*
         FROM tickets t
@@ -79,5 +78,4 @@ export enum users {
         where user_id = ?
           and ticket_id = ?
     `
-
 }

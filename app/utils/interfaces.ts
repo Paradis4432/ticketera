@@ -2,9 +2,10 @@
 interface IEvent {
     event_id: number,
     event_name: string,
-    location: string,
-    starting_date: Date,
-    state: number,
+    event_description: string,
+    event_location: string,
+    event_starting_date: Date,
+    event_state: number,
 }
 
 interface IContactFormEmailProps {
@@ -16,13 +17,13 @@ interface IContactFormEmailProps {
 interface ITicket {
     ticket_id:number
     ticket_name: string,
-    ticket_event_name: string,
+    ticket_reason: string,
+    ticket_creation_date: Date,
+    ticket_expiration_date: Date,
     ticket_uses: number,
     ticket_max_uses: number,
-    ticket_price: number,
-    ticket_reason: string,
-    ticket_expiration_date: Date
-    ticket_creation_date: Date
+    ticket_price: number
+    event_name: string,
 }
 
 interface IMetricSales {
@@ -48,15 +49,5 @@ interface IParamsUse {
 }
 
 interface IUserData extends ITicket, IEvent{
-    ticket_creation_date: Date,
-    ticket_expiration_date: Date,
-    ticket_uses: number,
-    ticket_max_uses: number,
-    event_name: string,
-    event_description: string,
-    event_location: string,
-    event_starting_date: Date,
-    event_state: number
-    user_name: string,
-    user_email: string,
+
 }
