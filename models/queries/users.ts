@@ -47,16 +47,11 @@ export enum users {
                  join users u on t.user_id = u.user_id
         where u.email = ?
     `,
-    selUserData = `
-        SELECT t.*, e.*, u.*
-        FROM tickets t
-                 JOIN
-             events e ON t.event_id = e.event_id
-                 JOIN
-             users u ON t.user_id = u.user_id
-        WHERE t.user_id = $1
-          AND t.event_id = $2
-          AND t.ticket_id = $3;
+    selUserData=  `
+        select t.*, e.*
+        from tickets t
+                 join events e on t.event_id = e.event_id
+        where user_id = $1 and ticket_id = $2
     `,
     selTicketDataByID = `
         select t.*, e.*
@@ -77,5 +72,7 @@ export enum users {
                  join events e on t.event_id = e.event_id and e.event_id = ?
         where user_id = ?
           and ticket_id = ?
+
     `
+
 }
