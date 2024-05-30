@@ -39,3 +39,7 @@ que se puede usar para simular post y get requests?
 ## For testing
 
 - [ ] emails y notificaciones, que usar, server secundario? aws?
+
+to review:
+https://old.million.dev/blog/lint
+vscode extention to optimize bs
