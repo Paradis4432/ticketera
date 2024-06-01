@@ -45,7 +45,7 @@ export enum users {
         select t.*
         from tickets t
                  join users u on t.user_id = u.user_id
-        where u.email = ?
+        where u.email = $1
     `,
     selUserData=  `
         select t.*, e.*

@@ -1,10 +1,11 @@
+import {QRCodeSVG} from 'qrcode.react';
 function Ticket({ticket}: { ticket: ITicket }) {
     return (
         <>
-            <h4>{ticket.ticket_name}</h4>
+            <h4>{ticket.name}</h4>
             <ul>
                 <li>
-                    {ticket.event_name}
+                    <QRCodeSVG value="https://localhost:3000/use/1/1" />
                 </li>
                 <li>
                     {ticket.reason}
