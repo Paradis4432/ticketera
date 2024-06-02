@@ -18,6 +18,7 @@ export enum users {
             u.email = ?;
     `,
 */
+    selUserId = `select user_id from users where email = $1`,
     selUserEvents = `
         select ue.*, u.*
         from user_event ue
