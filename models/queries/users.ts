@@ -20,10 +20,10 @@ export enum users {
 */
     selUserId = `select user_id from users where email = $1`,
     selUserEvents = `
-        select ue.*, u.*
-        from user_event ue
-                 join users u on ue.user_id = u.user_id
-        where u.email = ?
+        select e.*
+        from events e
+                 join user_event ue on e.event_id = ue.event_id
+        where ue.user_id = $1
     `,
     /*    selUserTickets = `
             select e.name     as event_name,

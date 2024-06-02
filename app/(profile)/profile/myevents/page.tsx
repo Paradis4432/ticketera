@@ -1,50 +1,51 @@
 "use client"
-
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
 import {UserEvents} from "@/app/components/ui/events";
-import {getUserEvent} from "@/app/(profile)/profile/actions";
+import {getUserEvent, deleteUserEvent} from "@/app/(profile)/profile/actions";  // Asegúrate de tener esta función definida
+import {LoadingWrapper} from "@/app/components/ui/loader";
 
 function Page() {
     const {data: session} = useSession();
-
     const [events, setEvents] = useState<IEvent[]>([]);
-    const [status, setStatus] = useState<String>("loading");
-
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (session?.user) {
-            if (session.user.email)
-                getUserEvent(session.user.email)
-                    .then(events => {
-                        setEvents(events);
-
-                    })
-            else {
-                setStatus("no events found")
-            }
-        } else {
-            // TODO middleware so this cant happen
-            setStatus("not logged in")
+            getUserEvent(session.user.email)
+                .then((events) => {
+                    setEvents(events);
+                })
+                .catch((error) => {
+                    console.error("Error fetching user events:", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
         }
     }, [session]);
 
-    return (
-        <div className="container">
-            <h1>tus eventos</h1>
-            {
-                events.length == 0 ? (
-                    <h2>{status}</h2>
-                ) : (
-                    events.map((event, id) => (
-                        <UserEvents event={event} key={id}/>
-                    ))
-                )
-            }
+    const handleDeleteEvent = async (eventId: number) => {
+        try {
+            await deleteUserEvent(eventId);  // Asegúrate de tener esta función definida
+            setEvents((prevEvents) => prevEvents.filter(event => event.event_id !== eventId));
+        } catch (error) {
+            console.error("Error deleting event:", error);
+        }
+    };
 
+    return (
+        <div>
+            <h1>My Events</h1>
+            {
+                events.map((event) => (
+                    <LoadingWrapper of={events} key={event.event_id}>
+                        <UserEvents event={event} onDelete={() => handleDeleteEvent(event.event_id)} />
+                    </LoadingWrapper>
+                ))
+                }
         </div>
-    )
+    );
 }
 
 export default Page;
-
