@@ -5,7 +5,8 @@ export enum events {
         limit 10;
     `,
     selByID = "select * from events where event_id = ?;",
-
+    insertEvent = "insert into events (name, description, location, starting_date, state) values ($1, $2, $3, $4, $5) RETURNING event_id;",
+    insertUserEvent = "insert into user_event (user_id, event_id) values ($1, $2);",
 
     isFound = "select * from users where user_id = ?;",
     //create = "insert into users (name, email, sex) values (?,?,?);",

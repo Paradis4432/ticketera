@@ -23,7 +23,7 @@ interface ITicket {
     uses: number,
     max_uses: number,
     price: number
-    event_name: string,
+    event_id: number,
 }
 
 interface IMetricSales {

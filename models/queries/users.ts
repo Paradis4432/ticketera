@@ -18,6 +18,7 @@ export enum users {
             u.email = ?;
     `,
 */
+    selUserId = `select user_id from users where email = $1`,
     selUserEvents = `
         select ue.*, u.*
         from user_event ue
@@ -45,7 +46,7 @@ export enum users {
         select t.*
         from tickets t
                  join users u on t.user_id = u.user_id
-        where u.email = ?
+        where u.email = $1
     `,
     selUserData=  `
         select t.*, e.*
