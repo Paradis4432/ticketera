@@ -17,7 +17,6 @@ interface ICreateEvent {
 }
 
 async function createEvent(data: ICreateEvent, email: string | null | undefined) {
-
     const userId = await db.query(users.selUserId, [email]);
     const event = await db.query(events.insertEvent, [data.name, data.description, data.location, data.starting_date, 0]);
     const event_id = event.rows[0].event_id;

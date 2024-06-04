@@ -13,7 +13,7 @@ interface IContactFormEmailProps {
     email: string,
     message: string
 }
-// ERROR use next build
+
 interface ITicket {
     ticket_id:number
     name: string,

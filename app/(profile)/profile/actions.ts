@@ -5,9 +5,9 @@ import {users} from "@/models/queries/users";
 import {events} from "@/models/queries/events";
 
 async function getUserEvent(email: string | null | undefined): Promise<IEvent[]> {
-    const userId = await db.query(users.selUserId, [email]);
     if (!email) return []
-    const data = await db.query(users.selUserEvents, [userId.rows[0].user_id]); // ERROR user_id is working? unresolved
+    const userId = await db.query(users.selUserId, [email]);
+    const data = await db.query(users.selUserEvents, [userId.rows[0].user_id]);
     console.log(data.rows)
     return data.rows as IEvent[]
 }

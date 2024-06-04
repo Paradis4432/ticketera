@@ -8,20 +8,16 @@ import {LoadingWrapper} from "@/app/components/ui/loader";
 function Page() {
     const {data: session} = useSession();
     const [events, setEvents] = useState<IEvent[]>([]);
-    const [loading, setLoading] = useState(true); // ERROR unused loading?
 
     useEffect(() => {
         if (session?.user) {
-            getUserEvent(session.user.email)
+            getUserEvent(session.user.email) // TODO replace email with id
                 .then((events) => {
                     setEvents(events);
                 })
                 .catch((error) => {
                     console.error("Error fetching user events:", error);
                 })
-                .finally(() => {
-                    setLoading(false);
-                });
         }
     }, [session]);
 
