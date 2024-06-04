@@ -1,5 +1,6 @@
 import {QRCodeSVG} from 'qrcode.react';
 function Ticket({ticket}: { ticket: ITicket }) {
+    // ERROR ticket siempre apunta a use /1/1 ?
     return (
         <>
             <h4>{ticket.name}</h4>
