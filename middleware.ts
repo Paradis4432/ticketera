@@ -10,6 +10,8 @@ export async function middleware(ctx: NextRequest) {
     if (!token) {
         return NextResponse.redirect(new URL("/login", ctx.url))
     }
+
+    // async query sin await
     return NextResponse.next();
 }
 

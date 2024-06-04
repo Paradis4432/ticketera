@@ -1,5 +1,5 @@
 "use client"
-import {FieldValues, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 
@@ -18,7 +18,7 @@ const eventSchema = z.object({
 type TEventSchema = z.infer<typeof eventSchema>;
 
 function Page() {
-    const { data: session } = useSession();
+    const {data: session} = useSession();
     const email = session?.user?.email;
     const {
         register,
@@ -42,22 +42,22 @@ function Page() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
                     name
-                    <input {...register('name')} type="text" />
+                    <input {...register('name')} type="text"/>
                     {errors.name && <span>{errors.name.message}</span>}
                 </label>
                 <label>
                     description
-                    <input {...register('description')} type="text" />
+                    <input {...register('description')} type="text"/>
                     {errors.description && <span>{errors.description.message}</span>}
                 </label>
                 <label>
                     location
-                    <input {...register('location')} type="text" />
+                    <input {...register('location')} type="text"/>
                     {errors.location && <span>{errors.location.message}</span>}
                 </label>
                 <label>
                     starting date
-                    <input {...register('starting_date')} type="datetime-local" />
+                    <input {...register('starting_date')} type="datetime-local"/>
                     {errors.starting_date && <span>{errors.starting_date.message}</span>}
                 </label>
                 <button type="submit" disabled={isSubmitting}>create</button>
