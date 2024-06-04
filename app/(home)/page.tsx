@@ -33,9 +33,12 @@ function Page() {
                 ) : (
                     <div>
                         {events.map((e, i) => (
-                            <div key={i}>
-                                <PublicEvent event={e}/>
-                            </div>
+                            <ul key={i}>
+                                <li>
+                                    <PublicEvent event={e}/>
+                                </li>
+
+                            </ul>
                         ))}
                     </div>
                 )

@@ -22,12 +22,12 @@ que se puede usar para simular post y get requests?
 
 ## Facu
 
-- [ ] creacion de eventos
-- [ ] for public events add link to <id>
-- [ ] create qr code
+- [x] creacion de eventos
+- [x] for public events add link to <id>
+- [x] create qr code
   para el martes 4
 
-- [ ] checkear el /profile/myevents -> boton para elimiar el evento
+- [x] checkear el /profile/myevents -> boton para elimiar el evento
 
 ## Lucas
 
