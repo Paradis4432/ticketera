@@ -11,6 +11,8 @@ export async function middleware(ctx: NextRequest) {
         return NextResponse.redirect(new URL("/login", ctx.url))
     }
 
+
+
     // async query sin await
     return NextResponse.next();
 }
