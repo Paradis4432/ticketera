@@ -34,7 +34,6 @@ function Page() {
 
         const result = await createEvent(data, email)
         reset();
-
     };
 
     return (

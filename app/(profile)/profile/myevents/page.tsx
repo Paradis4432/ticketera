@@ -2,13 +2,13 @@
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
 import {UserEvents} from "@/app/components/ui/events";
-import {getUserEvent, deleteUserEvent} from "@/app/(profile)/profile/actions";  // Asegúrate de tener esta función definida
+import {deleteUserEvent, getUserEvent} from "@/app/(profile)/profile/actions"; // Asegúrate de tener esta función definida
 import {LoadingWrapper} from "@/app/components/ui/loader";
 
 function Page() {
     const {data: session} = useSession();
     const [events, setEvents] = useState<IEvent[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); // ERROR unused loading?
 
     useEffect(() => {
         if (session?.user) {
@@ -25,9 +25,9 @@ function Page() {
         }
     }, [session]);
 
-    const handleDeleteEvent = async (eventId: number) => {
+    const handleDeleteEvent = async (eventId: number) => { // ERROR action in client, use callbacks
         try {
-            await deleteUserEvent(eventId);  // Asegúrate de tener esta función definida
+            await deleteUserEvent(eventId);
             setEvents((prevEvents) => prevEvents.filter(event => event.event_id !== eventId));
         } catch (error) {
             console.error("Error deleting event:", error);
@@ -38,12 +38,12 @@ function Page() {
         <div>
             <h1>My Events</h1>
             {
-                events.map((event) => (
+                events.map((event) => ( // ERROR events.map afuera del wrapper? | no events found?
                     <LoadingWrapper of={events} key={event.event_id}>
-                        <UserEvents event={event} onDelete={() => handleDeleteEvent(event.event_id)} />
+                        <UserEvents event={event} onDelete={() => handleDeleteEvent(event.event_id)}/>
                     </LoadingWrapper>
                 ))
-                }
+            }
         </div>
     );
 }

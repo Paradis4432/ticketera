@@ -8,14 +8,12 @@ interface IEvent {
     state: number,
 }
 
-ite
-
 interface IContactFormEmailProps {
     name: string,
     email: string,
     message: string
 }
-
+// ERROR use next build
 interface ITicket {
     ticket_id:number
     name: string,

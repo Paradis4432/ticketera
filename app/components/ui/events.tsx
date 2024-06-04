@@ -28,7 +28,7 @@ function PublicEventDetailed() {
     // lo mismo que el public event pero mas detallado
 }
 
-function deleteEvent() {
+function deleteEvent() { // ERROR unused method?
 
 }
 interface UserEventsProps {
@@ -36,12 +36,13 @@ interface UserEventsProps {
     onDelete: () => void;
 }
 
-export const UserEvents: React.FC<UserEventsProps> = ({event, onDelete}) => {
+export const UserEvents: React.FC<UserEventsProps> = ({event, onDelete}) => { // ERROR user eventS pero usa 1 evento?
+
     return (
         <div>
             <h2>{event.name}</h2>
             <ul>
-                <li> ID: {event.event_id}</li>
+                <li>ID: {event.event_id}</li>
                 <li>{event.description}</li>
                 <li>{event.location}</li>
                 <li>{event.starting_date.toString()}</li>
