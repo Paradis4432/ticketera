@@ -24,13 +24,40 @@ function PublicEvent({event}: { event: IEvent }) {
     )
 }
 
-function PublicEventDetailed() {
-    // lo mismo que el public event pero mas detallado
+interface propsPEV {
+    event?: IEvent ;
+
+}
+
+function PublicEventDetailed({event}: propsPEV) {
+    return (
+        <>
+            <h1>{event?.name}</h1>
+            <ul>
+                <li>
+                    <h4> ID: {event?.event_id}</h4>
+                </li>
+                <li>
+                    <h4>{event?.description}</h4>
+                </li>
+                <li>
+                    <h4>{event?.starting_date.toString()}</h4>
+                </li>
+                <li>
+                    <h4>{event?.location.toString()}</h4>
+                </li>
+                <li>
+                    <h4>state: {event?.state}</h4>
+                </li>
+            </ul>
+        </>
+    )
 }
 
 function deleteEvent() { // ERROR unused method?
 
 }
+
 interface UserEventsProps {
     event: IEvent;
     onDelete: () => void;
@@ -54,5 +81,6 @@ export const UserEvents: React.FC<UserEventsProps> = ({event, onDelete}) => { //
 };
 
 export {
-    PublicEvent
+    PublicEvent,
+    PublicEventDetailed
 }
