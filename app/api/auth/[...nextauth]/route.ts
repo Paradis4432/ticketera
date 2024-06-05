@@ -1,7 +1,8 @@
-import NextaAuth from 'next-auth';
+import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import {saveUser} from "@/app/components/actions";
 
-const handler = NextaAuth({
+const handler = NextAuth({
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -10,6 +11,14 @@ const handler = NextaAuth({
     ],
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
+        async signIn({ user, account, profile }) {
+            if (user.email && user.name) {
+                await saveUser(user.email, user.name);
+            } else {
+                console.warn("Missing user email or name, not saving user.");
+            }
+            return true;
+        },
         async session({session, token}: { session: any, token: any }) {
             session.user.id = token.id;
             //session.user.test = "test" // estoy casi seguro que aca se pueden agregar cosas para el user

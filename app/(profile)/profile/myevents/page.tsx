@@ -1,7 +1,7 @@
 "use client"
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
-import {UserEventDetailed, UserEvents} from "@/app/components/ui/events";
+import {UserEventDetailed} from "@/app/components/ui/events";
 import {getUserEvent} from "@/app/(profile)/profile/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 
