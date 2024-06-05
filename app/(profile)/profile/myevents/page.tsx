@@ -1,8 +1,8 @@
 "use client"
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
-import {UserEvents} from "@/app/components/ui/events";
-import {deleteUserEvent, getUserEvent} from "@/app/(profile)/profile/actions"; // Asegúrate de tener esta función definida
+import {UserEventDetailed, UserEvents} from "@/app/components/ui/events";
+import {getUserEvent} from "@/app/(profile)/profile/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 
 function Page() {
@@ -20,7 +20,7 @@ function Page() {
                 })
         }
     }, [session]);
-    
+
 
     return (
         <div>
@@ -28,7 +28,7 @@ function Page() {
             {
                 events.map((event) => (
                     <LoadingWrapper of={events} key={event.event_id}>
-                        <UserEvents event={event} setEvents={setEvents}/>
+                        <UserEventDetailed event={event} setEvents={setEvents}/>
                     </LoadingWrapper>
                 ))
             }

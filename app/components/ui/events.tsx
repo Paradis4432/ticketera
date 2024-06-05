@@ -64,7 +64,7 @@ interface UserEventsProps {
 
 
 
-export const UserEvents: React.FC<UserEventsProps> = ({event, setEvents}) => { // ERROR user eventS pero usa 1 evento?
+export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents}) => {
     const onDelete = async () => {
         await deleteUserEvent(event.event_id);
         setEvents((prevEvents) => prevEvents.filter((e) => e.event_id !== event.event_id));
