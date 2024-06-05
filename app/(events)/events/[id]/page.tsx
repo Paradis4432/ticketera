@@ -2,6 +2,7 @@
 import {useEffect, useState} from "react";
 import {fetchEventByID} from "@/app/(events)/events/[id]/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
+import {PublicEventDetailed} from "@/app/components/ui/events";
 
 function Page({params}: { params: { id: string } }) {
     const [event, setEvent] = useState<IEvent>();
@@ -14,27 +15,9 @@ function Page({params}: { params: { id: string } }) {
         })
     }, [params.id]);
 
-    // ERROR missing PublicEventDetailed?
     return (
         <LoadingWrapper of={event}>
-            <h1>{event?.name}</h1>
-            <ul>
-                <li>
-                    <h4> ID: {event?.event_id}</h4>
-                </li>
-                <li>
-                    <h4>{event?.description}</h4>
-                </li>
-                <li>
-                    <h4>{event?.starting_date.toString()}</h4>
-                </li>
-                <li>
-                    <h4>{event?.location.toString()}</h4>
-                </li>
-                <li>
-                    <h4>state: {event?.state}</h4>
-                </li>
-            </ul>
+            <PublicEventDetailed event={event}/>
         </LoadingWrapper>
     )
 }

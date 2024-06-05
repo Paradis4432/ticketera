@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import {deleteUserEvent} from "@/app/(profile)/profile/actions";
 
 
 // evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
@@ -24,20 +25,50 @@ function PublicEvent({event}: { event: IEvent }) {
     )
 }
 
-function PublicEventDetailed() {
-    // lo mismo que el public event pero mas detallado
-}
-
-function deleteEvent() { // ERROR unused method?
+interface propsPEV {
+    event?: IEvent ;
 
 }
+
+function PublicEventDetailed({event}: propsPEV) {
+    return (
+        <>
+            <h1>{event?.name}</h1>
+            <ul>
+                <li>
+                    <h4> ID: {event?.event_id}</h4>
+                </li>
+                <li>
+                    <h4>{event?.description}</h4>
+                </li>
+                <li>
+                    <h4>{event?.starting_date.toString()}</h4>
+                </li>
+                <li>
+                    <h4>{event?.location.toString()}</h4>
+                </li>
+                <li>
+                    <h4>state: {event?.state}</h4>
+                </li>
+            </ul>
+        </>
+    )
+}
+
+
+
 interface UserEventsProps {
     event: IEvent;
-    onDelete: () => void;
+    setEvents: React.Dispatch<React.SetStateAction<IEvent[]>>;
 }
 
-export const UserEvents: React.FC<UserEventsProps> = ({event, onDelete}) => { // ERROR user eventS pero usa 1 evento?
 
+
+export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents}) => {
+    const onDelete = async () => {
+        await deleteUserEvent(event.event_id);
+        setEvents((prevEvents) => prevEvents.filter((e) => e.event_id !== event.event_id));
+    };
     return (
         <div>
             <h2>{event.name}</h2>
@@ -54,5 +85,6 @@ export const UserEvents: React.FC<UserEventsProps> = ({event, onDelete}) => { //
 };
 
 export {
-    PublicEvent
+    PublicEvent,
+    PublicEventDetailed
 }

@@ -12,6 +12,11 @@ async function getUserEvent(email: string | null | undefined): Promise<IEvent[]>
     return data.rows as IEvent[]
 }
 
+async function getUserId(email: string | null | undefined): Promise<number> {
+    const userId = await db.query(users.selUserId, [email]);
+    return userId.rows[0].user_id
+}
+
 async function getUserTickets(email: string | null | undefined): Promise<ITicket[]> {
     if (!email) return []
     const data = await db.query(users.selUserTickets, [email]);
@@ -26,5 +31,6 @@ async function deleteUserEvent(eventId: number) {
 export {
     getUserEvent,
     getUserTickets,
-    deleteUserEvent
+    deleteUserEvent,
+    getUserId
 }

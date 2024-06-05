@@ -1,12 +1,18 @@
 import {QRCodeSVG} from 'qrcode.react';
-function Ticket({ticket}: { ticket: ITicket }) {
-    // ERROR ticket siempre apunta a use /1/1 ?
+import {getUserId} from "@/app/(profile)/profile/actions";
+interface TicketProps {
+    ticket: ITicket;
+    email: string;
+}
+function Ticket({ ticket, email }: TicketProps) {
+    const userId = getUserId(email)
+    const qrValue = `https://localhost:3000/use/${ticket.ticket_id}/${userId}`
     return (
         <>
             <h4>{ticket.name}</h4>
             <ul>
                 <li>
-                    <QRCodeSVG value="https://localhost:3000/use/1/1" />
+                    <QRCodeSVG value= {qrValue}/>
                 </li>
                 <li>
                     {ticket.reason}

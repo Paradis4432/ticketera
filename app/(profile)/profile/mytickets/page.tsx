@@ -31,7 +31,7 @@ function Page() {
                 ) : (
                     // missing qr codes
                     tickets.map((ticket, id) => (
-                        <Ticket ticket={ticket} key={id}/>
+                        <Ticket ticket={ticket} email={session?.user?.email} key={id}/>
                     ))
                 )
             }

@@ -20,9 +20,7 @@ async function createEvent(data: ICreateEvent, email: string | null | undefined)
     console.log(userId.rows[0]) // TODO add user to database
     console.log(event)
     console.log(event.rows[0])
-    await db.query(events.insertUserEvent, [userId.rows[0].user_id, event.rows[0].event_id]); // ERROR: Cannot read properties of undefined (reading 'user_id')
-    // ERROR unused event_id, userEvent
-    // mismatch case?
+    await db.query(events.insertUserEvent, [userId.rows[0].user_id, event.rows[0].event_id]);
 }
 
 export {

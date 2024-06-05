@@ -25,6 +25,13 @@ export enum users {
                  join user_event ue on e.event_id = ue.event_id
         where ue.user_id = $1
     `,
+
+    saveUser = `
+        insert into users (email, name)
+        values ($1, $2)
+    `,
+
+
     /*    selUserTickets = `
             select e.name     as event_name,
                    e.event_id as event_id,
