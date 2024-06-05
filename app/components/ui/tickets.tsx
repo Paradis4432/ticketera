@@ -1,9 +1,11 @@
 import {QRCodeSVG} from 'qrcode.react';
+import {getUserId} from "@/app/(profile)/profile/actions";
 interface TicketProps {
     ticket: ITicket;
-    userId: number;
+    email: string;
 }
-function Ticket({ ticket, userId }: TicketProps) {
+function Ticket({ ticket, email }: TicketProps) {
+    const userId = getUserId(email)
     const qrValue = `https://localhost:3000/use/${ticket.ticket_id}/${userId}`
     return (
         <>
