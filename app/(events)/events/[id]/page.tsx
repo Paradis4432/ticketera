@@ -15,7 +15,6 @@ function Page({params}: { params: { id: string } }) {
         })
     }, [params.id]);
 
-    // ERROR missing PublicEventDetailed?
     return (
         <LoadingWrapper of={event}>
             <PublicEventDetailed event={event}/>

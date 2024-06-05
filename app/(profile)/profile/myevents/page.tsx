@@ -20,23 +20,15 @@ function Page() {
                 })
         }
     }, [session]);
-
-    const handleDeleteEvent = async (eventId: number) => { // ERROR action in client, use callbacks
-        try {
-            await deleteUserEvent(eventId);
-            setEvents((prevEvents) => prevEvents.filter(event => event.event_id !== eventId));
-        } catch (error) {
-            console.error("Error deleting event:", error);
-        }
-    };
+    
 
     return (
         <div>
             <h1>My Events</h1>
             {
-                events.map((event) => ( // ERROR events.map afuera del wrapper? | no events found?
+                events.map((event) => (
                     <LoadingWrapper of={events} key={event.event_id}>
-                        <UserEvents event={event} onDelete={() => handleDeleteEvent(event.event_id)}/>
+                        <UserEvents event={event} setEvents={setEvents}/>
                     </LoadingWrapper>
                 ))
             }
