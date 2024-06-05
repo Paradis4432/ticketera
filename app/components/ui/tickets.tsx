@@ -2,7 +2,7 @@ import {QRCodeSVG} from 'qrcode.react';
 import {getUserId} from "@/app/(profile)/profile/actions";
 interface TicketProps {
     ticket: ITicket;
-    email: string;
+    email?: string;
 }
 function Ticket({ ticket, email }: TicketProps) {
     const userId = getUserId(email)
