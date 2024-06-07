@@ -78,6 +78,7 @@ export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents})
                 <li>{event.location}</li>
                 <li>{event.starting_date.toString()}</li>
                 <li> State: {event.state}</li>
+                <li> <Link href={`/profile/myevents/${event.event_id}`}>Metrics</Link></li>
             </ul>
             <button onClick={onDelete}>Delete</button>
         </div>

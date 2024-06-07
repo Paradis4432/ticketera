@@ -35,6 +35,7 @@ function Page() {
     const onSubmit = async (data: TEventSchema) => {
         await new Promise((resolve) => setTimeout(resolve, 500));
         const eventDB = await createEvent(data, email)
+
         setEvent(eventDB);
         reset();
 

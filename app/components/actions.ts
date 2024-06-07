@@ -5,6 +5,9 @@ import {users} from "@/models/queries/users";
 
 async function getUserId(email: string) {
     const result = await db.query(users.selUserId, [email]);
+    if (result.rows.length === 0) {
+        return null;
+    }
     return result.rows[0].user_id;
 }
 

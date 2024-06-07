@@ -23,6 +23,7 @@ const handler = NextAuth({
             }
             return true;
         },
+
         async session({session, token}: { session: any, token: any }) {
             session.user.id = token.id;
             //session.user.test = "test" // estoy casi seguro que aca se pueden agregar cosas para el user

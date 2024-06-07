@@ -15,7 +15,7 @@ export enum metrics {
                 join
             metrics_sales ms on m.metric_id = ms.metric_id
         where
-            m.event_id = ?;
+            m.event_id = $1;
     `,
 
     selByEventUsers = `
@@ -29,7 +29,7 @@ export enum metrics {
                 join
             metrics_users mu on m.metric_id = mu.metric_id
         where
-            m.event_id = ?;
+            m.event_id = $1;
     `,
 
 }

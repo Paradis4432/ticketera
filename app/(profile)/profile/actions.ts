@@ -19,7 +19,6 @@ async function getUserId(email: string | null | undefined): Promise<number> {
 }
 
 async function getUserTickets(email: string | null | undefined): Promise<ITicket[]> {
-    if (!email) return []
     const data = await db.query(users.selUserTickets, [email]);
     return data.rows as ITicket[]
 }
