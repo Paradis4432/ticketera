@@ -9,7 +9,7 @@ export default function Page () {
 
     return (
         <LoadingWrapper of={session}>
-            <Profile session={session}/>
+            {session && <Profile session={session}/> }
         </LoadingWrapper>
     )
 }

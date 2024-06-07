@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 
 interface profileProps {
@@ -9,7 +10,7 @@ export default function Profile({session}: profileProps) {
     return (
         <>
             <h1>Profile</h1>
-            <img src={session.user.image} alt={session.user.name}/>
+            <Image src={session.user.image} alt={session.user.name}/>
             <ul>
                 <li>name: {session.user.name}</li>
                 <li>email: {session.user.email}</li>
