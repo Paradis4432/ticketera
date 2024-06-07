@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import {saveUser} from "@/app/components/actions";
+import {getUserId, saveUser} from "@/app/components/actions";
 
 const handler = NextAuth({
     providers: [
@@ -12,8 +12,12 @@ const handler = NextAuth({
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
         async signIn({ user, account, profile }) {
+
             if (user.email && user.name) {
-                await saveUser(user.email, user.name);
+                const userDb = await getUserId(user.email)
+                if (!userDb) {
+                    await saveUser(user.email, user.name)
+                }
             } else {
                 console.warn("Missing user email or name, not saving user.");
             }

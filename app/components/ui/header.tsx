@@ -17,13 +17,13 @@ function Header() {
                     <HeaderButton value={"LOGO"} href={"/"}></HeaderButton>
                 </div>
                 <div className="col">
-                    <HeaderButton value={"create_event"} href={"/profile/create/event"}></HeaderButton>
+                    <HeaderButton value={"CreateEvent"} href={"/profile/create/event"}></HeaderButton>
                 </div>
                 <div className="col">
-                    <HeaderButton value={"contact"} href={"/contact"}></HeaderButton>
+                    <HeaderButton value={"Contact"} href={"/contact"}></HeaderButton>
                 </div>
                 <div className="col">
-                    <HeaderButton value={"PROFILE_PIC"} href={"/profile"}></HeaderButton>
+                    <HeaderButton value={"MyProfile"} href={"/profile"}></HeaderButton>
                 </div>
 
                 <div className="col">

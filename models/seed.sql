@@ -18,8 +18,8 @@ values
 -- tickets
 insert into tickets (event_id, user_id, name, reason, expiration_date, uses, max_uses, price)
 values
-    (1, (select user_id from users where email = 'facumartinezvidal@gmail.com'), 'vip pass', 'attendee', '2024-07-20 23:59:59', 0, 1, 150.00),
-    (2, (select user_id from users where email = 'facumartinezvidal@gmail.com'), 'standard pass', 'attendee', '2024-08-10 20:00:00', 0, 1, 75.00);
+    (1, 1, 'vip pass', 'attendee', '2024-07-20 23:59:59', 0, 1, 150.00),
+    (2, 1, 'standard pass', 'attendee', '2024-08-10 20:00:00', 0, 1, 75.00);
 
 -- metrics
 insert into metrics (event_id, total_tickets_sold)

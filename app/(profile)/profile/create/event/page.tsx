@@ -5,6 +5,8 @@ import {zodResolver} from "@hookform/resolvers/zod";
 
 import {createEvent} from "@/app/(profile)/profile/create/event/actions";
 import {useSession} from "next-auth/react";
+import {useState} from "react";
+import {getUserEvent} from "@/app/(profile)/profile/actions";
 
 const eventSchema = z.object({
     name: z.string().min(1, "El nombre no puede estar vacío"),
@@ -20,6 +22,7 @@ type TEventSchema = z.infer<typeof eventSchema>;
 function Page() {
     const {data: session} = useSession();
     const email = session?.user?.email;
+    const [event, setEvent] = useState<IEvent>();
     const {
         register,
         handleSubmit,
@@ -30,14 +33,15 @@ function Page() {
     });
 
     const onSubmit = async (data: TEventSchema) => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        const result = await createEvent(data, email)
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        const eventDB = await createEvent(data, email)
+        setEvent(eventDB);
         reset();
+
     };
 
     return (
-        <div>
+        <>
             <h1>create event</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
@@ -62,7 +66,20 @@ function Page() {
                 </label>
                 <button type="submit" disabled={isSubmitting}>create</button>
             </form>
-        </div>
+            <br/>
+            <br/>
+            {event && (
+                <div>
+                    <h2>Event created</h2>
+                    <p>name: {event.name}</p>
+                    <p>description: {event.description}</p>
+                    <p>location: {event.location}</p>
+                    <p>starting date: {event.starting_date.toString()}</p>
+                </div>
+            )}
+        </>
+
+
     )
 }
 
