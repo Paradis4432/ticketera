@@ -28,7 +28,7 @@ export enum users {
 
     saveUser = `
         insert into users (email, name)
-        values ($1, $2)
+        values ($1, $2) on conflict do nothing 
     `,
 
 
