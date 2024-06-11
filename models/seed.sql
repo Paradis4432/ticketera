@@ -15,7 +15,7 @@ values
     ((select user_id from users where email = 'facumartinezvidal@gmail.com'), 2);
 
 
--- tickets
+-- buy
 insert into tickets (event_id, user_id, name, reason, expiration_date, uses, max_uses, price)
 values
     (1, (select user_id from users where email = 'facumartinezvidal@gmail.com'), 'vip pass', 'attendee', '2024-07-20 23:59:59', 0, 1, 150.00),

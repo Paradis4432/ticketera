@@ -18,7 +18,7 @@ function PublicEvent({event}: { event: IEvent }) {
 
                 /*<Link href={/events/id}>detalles del evento -> comprar ticket etc</Link>*/
             ) : (
-            <p>not found</p>
+                <p>not found</p>
             )
         }
         </div>
@@ -26,7 +26,7 @@ function PublicEvent({event}: { event: IEvent }) {
 }
 
 interface propsPEV {
-    event?: IEvent ;
+    event?: IEvent;
 
 }
 
@@ -50,18 +50,21 @@ function PublicEventDetailed({event}: propsPEV) {
                 <li>
                     <h4>state: {event?.state}</h4>
                 </li>
+                <li>
+                    <button>
+                        buy ticket redirect a mp
+                    </button>
+                </li>
             </ul>
         </>
     )
 }
 
 
-
 interface UserEventsProps {
     event: IEvent;
     setEvents: React.Dispatch<React.SetStateAction<IEvent[]>>;
 }
-
 
 
 export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents}) => {
