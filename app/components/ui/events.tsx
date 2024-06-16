@@ -1,10 +1,17 @@
 import Link from "next/link";
-import React from "react";
+import React, {useState} from "react";
 import {deleteUserEvent} from "@/app/(profile)/profile/actions";
+import {redirect} from "next/navigation";
+import {initMercadoPago, Wallet} from "@mercadopago/sdk-react";
+import axios from "axios";
+
 
 
 // evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
 function PublicEvent({event}: { event: IEvent }) {
+
+
+
     return (
         <div>{
             event ? (
@@ -31,6 +38,33 @@ interface propsPEV {
 }
 
 function PublicEventDetailed({event}: propsPEV) {
+    initMercadoPago("TEST-169b423d-7fc3-4c99-84a8-db325d8f0355")
+    const [preferenceId, setPreferenceId] = useState(null)
+    const createPreference = async() =>{
+        try {
+            const response = await axios.post("http://localhost:3000/api/mercadopago", {
+                id: event?.event_id,
+                title: event?.name,
+                quantity: 1,
+                price: 100,
+
+            })
+            console.log(response)
+
+            const {id} = response.data
+            return id;
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const handleBuy = async() => {
+        const id = await createPreference();
+        if (id){
+            setPreferenceId(id)
+        }
+    }
+
     return (
         <>
             <h1>{event?.name}</h1>
@@ -51,9 +85,11 @@ function PublicEventDetailed({event}: propsPEV) {
                     <h4>state: {event?.state}</h4>
                 </li>
                 <li>
-                    <button>
-                        buy ticket redirect a mp
-                    </button>
+                    <button onClick={handleBuy}>Comprar con Mercado Pago</button>
+                    {preferenceId &&
+                        <Wallet initialization={{preferenceId:preferenceId}}/>
+                    }
+
                 </li>
             </ul>
         </>
