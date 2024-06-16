@@ -14,6 +14,11 @@ function LogIn() {
                 ) : (
                     <button onClick={() => signIn().then(() => {
                         //saveUser(session?.user?.email)
+                        console.log("LOGGED IN!!!")
+                        console.log("LOGGED IN!!!")
+                        console.log("LOGGED IN!!!")
+                        console.log("LOGGED IN!!!")
+                        console.log("LOGGED IN!!!")
                     })} className="btn btn-primary">Log in</button>
                 )
             }

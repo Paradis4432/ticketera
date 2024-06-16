@@ -1,10 +1,18 @@
-function Ticket({ticket}: { ticket: ITicket }) {
+import {QRCodeSVG} from 'qrcode.react';
+import {getUserId} from "@/app/(profile)/profile/actions";
+interface TicketProps {
+    ticket: ITicket;
+    email?: string;
+}
+function Ticket({ ticket, email }: TicketProps) {
+    const userId = getUserId(email)
+    const qrValue = `https://localhost:3000/use/${ticket.ticket_id}/${userId}`
     return (
         <>
-            <h4>{ticket.ticket_name}</h4>
+            <h4>{ticket.name}</h4>
             <ul>
                 <li>
-                    {ticket.event_name}
+                    <QRCodeSVG value= {qrValue}/>
                 </li>
                 <li>
                     {ticket.reason}
@@ -24,6 +32,8 @@ function Ticket({ticket}: { ticket: ITicket }) {
                 <li>
                     {ticket.expiration_date.toString()}
                 </li>
+
+                qr code
             </ul>
         </>
     )

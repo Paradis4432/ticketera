@@ -1,36 +1,37 @@
 "use client"
-
-import {useSession} from "next-auth/react";
-import {useEffect, useState} from "react";
 import {Ticket} from "@/app/components/ui/tickets";
-import {getUserTickets} from "@/app/(profile)/profile/tickets/actions";
+import {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {getUserTickets} from "@/app/(profile)/profile/actions";
+
 
 function Page() {
     const {data: session} = useSession();
 
-    const [tickets, setEvents] = useState<ITicket[]>([]);
-
+    const [tickets, setTickets] = useState<ITicket[]>([]);
 
     useEffect(() => {
         if (session?.user) {
             getUserTickets(session.user.email)
                 .then(tickets => {
-                    setEvents(tickets);
+                    setTickets(tickets);
                 })
         } else {
-            // redirect / login
+            // redirect / [...login]
         }
     }, [session]);
 
+
     return (
-        <div className="container">
+        <div>
             <h1>tus tickets</h1>
             {
                 tickets.length == 0 ? (
                     <h2>loading</h2>
                 ) : (
+                    // missing qr codes
                     tickets.map((ticket, id) => (
-                        <Ticket ticket={ticket} key={id}/>
+                        (session?.user?.email && <Ticket ticket={ticket} email={session?.user?.email} key={id}/>)
                     ))
                 )
             }
@@ -38,4 +39,4 @@ function Page() {
     )
 }
 
-export default Page
+export default Page;

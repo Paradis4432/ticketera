@@ -2,15 +2,15 @@
 
 import {useEffect, useState} from "react";
 import {fetchAllEvents} from "@/app/(home)/actions";
-import {RenderPublicEvents} from "@/app/components/ui/events";
+import {PublicEvent} from "@/app/components/ui/events";
 
 function Page() {
     // TODO convert finder by id to component and load this server side, but the component client side
     const [events, setEvents] = useState<IEvent[]>([])
     useEffect(() => {
-        /*fetchAllEvents().then(data => {
+        fetchAllEvents().then(data => {
             setEvents(data);
-        })*/
+        })
     }, []);
 
 
@@ -32,7 +32,14 @@ function Page() {
                     <h2>loading</h2>
                 ) : (
                     <div>
-                        {RenderPublicEvents(events)}
+                        {events.map((e, i) => (
+                            <ul key={i}>
+                                <li>
+                                    <PublicEvent event={e}/>
+                                </li>
+
+                            </ul>
+                        ))}
                     </div>
                 )
             }

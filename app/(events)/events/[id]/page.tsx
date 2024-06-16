@@ -1,7 +1,8 @@
 "use client"
 import {useEffect, useState} from "react";
 import {fetchEventByID} from "@/app/(events)/events/[id]/actions";
-import {PublicEvent} from "@/app/components/ui/events";
+import {LoadingWrapper} from "@/app/components/ui/loader";
+import {PublicEventDetailed} from "@/app/components/ui/events";
 
 function Page({params}: { params: { id: string } }) {
     const [event, setEvent] = useState<IEvent>();
@@ -9,15 +10,15 @@ function Page({params}: { params: { id: string } }) {
     useEffect(() => {
         fetchEventByID(params.id).then(data => {
             if (data) {
-                setEvent(data[0])
+                setEvent(data)
             }
         })
     }, [params.id]);
 
     return (
-        <div>
-            <PublicEvent event={event}/>
-        </div>
+        <LoadingWrapper of={event}>
+            <PublicEventDetailed event={event}/>
+        </LoadingWrapper>
     )
 }
 

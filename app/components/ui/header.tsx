@@ -17,10 +17,7 @@ function Header() {
                     <HeaderButton value={"LOGO"} href={"/"}></HeaderButton>
                 </div>
                 <div className="col">
-                    <HeaderButton value={"EVENTS"} href={"/events"}></HeaderButton>
-                </div>
-                <div className="col">
-                    <HeaderButton value={"CREATE"} href={"/events/create"}></HeaderButton>
+                    <HeaderButton value={"create_event"} href={"/profile/create/event"}></HeaderButton>
                 </div>
                 <div className="col">
                     <HeaderButton value={"contact"} href={"/contact"}></HeaderButton>
