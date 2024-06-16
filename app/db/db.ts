@@ -27,7 +27,7 @@ interface QueryParams {
  * @param p2 list[] of values
  * @return always list of values, even if only 1 found
  */
-async function qquery<T>(p1: string | QueryParams, p2?: any[]): Promise<T[]> {
+async function qquery<T extends Castable>(p1: string | QueryParams, p2?: any[]): Promise<T[]> {
     let q: string;
     let v: any[];
 
