@@ -4,7 +4,7 @@ import {fetchEventByID} from "@/app/(events)/events/[id]/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 import {PublicEventDetailed} from "@/app/components/ui/events";
 
-function Page({params}: { params: { id: string } }) {
+function Page({params}: { params: { id: number } }) {
     const [event, setEvent] = useState<IEvent>();
 
     useEffect(() => {
