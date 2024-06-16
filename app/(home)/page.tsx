@@ -3,6 +3,7 @@
 import {useEffect, useState} from "react";
 import {fetchAllEvents} from "@/app/(home)/actions";
 import {PublicEvent} from "@/app/components/ui/events";
+import {LoadingWrapper} from "@/app/components/ui/loader";
 
 function Page() {
     // TODO convert finder by id to component and load this server side, but the component client side
@@ -27,22 +28,18 @@ function Page() {
             </button>
 
             <h1>Main events:</h1>
-            {
-                events.length == 0 ? (
-                    <h2>loading</h2>
-                ) : (
-                    <div>
-                        {events.map((e, i) => (
-                            <ul key={i}>
-                                <li>
-                                    <PublicEvent event={e}/>
-                                </li>
 
-                            </ul>
-                        ))}
-                    </div>
-                )
-            }
+            <LoadingWrapper of={events} showLoading>
+                {events.map((e, i) => (
+                    <ul key={i}>
+                        <li>
+                            <PublicEvent event={e}/>
+                        </li>
+
+                    </ul>
+                ))}
+
+            </LoadingWrapper>
         </div>
     )
 }
