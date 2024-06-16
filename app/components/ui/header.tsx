@@ -22,9 +22,9 @@ function Header() {
                 <div className="col">
                     <HeaderButton value={"contact"} href={"/contact"}></HeaderButton>
                 </div>
-                <div className="col">
-                    <HeaderButton value={"PROFILE_PIC"} href={"/profile"}></HeaderButton>
-                </div>
+                {/*<div className="col">
+                    <HeaderButton value={"profile"} href={"/profile"}></HeaderButton>
+                </div>*/}
 
                 <div className="col">
                     <LogIn/>
