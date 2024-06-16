@@ -11,7 +11,7 @@ const handler = NextAuth({
     ],
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
-        async signIn({ user, account, profile }) {
+        async signIn({user, account, profile}) {
             if (user.email && user.name) {
                 await saveUser(user.email, user.name);
             } else {
@@ -31,7 +31,10 @@ const handler = NextAuth({
                 token.id = user.id;
             }
             return token;
-        }
+        },
+        async redirect({url, baseUrl}) {
+            return baseUrl
+        },
     }
 })
 
