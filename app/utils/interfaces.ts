@@ -1,5 +1,7 @@
+interface Castable {
+}
 
-interface IEvent {
+interface IEvent extends Castable {
     event_id: number,
     name: string,
     description: string,
@@ -8,14 +10,14 @@ interface IEvent {
     state: number,
 }
 
-interface IContactFormEmailProps {
+interface IContactFormEmailProps extends Castable {
     name: string,
     email: string,
     message: string
 }
 
-interface ITicket {
-    ticket_id:number
+interface ITicket extends Castable {
+    ticket_id: number
     name: string,
     reason: string,
     creation_date: Date,
@@ -26,7 +28,7 @@ interface ITicket {
     event_id: number,
 }
 
-interface IMetricSales {
+interface IMetricSales extends Castable {
     ticket_name: string,
     sold: number,
     courtesies: number,
@@ -36,18 +38,18 @@ interface IMetricSales {
     total: number
 }
 
-interface IMetricUsers {
+interface IMetricUsers extends Castable {
     visits: number,
     started_but_denied: number,
     in_fav: number
 }
 
-interface IParamsUse {
+interface IParamsUse extends Castable {
     params: {
         data: string[]
     }
 }
 
-interface IUserData extends ITicket, IEvent{
+interface IUserData extends ITicket, IEvent {
 
 }

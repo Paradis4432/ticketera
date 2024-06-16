@@ -10,7 +10,8 @@ function Page({params}: { params: { id: string } }) {
     useEffect(() => {
         fetchEventByID(params.id).then(data => {
             if (data) {
-                setEvent(data)
+                console.log(data)
+                setEvent(data[0])
             }
         })
     }, [params.id]);

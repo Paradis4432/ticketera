@@ -37,6 +37,8 @@ function Page({params}: { params: { id: string } }) {
                 {
                     metricSales.map((metricSale, id) => (
                         <MetricSales metricSales={metricSale} key={id}/>
+
+
                     ))
                 }
             </LoadingWrapper>

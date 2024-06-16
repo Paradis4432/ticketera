@@ -1,9 +1,6 @@
 // of is list, children is components
 const LoadingWrapper = ({of, children}: { of: any | boolean, children: any }) => {
-    if (Array.isArray(of) && of.length === 0) {
-        return <Nothing/>;
-    }
-    if (of === true) {
+    if ((Array.isArray(of) && of.length === 0) || of === true) {
         return <Loading/>
     }
     return children

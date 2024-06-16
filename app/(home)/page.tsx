@@ -11,6 +11,7 @@ function Page() {
     const [events, setEvents] = useState<IEvent[]>([])
     useEffect(() => {
         fetchAllEvents().then(data => {
+            console.log(data)
             setEvents(data);
         })
     }, []);
@@ -29,6 +30,16 @@ function Page() {
             </button>
 
             <h1>Main events:</h1>
+            {/*            {events.map((e,i) => (
+                <p>test</p>
+            ))}*/}
+            {/*            {
+                events.length > 0 ? (
+                    <p>loading</p>
+                ) : (
+                    <p></p>
+                )
+            }*/}
 
             <LoadingWrapper of={events}>
                 {events.map((e, i) => (
@@ -39,8 +50,10 @@ function Page() {
 
                     </ul>
                 ))}
-
             </LoadingWrapper>
+            {/*
+                ))}*/}
+
 
             <Link href={"/profile/myevents"}>tus eventos</Link>
         </div>

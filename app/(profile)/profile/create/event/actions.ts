@@ -1,6 +1,6 @@
 "use server"
 
-import db from "@/app/db/db";
+import {db} from "@/app/db/db";
 import {events} from "@/models/queries/events";
 import {users} from "@/models/queries/users";
 

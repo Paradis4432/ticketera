@@ -1,5 +1,5 @@
 "use server"
-import db from "@/app/db/db";
+import {db} from "@/app/db/db";
 import {users} from "@/models/queries/users";
 
 async function getUserData(user_id:number, ticket_id:number):Promise<IUserData[]> {

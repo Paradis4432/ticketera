@@ -1,6 +1,6 @@
 "use server"
 
-import db from "@/app/db/db";
+import {db} from "@/app/db/db";
 
 import {metrics} from "@/models/queries/metrics";
 import {sql} from "@vercel/postgres";
