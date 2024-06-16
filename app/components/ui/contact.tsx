@@ -2,7 +2,7 @@ import {FC} from "react";
 
 function ContactForm() {
     return (
-        <p></p>
+        <p>missing domain</p>
     )
 }
 
