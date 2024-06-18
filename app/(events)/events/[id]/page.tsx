@@ -11,6 +11,9 @@ function Page({params}: { params: { id: number } }) {
         fetchEventByID(params.id)
             .then(data => {
                 if (data) {
+                    if (data.length !== 1) {
+
+                    }
                     console.log(data)
                     setEvent(data[0])
                 } else {

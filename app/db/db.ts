@@ -11,15 +11,10 @@ const db: Pool = new Pool({
     }
 });
 
-function asd<R, Q extends R>({test, test1}: { test: R, test1: Q }) {
-    return test as Q;
-}
-
 interface QueryParams {
     q: string;
     v: any[];
 }
-
 
 /**
  *
