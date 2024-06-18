@@ -1,18 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
-import { MercadoPagoConfig, Preference } from "mercadopago";
+import {NextRequest, NextResponse} from "next/server";
+import {MercadoPagoConfig, Preference} from "mercadopago";
 
-// Define la estructura de los ítems con todos los campos requeridos
 interface Item {
-    id: string; // Asegúrate de que cada ítem tenga un id
+    id: string;
     title: string;
     quantity: number;
     unit_price: number;
     currency_id: string;
 }
 
-// Define la estructura del cuerpo de la solicitud
 interface RequestBody {
-    id:string;
+    id: string;
     title: string;
     quantity: string;
     price: string;
@@ -24,9 +22,8 @@ const client = new MercadoPagoConfig({
 
 export async function POST(req: NextRequest) {
     try {
-        const body = await req.json() as RequestBody; // Asegúrate de que el cuerpo de la solicitud sea de tipo RequestBody
+        const body = await req.json() as RequestBody;
 
-        // Verifica que el cuerpo de la solicitud tenga las propiedades necesarias
         if (!body.title || !body.quantity || !body.price) {
             return NextResponse.json({
                 status: 400,
@@ -37,7 +34,7 @@ export async function POST(req: NextRequest) {
         const preferenceBody = {
             items: [
                 {
-                    id: body.id, // Asigna un id único a cada ítem
+                    id: body.id,
                     title: body.title,
                     quantity: Number(body.quantity),
                     unit_price: Number(body.price),
