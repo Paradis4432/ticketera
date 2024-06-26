@@ -1,6 +1,6 @@
 "use client"
 import {useEffect, useState} from "react";
-import {fetchEventByID} from "@/app/(events)/events/[id]/actions";
+import {fetchEventByID, get} from "@/app/(events)/events/[id]/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 import {PublicEventDetailed} from "@/app/components/ui/events";
 
@@ -20,6 +20,10 @@ function Page({params}: { params: { id: number } }) {
                     // handle error
                 }
             })
+        
+        get().then(d => {
+            console.log(d)
+        })
     }, [params.id]);
 
     return (

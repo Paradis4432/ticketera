@@ -1,10 +1,16 @@
 import Link from "next/link";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {deleteUserEvent} from "@/app/(profile)/profile/actions";
+import {initMercadoPago, Payment} from "@mercadopago/sdk-react";
+import axios from "axios";
+
 
 
 // evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
 function PublicEvent({event}: { event: IEvent }) {
+
+
+
     return (
         <div>{
             event ? (
@@ -30,7 +36,51 @@ interface propsPEV {
 
 }
 
+// TODO no me toma la variable de entorno
+const mercadopago_public_key = process.env.MERCADO_PAGO_PUBLIC_KEY;
+
 function PublicEventDetailed({event}: propsPEV) {
+    const [preferenceId, setPreferenceId] = useState(null)
+
+    //console.log(process.env.MERCADO_PAGO_PUBLIC_KEY)
+    // if(mercadopago_public_key === undefined){
+    //     throw new Error("Missing Mercado Pago Public Key")
+    // }
+
+    initMercadoPago("APP_USR-6bdd950c-253c-4edb-9a31-490c573e14ec")
+    const createPreference = async() =>{
+        try {
+            const response = await axios.post("http://localhost:3000/api/mercadopago", {
+                id: event?.event_id,
+                title: event?.name,
+                quantity: 1,
+                price: 100,
+
+            })
+            console.log(response)
+
+            const {id} = response.data
+            return id;
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        const fetchPreference = async () => {
+            const id = await createPreference();
+            if (id) {
+                setPreferenceId(id);
+            }
+        };
+
+        fetchPreference();
+    }, [event]);
+
+    const handleBuy = async() => {
+        console.log("comprando")
+    }
+
     return (
         <>
             <h1>{event?.name}</h1>
@@ -51,9 +101,16 @@ function PublicEventDetailed({event}: propsPEV) {
                     <h4>state: {event?.state}</h4>
                 </li>
                 <li>
-                    <button>
-                        buy ticket redirect a mp
-                    </button>
+                    <h4>price: $100</h4>
+                </li>
+                <li>
+                   {preferenceId &&
+                        <Payment
+                            initialization={{ preferenceId: preferenceId, amount: 100}}
+                            customization={{ paymentMethods: { maxInstallments: 1, mercadoPago: "all", creditCard:"all", debitCard: "all", } }}
+                            onSubmit={handleBuy}
+                        />
+                   }
                 </li>
             </ul>
         </>

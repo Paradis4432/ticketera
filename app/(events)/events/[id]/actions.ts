@@ -12,6 +12,12 @@ async function fetchEventByID(id: number): Promise<IEvent[] | null> {
     }
 }
 
+async function get(){
+    return process.env.MERCADO_PAGO_PUBLIC_KEY
+}
+
+
 export {
-    fetchEventByID
+    fetchEventByID,
+    get
 }
