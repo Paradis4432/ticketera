@@ -16,8 +16,14 @@ interface RequestBody {
     price: string;
 }
 
+const access_token = process.env.MERCADO_PAGO_ACCESS_TOKEN;
+
+if (!access_token) {
+    throw new Error("Missing MERCADO_PAGO_ACCESS_TOKEN environment variable");
+}
+
 const client = new MercadoPagoConfig({
-    accessToken: "TEST-3771012168228704-061617-d902234cbeb3693d46c93d0a33b8aef8-469021861"
+    accessToken: access_token,
 });
 
 export async function POST(req: NextRequest) {
