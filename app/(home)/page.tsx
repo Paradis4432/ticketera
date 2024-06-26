@@ -10,10 +10,11 @@ function Page() {
     // TODO convert finder by id to component and load this server side, but the component client side
     const [events, setEvents] = useState<IEvent[]>([])
     useEffect(() => {
-        fetchAllEvents().then(data => {
+        /*fetchAllEvents().then(data => {
             console.log(data)
             setEvents(data);
-        })
+        })*/
+
     }, []);
 
 
@@ -29,7 +30,7 @@ function Page() {
             }}>find
             </button>
 
-            <h1>Main events:</h1>
+            <h1>Main events: disabled</h1>
             {/*            {events.map((e,i) => (
                 <p>test</p>
             ))}*/}
@@ -41,7 +42,7 @@ function Page() {
                 )
             }*/}
 
-            <LoadingWrapper of={events}>
+{/*            <LoadingWrapper of={events}>
                 {events.map((e, i) => (
                     <ul key={i}>
                         <li>
@@ -50,7 +51,7 @@ function Page() {
 
                     </ul>
                 ))}
-            </LoadingWrapper>
+            </LoadingWrapper>*/}
             {/*
                 ))}*/}
 

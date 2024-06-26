@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import {deleteUserEvent} from "@/app/(profile)/profile/actions";
-import {redirect} from "next/navigation";
 import {initMercadoPago, Payment} from "@mercadopago/sdk-react";
 import axios from "axios";
 
@@ -38,14 +37,16 @@ interface propsPEV {
 }
 
 // TODO no me toma la variable de entorno
-// const mercadopago_public_key = process.env.MERCADO_PAGO_PUBLIC_KEY;
+const mercadopago_public_key = process.env.MERCADO_PAGO_PUBLIC_KEY;
 
 function PublicEventDetailed({event}: propsPEV) {
     const [preferenceId, setPreferenceId] = useState(null)
 
+    //console.log(process.env.MERCADO_PAGO_PUBLIC_KEY)
     // if(mercadopago_public_key === undefined){
     //     throw new Error("Missing Mercado Pago Public Key")
     // }
+
     initMercadoPago("APP_USR-6bdd950c-253c-4edb-9a31-490c573e14ec")
     const createPreference = async() =>{
         try {
