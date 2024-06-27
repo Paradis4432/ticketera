@@ -7,3 +7,7 @@
 body {
     color: rgb(var(--foreground-rgb));
 }
+
+Link {
+    text-decoration: none;
+}

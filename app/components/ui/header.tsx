@@ -14,7 +14,7 @@ function Header() {
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <HeaderButton value={"LOGO"} href={"/"}></HeaderButton>
+                    <HeaderButton value={"Logo"} href={"/"}></HeaderButton>
                 </div>
                 <div className="col">
                     <HeaderButton value={"create_event"} href={"/profile/create/event"}></HeaderButton>
