@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {LogIn, LogOut} from "@/app/components/userLog";
+import {LogIn, LogOut} from "../userLog";
 
 type HeaderButtonProps = {
     value: string;

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getUserData } from "@/app/use/[...data]/actions";
 import { useSession } from "next-auth/react";
-import { LoadingWrapper } from "@/app/components/ui/loader";
+import { LoadingWrapper } from "@/app/components/loader";
 
 function Page(params: IParamsUse) {
     const { data: session } = useSession();

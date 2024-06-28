@@ -4,10 +4,12 @@ import {Footer} from "@/app/components/ui/footer";
 
 export default function Home({children}: PropsWithChildren<{}>) {
     return (
-        <div>
-            <Navbar />
-            {children}
-            <Footer/>
-        </div>
+        <html>
+            <body>
+              <Navbar />
+              {children}
+              <Footer/>
+            </body>
+        </html>
     )
 }

@@ -1,6 +1,6 @@
 import {ContactFormInputs, ContactFormSchema} from "@/app/validations/mails";
 import {Resend} from "resend";
-import {ContactFormEmail} from "@/app/components/ui/contact";
+import {ContactFormEmail} from "@/app/components/contact";
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const source = process.env.RESEND_EMAIL as string
