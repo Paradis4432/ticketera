@@ -2,8 +2,8 @@
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
 import {getEventMetricSale, getEventMetricUser} from "@/app/(profile)/profile/myevents/[id]/actions";
-import {MetricSales} from "@/app/components/metrics";
-import {LoadingWrapper} from "@/app/components/loader";
+import {MetricSales} from "@/app/components/ui/metrics";
+import {LoadingWrapper} from "@/app/components/ui/loader";
 
 function Page({params}: { params: { id: string } }) {
     const {data: session} = useSession();

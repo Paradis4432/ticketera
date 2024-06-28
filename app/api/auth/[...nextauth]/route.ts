@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import {saveUser} from "@/app/components/actions";
+import {users} from "@/models/queries/users";
+import {db} from "@/app/db/db";
 
 const handler = NextAuth({
     providers: [
@@ -37,5 +38,9 @@ const handler = NextAuth({
         },
     }
 })
+
+async function saveUser(email: string, name: string) {
+    await db.query(users.saveUser, [email, name]);
+}
 
 export {handler as GET, handler as POST};

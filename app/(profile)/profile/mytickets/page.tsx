@@ -1,5 +1,5 @@
 "use client"
-import {Ticket} from "@/app/components/tickets";
+import {Ticket} from "@/app/components/ui/tickets";
 import {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import {getUserTickets} from "@/app/(profile)/profile/actions";

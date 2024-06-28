@@ -1,5 +1,5 @@
 "use client"
-import {LoadingWrapper} from "@/app/components/loader";
+import {LoadingWrapper} from "@/app/components/ui/loader";
 import {useEffect, useState} from "react";
 
 function Page() {
