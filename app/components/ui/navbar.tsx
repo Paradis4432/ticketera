@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '../../../assets/Logotipo-navbar.png';
+import logo from '../../../assets/bynlogo.png';
+
 
 
 const Navbar = () => {
+
     return (
         <header className="w-full bg-gray-200 max-h-[72px] z-10 absolute">
             <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-3">  

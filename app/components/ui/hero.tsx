@@ -13,10 +13,10 @@ const Hero = () => {
     }
     
     return (
-        <div className="w-full min-h-[695px] max-h-[995px] absolute content-center bg-top bg-cover">
+        <div className="w-full min-h-[695px] max-h-[995px] relative content-center bg-top bg-cover">
             <Image className="z-0 max-h-[900px] w-full bg-custom-1 blur-sm" src={bgImage} alt="" />
             <div className="absolute inset-0 bg-black opacity-45"></div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-2">
                 <Image src={Iso} alt="isologo" />
                 <h1 className="z-10 font-normal text-center text-5xl text-white">
                     Bienvenidos a Selva Tickets
