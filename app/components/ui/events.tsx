@@ -87,7 +87,21 @@ export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents})
     );
 };
 
+const Events = () => {
+    return(
+    <div className="max-w-[1440px] flex justify-center relative mx-auto">
+        <div className="flex flex-col justify-center">
+            <div className="py-[8px] px-4 bg-gray-300 text-black rounded-3xl text-xl font-normal mt-5 mx-auto">Accesos Rápidos & seguros con nuestros QRs</div>
+            <h1 className="text-black text-5xl font-bold mt-5 mx-auto">Todos Los Eventos Disponibles</h1>
+            <p className="text-gray-400 text-base font-normal mt-3 mx-auto">Busca todos los eventos que existen en nuestra plataforma.</p>
+        </div>
+    </div>
+    )
+}
+
+export default Events
+
 export {
     PublicEvent,
-    PublicEventDetailed
+    PublicEventDetailed,
 }

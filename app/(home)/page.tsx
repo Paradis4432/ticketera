@@ -1,10 +1,12 @@
 "use client"
 
+import Events from '@/app/components/ui/events';
 import Hero from '@/app/components/ui/hero';
 import {useEffect, useState} from "react";
 import {fetchTop10Events} from "@/app/(home)/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 import Image from "next/image";
+
 
 export default function Home() {
     const [events, setEvents] = useState<IEvent[]>([]);
@@ -19,7 +21,7 @@ export default function Home() {
     return (
         <main>
             <Hero/>
-            <div className="w-full min-h-[112px] bg-purple-700 z-1 mt-0 flex items-center justify-start">
+            <div className="w-full min-h-[112px] bg-gray-400 z-1 mt-0 flex items-center justify-start">
                 <div className="w-full text-white font-medium text-4xl overflow-hidden">
                     <h1 className="right-to-left whitespace-nowrap">Selecciona tus Eventos Selecciona tus Eventos
                         Selecciona
@@ -27,6 +29,7 @@ export default function Home() {
                         Eventos Selecciona tus Ev</h1>
                 </div>
             </div>
+            <Events/>
             <LoadingWrapper of={events}>
                 {
                     events.map(e => (
