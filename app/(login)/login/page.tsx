@@ -1,5 +1,11 @@
+import { Navbar } from "@/app/components/ui/navbar"
+
 function Page() {
-    return <p>logeate</p>
+    return (
+        <main>
+            <Navbar />
+        </main>
+    ) 
 }
 
 export default Page

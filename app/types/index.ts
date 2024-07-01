@@ -6,4 +6,10 @@ export interface ButtonProps {
     containerStyle?:string;
     handleClick?:
     MouseEventHandler<HTMLButtonElement>;
+    navigateTo?:string;
+}
+
+export interface searchEventsProps {
+    events: string;
+    setEvents: (events: string) => void;
 }

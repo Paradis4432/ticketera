@@ -2,6 +2,7 @@
 
 import Events from '@/app/components/ui/events';
 import Hero from '@/app/components/ui/hero';
+import { SearchBar } from '../components';
 import {useEffect, useState} from "react";
 import {fetchTop10Events} from "@/app/(home)/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
@@ -30,6 +31,7 @@ export default function Home() {
                 </div>
             </div>
             <Events/>
+            <SearchBar />
             <LoadingWrapper of={events}>
                 {
                     events.map(e => (

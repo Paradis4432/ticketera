@@ -1,22 +1,26 @@
 
 "use client"
 import { ButtonProps } from "../../types";
+import { useRouter } from "next/navigation";
 
 
-const Buttons = ({text, containerStyle, handleClick }: ButtonProps) => {
+const Buttons = ({text, containerStyle, navigateTo }: ButtonProps) => {
+    const router = useRouter();
+
+    const onClick = ( ) => {
+        if (navigateTo) {
+            console.log('Button clicked');
+            router.push(navigateTo);
+        } else {
+            console.error('No navigation target specified.');
+        }
+    };
+
     return (
-        <button
-            disabled={false}
-            type={"button"}
-            className={`custom-btn ${containerStyle}`}
-            onClick={handleClick}
-        >
-            <span className={'flex-1'}>
-                {text}
-            </span>
+        <button className={containerStyle} onClick={onClick}>
+            {text}
         </button>
     );
-}
-
+};
 
 export default Buttons;

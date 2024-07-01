@@ -1,10 +1,15 @@
 /* TODO set colo scheme */
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 @import 'tailwindcss/tailwind.css';
 
+*{
+    padding: 0;
+    margin: 0;
+}
 
 h1, h2 {
     font-family: 'Inter', sans-serif;
