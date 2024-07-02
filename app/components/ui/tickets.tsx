@@ -32,8 +32,6 @@ function Ticket({ ticket, email }: TicketProps) {
                 <li>
                     {ticket.expiration_date.toString()}
                 </li>
-
-                qr code
             </ul>
         </>
     )
