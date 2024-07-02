@@ -37,7 +37,10 @@ const Navbar = () => {
                           className={isClient && pathname === '/' ? 'text-blue-500 font-semibold text-sm' : ''}>
                         Home
                     </Link>*/}
-                    <NavBarLink link={"/"} path={"/"} text={"home"}></NavBarLink>
+                    <NavBarLink link={"/"} path={"/"} text={"Home"}></NavBarLink>
+                    <NavBarLink link={"/"} path={"/events"} text={"Eventos"}></NavBarLink>
+                    <NavBarLink link={"/"} path={"/login"} text={"Productores"}></NavBarLink>
+                    <NavBarLink link={"/"} path={"/contact"} text={"Preguntas"}></NavBarLink>
                     {/*<Link href="/profile"
                           className={isClient && pathname === '/profile' ? 'text-blue-500 font-semibold text-sm' : 'text-black font-medium text-sm'}>
                         Eventos
