@@ -42,6 +42,7 @@ create table if not exists tickets
     uses            int            not null,
     max_uses        int            not null,
     price           decimal(10, 2) not null,
+    ticket_stage    varchar[]      not null,
     foreign key (user_id) references users (user_id) on delete cascade,
     foreign key (event_id) references events (event_id) on delete cascade
 );

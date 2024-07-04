@@ -5,12 +5,8 @@ import {initMercadoPago, Payment} from "@mercadopago/sdk-react";
 import axios from "axios";
 
 
-
 // evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
 function PublicEvent({event}: { event: IEvent }) {
-
-
-
     return (
         <div>{
             event ? (
@@ -33,7 +29,6 @@ function PublicEvent({event}: { event: IEvent }) {
 
 interface propsPEV {
     event?: IEvent;
-
 }
 
 // TODO no me toma la variable de entorno
@@ -79,6 +74,7 @@ function PublicEventDetailed({event}: propsPEV) {
 
     const handleBuy = async() => {
         console.log("comprando")
+        // mail to use session
     }
 
     return (
