@@ -18,7 +18,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-black opacity-45"></div>
             <div className="absolute inset-0 flex flex-col items-center justify-center z-2">
                 <h1 className="z-10 font-bold text-center text-6xl text-white tracking-wider">
-                Experiencias únicas con <br /> Selva Tickets!
+                TODOS TUS EVENTOS EN SELVA TICKETS!
                 </h1>
                 <h2 className="z-10 font-normal text-center text-xl text-gray-300 mt-3">
                     Descubre Selva Tickets, compra tus eventos de forma <br /> segura, rápida y sencilla, todo en un solo lugar.

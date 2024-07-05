@@ -1,7 +1,7 @@
 "use client"
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { searchEventsProps } from '../../types/index';
-import { Combobox, ComboboxInput, Transition } from '@headlessui/react';
+import { Combobox, ComboboxInput, ComboboxOptions, Transition } from '@headlessui/react';
 
 const SearchEvents = ({ events, setEvents }: searchEventsProps) => { 
   const [query, setQuery] = useState('');
@@ -18,6 +18,8 @@ const SearchEvents = ({ events, setEvents }: searchEventsProps) => {
                 />
             </div>
         </Combobox>
+
+
 
     </div>
   )

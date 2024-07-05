@@ -2,6 +2,7 @@
 
 import Events from '@/app/components/ui/events';
 import Hero from '@/app/components/ui/hero';
+import Navbar from '@/app/components/ui/navbar';
 import { SearchBar } from '../components';
 import {useEffect, useState} from "react";
 import {fetchTop10Events} from "@/app/(home)/actions";
@@ -21,6 +22,7 @@ export default function Home() {
 
     return (
         <main>
+            <Navbar />
             <Hero/>
             <div className="w-full min-h-[112px] bg-gray-400 z-1 mt-0 flex items-center justify-start">
                 <div className="w-full text-white font-medium text-4xl overflow-hidden">
