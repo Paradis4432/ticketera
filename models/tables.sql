@@ -1,82 +1,84 @@
-create table if not exists users
+create table if not exists c_date
 (
-    user_id       bigserial primary key, -- index
-    name          varchar(50)        not null,
-    email         varchar(50) unique not null,
-    creation_date timestamp          not null default current_timestamp,
-    sex           varchar(1)
+    creation_date timestamp default current_timestamp
 );
 
-create index if not exists idx_email on users (email);
+create table if not exists temporal
+(
+    start_date timestamp not null,
+    end_date   timestamp not null
+);
+
+create type event_stage as -- then user buys 1 or more stage access as ticket
+(
+    start_date timestamp,
+    end_date   timestamp,
+    stock      integer,
+    name       varchar(50)
+);
 
 create table if not exists events
 (
-    event_id      bigserial primary key, -- index
-    name          varchar(50)  not null,
-    description   text         not null,
-    creation_date timestamp    not null default current_timestamp,
-    location      varchar(150) not null,
-    starting_date timestamp    not null,
-    state         smallint     not null  -- TODO map to states
-);
+    event_id     serial primary key,
+    rrpps        integer[],    -- nullable
+    validators   integer[],    -- nullable
+    partners     integer[],    -- nullable
+    name         varchar(100) not null,
+    description  varchar(500), -- nullable
 
---using fk allows for 1 or more users to own the same event
-create table if not exists user_event
+    location     varchar(100) not null,
+    max_capacity integer      not null,
+    p18          bool         not null
+-- current stage
+    -- all stages?
+) inherits (c_date);
+
+create table if not exists users
 (
-    user_id  bigint not null,
-    event_id bigint not null,
-    primary key (user_id, event_id),
-    foreign key (user_id) references users (user_id) on delete cascade,
-    foreign key (event_id) references events (event_id) on delete cascade
-);
+    user_id  serial,
+    email    varchar(255) not null,
+    producer bool default false,
+    primary key (user_id, email)
+) inherits (c_date);
+create index if not exists users_email_index on users (email);
 
-create table if not exists tickets
-(
-    ticket_id       bigserial primary key, -- index
-    event_id        bigint         not null,
-    user_id         bigint         not null,
-    name            varchar(50)    not null,
-    reason          varchar(50)    not null,
-    creation_date   timestamp      not null default current_timestamp,
-    expiration_date timestamp      not null,
-    uses            int            not null,
-    max_uses        int            not null,
-    price           decimal(10, 2) not null,
-    ticket_stage    varchar[]      not null,
-    foreign key (user_id) references users (user_id) on delete cascade,
-    foreign key (event_id) references events (event_id) on delete cascade
-);
 
-create table if not exists metrics
-(
-    metric_id          bigserial primary key, -- index
-    event_id           bigint not null,
-    total_tickets_sold int    not null,
-    foreign key (event_id) references events (event_id) on delete cascade
-);
+-- ticket
+-- notes[] -> string["entrada sin validar", "entrada validad", "cortesia", "entrada expirada"]
 
-create table if not exists metrics_sales
-(
-    metric_sale_id bigserial primary key, -- index
-    metric_id      bigint         not null,
-    ticket_id      bigint unique,
-    ticket_name    VARCHAR(100),
-    sold           int default 0,
-    courtesies     int default 0,
-    cancelled      int default 0,
-    not_claimed    int default 0,
-    price          decimal(10, 2) not null,
-    total          decimal(10, 2) not null,
-    foreign key (metric_id) references metrics (metric_id) on delete cascade
-);
+-- stages
+-- price
+-- remaining [0, inf?]
 
-create table if not exists metrics_users
-(
-    metric_user_id     bigserial primary key, -- index
-    metric_id          bigint not null,
-    visits             int default 0,
-    started_but_denied int default 0,
-    in_fav             int default 0,
-    foreign key (metric_id) references metrics (metric_id) on delete cascade
-);
 
+select *
+from events;
+
+update events
+set rrpps = rrpps || '{5}'
+where event_id = 1;
+
+-- insert or add to list
+insert into events (rrpps, event_id)
+values ('{3,25,37}', 1)
+on conflict (event_id)
+    do update set rrpps = events.rrpps || excluded.rrpps;
+
+-- override
+insert into events (rrpps, event_id)
+values ('{3,5,7}', 1)
+on conflict (event_id)
+    do update set rrpps = excluded.rrpps;
+
+-- find rrpp events
+select *
+from events
+where 3 = any (rrpps);
+
+-- remove specific rrpp
+update events
+set rrpps = array_remove(rrpps, 37)
+where event_id = 3;
+
+select *
+from events;

@@ -1,3 +1,19 @@
+
+
+/*
+interface time {
+    creation_date
+}
+*/
+
+interface users {
+    user_id: number,
+    name: string,
+    email: string,
+
+
+}
+
 interface Castable {
 }
 

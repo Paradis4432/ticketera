@@ -34,8 +34,9 @@ interface propsPEV {
 // TODO no me toma la variable de entorno
 const mercadopago_public_key = process.env.MERCADO_PAGO_PUBLIC_KEY;
 
-function PublicEventDetailed({event}: propsPEV) {
+function PublicEventDetailed({event}: { event: IEvent }) {
     const [preferenceId, setPreferenceId] = useState(null)
+    event.
 
     //console.log(process.env.MERCADO_PAGO_PUBLIC_KEY)
     // if(mercadopago_public_key === undefined){
@@ -43,7 +44,7 @@ function PublicEventDetailed({event}: propsPEV) {
     // }
 
     initMercadoPago("APP_USR-6bdd950c-253c-4edb-9a31-490c573e14ec")
-    const createPreference = async() =>{
+    const createPreference = async () => {
         try {
             const response = await axios.post("http://localhost:3000/api/mercadopago", {
                 id: event?.event_id,
@@ -56,7 +57,7 @@ function PublicEventDetailed({event}: propsPEV) {
 
             const {id} = response.data
             return id;
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -72,7 +73,7 @@ function PublicEventDetailed({event}: propsPEV) {
         fetchPreference();
     }, [event]);
 
-    const handleBuy = async() => {
+    const handleBuy = async () => {
         console.log("comprando")
         // mail to use session
     }
@@ -100,13 +101,20 @@ function PublicEventDetailed({event}: propsPEV) {
                     <h4>price: $100</h4>
                 </li>
                 <li>
-                   {preferenceId &&
+                    {preferenceId &&
                         <Payment
-                            initialization={{ preferenceId: preferenceId, amount: 100}}
-                            customization={{ paymentMethods: { maxInstallments: 1, mercadoPago: "all", creditCard:"all", debitCard: "all", } }}
+                            initialization={{preferenceId: preferenceId, amount: 100}}
+                            customization={{
+                                paymentMethods: {
+                                    maxInstallments: 1,
+                                    mercadoPago: "all",
+                                    creditCard: "all",
+                                    debitCard: "all",
+                                }
+                            }}
                             onSubmit={handleBuy}
                         />
-                   }
+                    }
                 </li>
             </ul>
         </>
