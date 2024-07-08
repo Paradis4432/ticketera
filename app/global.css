@@ -11,9 +11,6 @@
     margin: 0;
 }
 
-h1, h2 {
-    font-family: 'koulen', sans-serif;
-}
 
 .right-to-left {
     animation: right-to-left 20s infinite linear;

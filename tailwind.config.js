@@ -6,6 +6,9 @@ module.exports = {
       backgroundPosition: {
         'custom-1': '20% 30%',
     },
+    fontFamily: {
+      koulen: ['Koulen', 'sans-serif'],
+    }
   },
 },
   variants: {

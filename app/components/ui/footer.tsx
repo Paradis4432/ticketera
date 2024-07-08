@@ -4,7 +4,7 @@ import logoW from '../../../assets/logow.png';
 
 function Footer() {
     return (
-        <div className="bg-blue-600 w-full bg-cover min-h-[100px] flex relative bottom-0">
+        <div className="bg-black w-full bg-cover min-h-[100px] flex relative bottom-0">
             <div className="container max-w-[1440px] max-h-[232px] flex justify-around items-center ">
                 <Link href="/" className='Logo'>
                     <Image className="max-h-[41px]" src={logoW} alt="white logo"/>

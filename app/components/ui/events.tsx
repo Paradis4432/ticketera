@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import {deleteUserEvent} from "@/app/(profile)/profile/actions";
+import logoG from "../../../assets/logoG.png"
 
 
 // evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
@@ -91,8 +93,10 @@ const Events = () => {
     return(
     <div className="max-w-[1440px] flex justify-center relative mx-auto">
         <div className="flex flex-col justify-center">
-            <div className="py-[8px] px-4 bg-gray-300 text-black rounded-3xl text-xl font-normal mt-5 mx-auto">Accesos Rápidos & seguros con nuestros QRs</div>
-            <h1 className="text-black text-5xl font-bold mt-5 mx-auto">Todos Los Eventos Disponibles</h1>
+            <div className="py-[8px] px-4 bg-[#292929] text-white rounded-3xl text-xl font-normal mt-5 mx-auto flex">
+                <Image className="w-[25px] mr-[10px]" src={logoG} alt=""/>
+                Accesos Rápidos & seguros con nuestros QRs</div>
+            <h1 className="text-black text-5xl font-koulen mt-5 mx-auto">descubre los eventos disponibles</h1>
             <p className="text-gray-400 text-base font-normal mt-3 mx-auto">Busca todos los eventos que existen en nuestra plataforma.</p>
         </div>
     </div>

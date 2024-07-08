@@ -3,12 +3,13 @@
 import Events from '@/app/components/ui/events';
 import Hero from '@/app/components/ui/hero';
 import Navbar from '@/app/components/ui/navbar';
+import Productor from '@/app/components/ui/productor';
 import { SearchBar } from '../components';
 import {useEffect, useState} from "react";
 import {fetchTop10Events} from "@/app/(home)/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 import Image from "next/image";
-
+import bynlogo from "../../assets/bynlogo.png"
 
 export default function Home() {
     const [events, setEvents] = useState<IEvent[]>([]);
@@ -24,12 +25,14 @@ export default function Home() {
         <main>
             <Navbar />
             <Hero/>
-            <div className="w-full min-h-[112px] bg-gray-400 z-1 mt-0 flex items-center justify-start">
-                <div className="w-full text-white font-medium text-4xl overflow-hidden">
-                    <h1 className="right-to-left whitespace-nowrap">Selecciona tus Eventos Selecciona tus Eventos
-                        Selecciona
-                        tus Eventos Selecciona tus Eventos Selecciona tus Eventos Selecciona tus Eventos Selecciona tus
-                        Eventos Selecciona tus Ev</h1>
+            <div className="w-full min-h-[76px] bg-[#54E686] z-1 mt-0 flex items-center justify-start">
+                <div className="w-full text-white overflow-hidden flex space-around p-0">
+                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
                 </div>
             </div>
             <Events/>
@@ -41,6 +44,7 @@ export default function Home() {
                     ))
                 }
             </LoadingWrapper>
+            <Productor />
 
         </main>
     )
