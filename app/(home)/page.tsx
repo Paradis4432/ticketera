@@ -26,13 +26,13 @@ export default function Home() {
             <Navbar />
             <Hero/>
             <div className="w-full min-h-[76px] bg-[#54E686] z-1 mt-0 flex items-center justify-start">
-                <div className="w-full text-white overflow-hidden flex space-around p-0">
-                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="pr-[50px] h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                <div className="w-full text-white overflow-hidden flex space-around mx-0">
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
                 </div>
             </div>
             <Events/>

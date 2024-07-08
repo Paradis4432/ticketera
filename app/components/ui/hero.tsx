@@ -9,9 +9,8 @@ import Buttons from "@/app/components/ui/buttons";
 
 
 const Hero = () => {
-    const handleScroll = () => {
-
-    }
+    
+    const handleScroll = () => {}
     
     return (
         <div className="w-full min-h-[695px] max-h-[995px] relative content-center bg-top bg-cover">
