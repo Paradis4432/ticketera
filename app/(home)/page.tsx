@@ -2,9 +2,8 @@
 
 import {useEffect, useState} from "react";
 import {fetchAllEvents} from "@/app/(home)/actions";
-import {PublicEvent} from "@/app/components/ui/events";
-import {LoadingWrapper} from "@/app/components/ui/loader";
 import Link from "next/link";
+import {readEvents} from "@/models/queries/events";
 
 function Page() {
     // TODO convert finder by id to component and load this server side, but the component client side
@@ -13,6 +12,12 @@ function Page() {
         /*fetchAllEvents().then(data => {
             console.log(data)
             setEvents(data);
+        })*/
+/*        readEvents.read50().then(event => {
+            setEvents(event)
+        });
+        fetchAllEvents().then(data => {
+            setEvents(events)
         })*/
 
     }, []);
@@ -42,7 +47,7 @@ function Page() {
                 )
             }*/}
 
-{/*            <LoadingWrapper of={events}>
+            {/*            <LoadingWrapper of={events}>
                 {events.map((e, i) => (
                     <ul key={i}>
                         <li>

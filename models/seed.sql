@@ -1,40 +1,207 @@
--- user
-insert into users (name, email, sex)
-values
-    ('facundo martinez vidal', 'facumartinezvidal@gmail.com', 'm');
+------ examples
+select *
+from events
+where event_id = 4;
 
--- myevents
-insert into events (name, description, location, starting_date, state)
-values
-    ('music festival', 'a grand music festival', 'central park', '2024-07-20 16:00:00', 1),
-    ('tech expo', 'a tech expo showcasing new gadgets', 'expo center', '2024-08-10 10:00:00', 1);
+-- search event
+select *
+from events
+where name like '%7%';
+-- could replace with starting with instead <value>%
 
-insert into user_event (user_id, event_id)
-values
-    ((select user_id from users where email = 'facumartinezvidal@gmail.com'), 1),
-    ((select user_id from users where email = 'facumartinezvidal@gmail.com'), 2);
+-- lowest price first, se le puede agregar filtros para sacar los que no tienen remaining, +18 etc
+-- para fechas cambiar t.price por e.start_date
+select distinct on (e.event_id) *
+from events e
+         join events_stages es on es.event_id = e.event_id
+order by e.event_id and es.price ASC
+limit 10;
+
+select e.*, es.*
+from events e
+         join (
+    select distinct on (es.event_id) *
+    from events_stages es
+    order by es.event_id
+) es on es.event_id = e.event_id
+order by es.price;
+
+select e.*, es.*
+from events e
+         join (
+    select distinct on (es.event_id) *
+    from events_stages es
+    order by es.event_id
+    limit 10
+) es on es.event_id = e.event_id;
+
+select *
+from events;
+
+select *
+from events_stages;
+
+-- qr code with user_id and stage_id
+-- if ticket is already used:
+select *
+from users_tickets
+where user_id = 3
+  and stage_id = 8;
+-- if nothing found show qr invalid
+-- if used show qr duplicated
+
+-- else check if the validator has perms:
+-- if validators contains this.user_id of validator, 4 for example
+select *
+from events_stages es
+         join events e on es.event_id = e.event_id
+where stage_id = 8;
+-- TODO mover este check a algun boton en la lista de eventos o referenciarlo
+-- de alguna manera, es demasiado caro para permitir a todos
+-- show qr validated
+-- update users_tickets ->
+insert into validations (validator_id, user_id, name, ticket_id, state)
+values (4 /*this.user_id as id of user validating ticket*/, 3 /*id of validated user*/, 'event_name' /*events.name*/,
+        0 /* users_tickets.ticket_id*/, 'validated');
+
+-- update validations
+
+-- else show no perm
 
 
--- buy
-insert into tickets (event_id, user_id, name, reason, expiration_date, uses, max_uses, price)
-values
-    (1, (select user_id from users where email = 'facumartinezvidal@gmail.com'), 'vip pass', 'attendee', '2024-07-20 23:59:59', 0, 1, 150.00),
-    (2, (select user_id from users where email = 'facumartinezvidal@gmail.com'), 'standard pass', 'attendee', '2024-08-10 20:00:00', 0, 1, 75.00);
+-- get user tickets TODO split tickets and event stages
+-- TODO maybe setup stage and then on buy ins ticket fk to stage.id
+/*select *
+from users u
+join tickets*/
 
--- metrics
-insert into metrics (event_id, total_tickets_sold)
-values
-    (5, 100),
-    (5, 200);
+select *
+from events_stages;
 
--- metrics_sales
-insert into metrics_sales (metric_id, ticket_id, ticket_name, sold, courtesies, cancelled, not_claimed, price, total)
-values
-    (3, 1, 'vip pass', 50, 5, 2, 3, 150.00, 7500.00),
-    (3, 2, 'standard pass', 180, 10, 5, 5, 75.00, 13500.00);
+create or replace function seed_events(num_rows integer) returns void as
+$$
+declare
+    i integer;
+begin
+    for i in 1..num_rows
+        loop
+            insert into events
+            (rrpps, validators, name, description, location, max_capacity, min_age, cbu, start_date,
+             end_date)
+            values (ARRAY(SELECT floor(random() * 100 + 1)::INTEGER
+                          FROM generate_series(1, floor(random() * 5 + 1)::INTEGER)),
+                    ARRAY(SELECT floor(random() * 100 + 1)::INTEGER
+                          FROM generate_series(1, floor(random() * 5 + 1)::INTEGER)),
+                    'Random Event ' || floor(random() * 100 + 1),
+                    'Description for event ' || floor(random() * 100 + 1),
+                    'Location ' || floor(random() * 100 + 1),
+                    floor(random() * 500 + 50)::INTEGER,
+                    floor(random() * 121)::INTEGER,
+                    substring(md5(random()::text), 1, 21),
+                    NOW() + INTERVAL '1 day' * floor(random() * 5 + 1),
+                    NOW() + INTERVAL '1 day' * floor(random() * 10 + 6));
+        end loop;
+end;
+$$ language plpgsql;
 
--- metrics_users
-insert into metrics_users (metric_id, visits, started_but_denied, in_fav)
-values
-    (3, 500, 20, 30),
-    (3, 1000, 50, 100);
+select seed_events(10);
+
+select *
+from events;
+
+create or replace function seed_users(num_rows integer) returns void as
+$$
+declare
+    i integer;
+begin
+    for i in 1..num_rows
+        loop
+            insert into users
+            (name, email)
+            values ('Random Username ' || floor(random() * 100 + 1),
+                    'random' || floor(random() * 10000 + 1) || '@gmail.com');
+        end loop;
+end;
+$$ language plpgsql;
+
+select seed_users(10);
+
+create or replace function seed_events_stages(num_rows integer) returns void as
+$$
+declare
+    i               integer;
+    random_event_id integer;
+begin
+    for i in 1..num_rows
+        loop
+            select event_id
+            into random_event_id
+            from events
+            order by random()
+            limit 1;
+            insert into events_stages (start_date, end_date, event_id, price, stock)
+
+            values (NOW() + INTERVAL '1 day' * floor(random() * 5 + 1),
+                    NOW() + INTERVAL '1 day' * floor(random() * 5 + 1),
+                    random_event_id,
+                    floor(random() * 500 + 50)::INTEGER,
+                    floor(random() * 500 + 50)::INTEGER);
+
+        end loop;
+end;
+$$ language plpgsql;
+
+create or replace function seed_users_tickets(num_rows integer) returns void as
+$$
+declare
+    i               integer;
+    random_user_id  integer;
+    random_stage_id integer;
+begin
+    for i in 1..num_rows
+        loop
+            select user_id
+            into random_user_id
+            from users
+            order by random()
+            limit 1;
+
+            select stage_id
+            into random_stage_id
+            from events_stages
+            order by random()
+            limit 1;
+
+            insert into users_tickets (user_id, stage_id, used, notes)
+            values (random_user_id,
+                    random_stage_id,
+                    (floor(random() * 2)::int = 1),
+                    array ['gift', 'random']);
+        end loop;
+end;
+$$ language plpgsql;
+
+select *
+from events_stages;
+
+select *
+from seed_events_stages(10);
+
+select *
+from seed_users_tickets(10);
+
+select *
+from users_tickets;
+select *
+from users;
+
+select *
+from users_tickets;
+
+-- get user tickest
+select *
+from users_tickets ut
+         join events_stages es on ut.stage_id = es.stage_id
+         join events e on es.event_id = e.event_id
+
+where ut.user_id = 5

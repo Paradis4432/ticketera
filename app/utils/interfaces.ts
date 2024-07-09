@@ -1,5 +1,3 @@
-
-
 /*
 interface time {
     creation_date
@@ -17,6 +15,7 @@ interface users {
 interface Castable {
 }
 
+// deprecated
 interface IEvent extends Castable {
     event_id: number,
     name: string,
@@ -24,6 +23,36 @@ interface IEvent extends Castable {
     location: string,
     starting_date: Date,
     state: number,
+    test: string
+}
+
+interface c_date {
+    creation_date: Date,
+}
+
+interface temporal {
+    start_date: Date,
+    end_date: Date
+}
+
+interface events extends c_date, temporal {
+    event_id: number;
+    rrpps: number[] | null,
+    validators: number[] | null;
+    name: string;
+    description: string | null;
+    location: string;
+    max_capacity: number;
+    min_age: number;
+    cbu: string;
+}
+
+interface events_stages extends c_date, temporal {
+    name: string;
+    stage_id: number;
+    event_id: number;
+    price: number;
+    stick: number;
 }
 
 interface IContactFormEmailProps {

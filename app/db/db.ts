@@ -11,32 +11,21 @@ const db: Pool = new Pool({
     }
 });
 
-interface QueryParams {
-    q: string;
-    v: any[];
-}
-
 /**
  *
  * @param p1 either the string or the query params
  * @param p2 list[] of values
  * @return always list of values, even if only 1 found
  */
-async function qquery<T extends Castable>(p1: string | QueryParams, p2?: any[]): Promise<T[]> {
+async function qquery<T>(p1: string, p2?: any[]): Promise<T> {
     let q: string;
     let v: any[];
 
-    if (typeof p1 === "string") {
-        q = p1;
-        v = p2 ?? [];
-    } else {
-        q = p1.q;
-        v = p1.v;
-    }
+    q = p1;
+    v = p2 ?? [];
 
-    return (await db.query(q, v)).rows as T[];
+    return (await db.query(q, v)).rows as T;
 }
-
 
 export {
     db,
