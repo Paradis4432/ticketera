@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Buttons from '../../../components/ui/buttons';
 import logo from '../../../../assets/bynlogo.png';
-import bgImage from '../../../../assets/homebg.png';
+import bgImage from '../../../../assets/bgimage.png';
 
 const Page = () => {
   return (
