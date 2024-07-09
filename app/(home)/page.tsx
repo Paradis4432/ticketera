@@ -4,6 +4,7 @@ import Events from '@/app/components/ui/events';
 import Hero from '@/app/components/ui/hero';
 import Navbar from '@/app/components/ui/navbar';
 import Productor from '@/app/components/ui/productor';
+import Preguntas from '@/app/components/ui/preguntas';
 import { SearchBar } from '../components';
 import {useEffect, useState} from "react";
 import {fetchTop10Events} from "@/app/(home)/actions";
@@ -45,6 +46,7 @@ export default function Home() {
                 }
             </LoadingWrapper>
             <Productor />
+            <Preguntas />
 
         </main>
     )
