@@ -30,6 +30,11 @@ async function fetchAllEvents(): Promise<IEvent> {
     //return qquery<IEvent>(readEvents.read.all())
 }
 
+async function fetchTop10Events(): Promise<IEvent[]> {
+    return qquery<IEvent>(events.selAll)
+}
+
 export {
-    fetchAllEvents
+    fetchAllEvents,
+    fetchTop10Events
 }
