@@ -4,7 +4,7 @@ import Events from "./ui/events";
 import SearchBar from "./ui/searchbar";
 import SearchEvents from "./ui/searchevents";
 import Productor from "./ui/productor";
-import Preguntas from "./ui/preguntas";
+import Pregsec from "./ui/pregsec";
 
 
 export {
@@ -14,5 +14,5 @@ export {
     SearchBar,
     SearchEvents,
     Productor,
-    Preguntas
+    Pregsec
 }
