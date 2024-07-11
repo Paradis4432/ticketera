@@ -1,9 +1,8 @@
 "use server"
 
-import {qquery} from "@/app/db/db";
 import {readEvents} from "@/models/queries/events";
 
-async function fetchAllEvents(): Promise<IEvent> {
+async function fetchAllEvents() {
     /*    const data = await db.query(events.selAll);
         const d = data.rows as IEvent[];
 
@@ -20,18 +19,14 @@ async function fetchAllEvents(): Promise<IEvent> {
 
     //return await readEvents.readId(2);
 
-    let x = await readEvents.read50();
-    x.map(e => {
-        e.name
-    })
-
-    return x[0];
+    //let x = await readEvents.read50();
+    //return x[0];
 
     //return qquery<IEvent>(readEvents.read.all())
 }
 
-async function fetchTop10Events(): Promise<IEvent[]> {
-    return qquery<IEvent>(events.selAll)
+async function fetchTop10Events() {
+    //return qquery<IEvent>(events.selAll)
 }
 
 export {

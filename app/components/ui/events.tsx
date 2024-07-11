@@ -1,7 +1,9 @@
 import Link from "next/link";
+import {initMercadoPago} from "@mercadopago/sdk-react";
+import axios from "axios";
 
 // evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
-function PublicEvent({event}: { event: IEvent }) {
+function PublicEvent({event}: { event: Events }) {
     return (
         <div>{
             event ? (
@@ -22,16 +24,15 @@ function PublicEvent({event}: { event: IEvent }) {
     )
 }
 
-interface propsPEV {
+/*interface propsPEV {
     event?: IEvent;
-}
+}*/
 
 // TODO no me toma la variable de entorno
 const mercadopago_public_key = process.env.MERCADO_PAGO_PUBLIC_KEY;
 
-function PublicEventDetailed({event}: { event: IEvent }) {
-    const [preferenceId, setPreferenceId] = useState(null)
-    event.
+function PublicEventDetailed({event}: { event: Events }) {
+    //const [preferenceId, setPreferenceId] = useState(null)
 
     //console.log(process.env.MERCADO_PAGO_PUBLIC_KEY)
     // if(mercadopago_public_key === undefined){
@@ -56,17 +57,17 @@ function PublicEventDetailed({event}: { event: IEvent }) {
             console.log(err)
         }
     }
-
+/*
     useEffect(() => {
         const fetchPreference = async () => {
             const id = await createPreference();
             if (id) {
-                setPreferenceId(id);
+                //setPreferenceId(id);
             }
         };
 
         fetchPreference();
-    }, [event]);
+    }, [event]);*/
 
     const handleBuy = async () => {
         console.log("comprando")
@@ -75,7 +76,7 @@ function PublicEventDetailed({event}: { event: IEvent }) {
 
     return (
         <>
-            <h1>{event?.name}</h1>
+           {/* <h1>{event?.name}</h1>
             <ul>
                 <li>
                     <h4> ID: {event?.event_id}</h4>
@@ -111,18 +112,14 @@ function PublicEventDetailed({event}: { event: IEvent }) {
                         />
                     }
                 </li>
-            </ul>
+            </ul>*/}
         </>
     )
 }
 
 
-interface UserEventsProps {
-    event: IEvent;
-    setEvents: React.Dispatch<React.SetStateAction<IEvent[]>>;
-}
 
-
+/*
 export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents}) => {
     const onDelete = async () => {
         await deleteUserEvent(event.event_id);
@@ -142,10 +139,11 @@ export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents})
         </div>
     );
 };
+*/
 
 const Events = () => {
     return (
-        <div className="max-w-[1440px] flex justify-center relative mx-auto">
+/*        <div className="max-w-[1440px] flex justify-center relative mx-auto">
             <div className="flex flex-col justify-center">
                 <div
                     className="py-[8px] px-4 bg-[#292929] text-white rounded-3xl text-xl font-normal mt-5 mx-auto flex">
@@ -156,7 +154,8 @@ const Events = () => {
                 <p className="text-gray-400 text-base font-normal mt-3 mx-auto">Busca todos los eventos que existen en
                     nuestra plataforma.</p>
             </div>
-        </div>
+        </div>*/
+        <></>
     )
 }
 

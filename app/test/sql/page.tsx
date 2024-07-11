@@ -5,7 +5,7 @@ import {getRandomEvents} from "@/app/test/sql/actions";
 import {RT} from "@/app/utils/providers";
 
 function Page() {
-    //let [data, setData] = useState<Awaited<ReturnType<typeof getRandomEvents>>[]>([]);
+/*    //let [data, setData] = useState<Awaited<ReturnType<typeof getRandomEvents>>[]>([]);
     let [data, setData] = useState<RT<typeof getRandomEvents>>([]);
 
 
@@ -13,13 +13,12 @@ function Page() {
         getRandomEvents().then(events => {
             return setData(events);
         })
-    }, [])
+    }, [])*/
 
 
     return (
-        data?.map(e => {
-            return <p key={e.event_id}>name: {e.name}</p>
-        })
+        <p>lol</p>
+
     )
 }
 

@@ -8,9 +8,9 @@ import {getUserTickets} from "@/app/(profile)/profile/actions";
 function Page() {
     const {data: session} = useSession();
 
-    const [tickets, setTickets] = useState<ITicket[]>([]);
+    /*const [tickets, setTickets] = useState<ITicket[]>([]);*/
 
-    useEffect(() => {
+   /* useEffect(() => {
         if (session?.user) {
             getUserTickets(session.user.email)
                 .then(tickets => {
@@ -19,12 +19,12 @@ function Page() {
         } else {
             // redirect / [...login]
         }
-    }, [session]);
+    }, [session]);*/
 
 
     return (
         <div>
-            <h1>tus tickets</h1>
+            {/*<h1>tus tickets</h1>
             {
                 tickets.length == 0 ? (
                     <h2>loading</h2>
@@ -34,7 +34,7 @@ function Page() {
                         (session?.user?.email && <Ticket ticket={ticket} email={session?.user?.email} key={id}/>)
                     ))
                 )
-            }
+            }*/}
         </div>
     )
 }

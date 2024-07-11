@@ -1,15 +1,15 @@
-import {QRCodeSVG} from 'qrcode.react';
 import {getUserId} from "@/app/(profile)/profile/actions";
+
 interface TicketProps {
-    ticket: ITicket;
     email?: string;
 }
-function Ticket({ ticket, email }: TicketProps) {
+
+function Ticket({ticket, email}: any) {
     const userId = getUserId(email)
-    const qrValue = `https://localhost:3000/use/${ticket.ticket_id}/${userId}`
+    const qrValue = `https://localhost:3000/use/${ticket.ticket_id}/${userId}` // TODO redirect to link, not ip..
     return (
         <>
-            <h4>{ticket.name}</h4>
+            {/* <h4>{ticket.name}</h4>
             <ul>
                 <li>
                     <QRCodeSVG value= {qrValue}/>
@@ -32,7 +32,7 @@ function Ticket({ ticket, email }: TicketProps) {
                 <li>
                     {ticket.expiration_date.toString()}
                 </li>
-            </ul>
+            </ul>*/}
         </>
     )
 }

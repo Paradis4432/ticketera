@@ -1,18 +1,15 @@
 "use server"
 
-import {qquery} from "@/app/db/db";
-import {events} from "@/models/queries/events";
-
-async function fetchEventByID(id: number): Promise<IEvent[] | null> {
+async function fetchEventByID(id: number) {
     try {
-        return await qquery<IEvent>(events.selByID, [id])
+        //return await qquery<Events>(events.selByID, [id])
     } catch (err) {
         console.error(err)
         return null;
     }
 }
 
-async function get(){
+async function get() { // TODO next convierte metodos a api automaticamente y nose  que mas, estoy casi seguro que esto es un problema
     return process.env.MERCADO_PAGO_PUBLIC_KEY
 }
 

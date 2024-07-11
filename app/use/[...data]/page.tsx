@@ -4,9 +4,9 @@ import { getUserData } from "@/app/use/[...data]/actions";
 import { useSession } from "next-auth/react";
 import { LoadingWrapper } from "@/app/components/ui/loader";
 
-function Page(params: IParamsUse) {
+function Page(params: any) {
     const { data: session } = useSession();
-    const [userData, setUserData] = useState<IUserData[]>([]);
+    const [userData, setUserData] = useState<any[]>([]);
     const user_id = params.params.data[0];
     const id = params.params.data[1];
 
@@ -14,8 +14,8 @@ function Page(params: IParamsUse) {
         if (session?.user) {
             getUserData(Number(user_id), Number(id))
                 .then((userData) => {
-                    setUserData(userData);
-                    console.log(userData[0])
+/*                    setUserData(userData);
+                    console.log(userData[0])*/
                 })
                 .catch((error) => {
                     console.error("Error fetching user data:", error);

@@ -5,15 +5,15 @@ import {LoadingWrapper} from "@/app/components/ui/loader";
 import {PublicEventDetailed} from "@/app/components/ui/events";
 
 function Page({params}: { params: { id: number } }) {
-    const [event, setEvent] = useState<IEvent>();
+    const [event, setEvent] = useState<Events>();
 
     useEffect(() => {
         fetchEventByID(params.id)
             .then(data => {
                 if (data) {
-                    if (data.length !== 1) {
+/*                    if (data.length !== 1) {
 
-                    }
+                    }*/
                     console.log(data)
                     setEvent(data[0])
                 } else {
@@ -27,9 +27,10 @@ function Page({params}: { params: { id: number } }) {
     }, [params.id]);
 
     return (
-        <LoadingWrapper of={event}>
+/*        <LoadingWrapper of={event}>
             <PublicEventDetailed event={event}/>
-        </LoadingWrapper>
+        </LoadingWrapper>*/
+        <></>
     )
 }
 

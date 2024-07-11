@@ -10,19 +10,19 @@ import {useEffect, useState} from "react";
 import {fetchAllEvents} from "@/app/(home)/actions";
 import Link from "next/link";
 import {readEvents} from "@/models/queries/events";
-import {fetchTop10Events} from "@/app/(home)/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 import Image from "next/image";
 import bynlogo from "../../assets/bynlogo.png"
 
 export default function Home() {
-    const [events, setEvents] = useState<IEvent[]>([]);
+    const [events, setEvents] = useState<Events[]>([]);
 
     useEffect(() => {
-        fetchTop10Events()
+/*        fetchTop10Events()
             .then(events => { // .then solo si es Promise
                 setEvents(events)
-            })
+            })*/
+    });
 
     return (
         <main>
