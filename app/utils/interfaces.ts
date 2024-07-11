@@ -1,55 +1,64 @@
-interface Castable {
+interface Events {
+    event_id?: number;
+    rrpps: number[] | null;
+    validators: number[] | null;
+    name: string;
+    description?: string | null;
+    location: string;
+    max_capacity: number;
+    min_age?: number | null;
+    cbu: string;
+    event_c_date?: string | null;
+    event_start_date: string;
+    event_end_date: string;
 }
 
-interface IEvent extends Castable {
-    event_id: number,
-    name: string,
-    description: string,
-    location: string,
-    starting_date: Date,
-    state: number,
+interface Users {
+    user_id?: number;
+    name: string;
+    email: string;
+    user_c_date?: string | null;
 }
 
-interface IContactFormEmailProps {
-    name: string,
-    email: string,
-    message: string
+interface Producers {
+    producer_id?: number;
+    name: string;
+    display_name: string;
+    email: string;
+    producer_c_date?: string;
 }
 
-interface ITicket extends Castable {
-    ticket_id: number
-    name: string,
-    reason: string,
-    creation_date: Date,
-    expiration_date: Date,
-    uses: number,
-    max_uses: number,
-    price: number
-    event_id: number,
+interface EventsProducers {
+    event_id: number;
+    producer_id: number;
 }
 
-interface IMetricSales extends Castable {
-    ticket_name: string,
-    sold: number,
-    courtesies: number,
-    cancelled: number,
-    not_claimed: number,
-    price: number,
-    total: number
+interface EventsStages {
+    event_stage_id?: number;
+    name: string;
+    event_id: number;
+    price: number;
+    stock: number;
+    event_stage_c_date?: string;
+    event_stage_start_date: string;
+    event_stage_end_date: string;
 }
 
-interface IMetricUsers extends Castable {
-    visits: number,
-    started_but_denied: number,
-    in_fav: number
+interface UsersTickets {
+    ticket_id?: number;
+    user_id: number;
+    stage_id: number;
+    used?: boolean;
+    notes: string[];
+    ticket_c_date?: string;
 }
 
-interface IParamsUse extends Castable {
-    params: {
-        data: string[]
-    }
-}
-
-interface IUserData extends ITicket, IEvent {
-
+interface Validations {
+    validation_id?: number;
+    validator_id: number;
+    user_id: number;
+    name: string;
+    ticket_id: number;
+    state: string;
+    validation_c_date?: string;
 }

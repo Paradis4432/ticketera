@@ -7,6 +7,9 @@ import Productor from '@/app/components/ui/productor';
 import Pregsec from '@/app/components/ui/pregsec';
 import {SearchBar} from '../components';
 import {useEffect, useState} from "react";
+import {fetchAllEvents} from "@/app/(home)/actions";
+import Link from "next/link";
+import {readEvents} from "@/models/queries/events";
 import {fetchTop10Events} from "@/app/(home)/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 import Image from "next/image";
@@ -20,8 +23,6 @@ export default function Home() {
             .then(events => { // .then solo si es Promise
                 setEvents(events)
             })
-
-    }, []);
 
     return (
         <main>

@@ -1,82 +1,105 @@
-create table if not exists users
-(
-    user_id       bigserial primary key, -- index
-    name          varchar(50)        not null,
-    email         varchar(50) unique not null,
-    creation_date timestamp          not null default current_timestamp,
-    sex           varchar(1)
-);
-
-create index if not exists idx_email on users (email);
-
 create table if not exists events
 (
-    event_id      bigserial primary key, -- index
-    name          varchar(50)  not null,
-    description   text         not null,
-    creation_date timestamp    not null default current_timestamp,
-    location      varchar(150) not null,
-    starting_date timestamp    not null,
-    state         smallint     not null  -- TODO map to states
+    event_id         serial primary key,
+    rrpps            integer[],    -- nullable -> nullable reference to users.id
+    validators       integer[],    -- nullable -> nullable reference to users.id
+    name             varchar(100) not null,
+    description      varchar(500), -- nullable
+    location         varchar(100) not null,
+    max_capacity     integer      not null,
+    min_age          integer   default 18,
+    cbu              varchar(21)  not null,
+    event_c_date     timestamp default current_timestamp,
+    event_start_date timestamp    not null,
+    event_end_date   timestamp    not null,
+
+    constraint min_age_check check (min_age >= 0 AND min_age <= 120),
+    constraint cap_check check ( max_capacity >= 0 )
 );
 
---using fk allows for 1 or more users to own the same event
-create table if not exists user_event
+create table if not exists users
 (
-    user_id  bigint not null,
-    event_id bigint not null,
-    primary key (user_id, event_id),
-    foreign key (user_id) references users (user_id) on delete cascade,
-    foreign key (event_id) references events (event_id) on delete cascade
+    user_id     serial primary key,
+    name        varchar(255) not null,
+    email       varchar(255) not null unique,
+    user_c_date timestamp default current_timestamp
 );
 
-create table if not exists tickets
+-- when user converts to producer -> del from users -> ins to producers
+create table if not exists producers
 (
-    ticket_id       bigserial primary key, -- index
-    event_id        bigint         not null,
-    user_id         bigint         not null,
-    name            varchar(50)    not null,
-    reason          varchar(50)    not null,
-    creation_date   timestamp      not null default current_timestamp,
-    expiration_date timestamp      not null,
-    uses            int            not null,
-    max_uses        int            not null,
-    price           decimal(10, 2) not null,
-    ticket_stage    varchar[]      not null,
-    foreign key (user_id) references users (user_id) on delete cascade,
-    foreign key (event_id) references events (event_id) on delete cascade
+    producer_id     serial primary key,
+    name            varchar(50)  not null,
+    display_name    varchar(255) not null, -- nombre de la productora
+    -- link to cdn?
+    email           varchar(255) not null unique,
+    producer_c_date timestamp default current_timestamp
 );
 
-create table if not exists metrics
+create table if not exists events_producers
 (
-    metric_id          bigserial primary key, -- index
-    event_id           bigint not null,
-    total_tickets_sold int    not null,
-    foreign key (event_id) references events (event_id) on delete cascade
+    event_id    integer,
+    producer_id integer,
+
+    primary key (event_id, producer_id),
+    foreign key (event_id) references events (event_id) on delete cascade,
+    foreign key (producer_id) references producers (producer_id) on delete cascade
 );
 
-create table if not exists metrics_sales
+create table if not exists events_stages
 (
-    metric_sale_id bigserial primary key, -- index
-    metric_id      bigint         not null,
-    ticket_id      bigint unique,
-    ticket_name    VARCHAR(100),
-    sold           int default 0,
-    courtesies     int default 0,
-    cancelled      int default 0,
-    not_claimed    int default 0,
-    price          decimal(10, 2) not null,
-    total          decimal(10, 2) not null,
-    foreign key (metric_id) references metrics (metric_id) on delete cascade
-);
+    event_stage_id         serial primary key,
+    name                   varchar(100),
+    event_id               integer,
+    price                  integer,
+    stock                  integer,
+    event_stage_c_date     timestamp default current_timestamp,
+    event_stage_start_date timestamp not null,
+    event_stage_end_date   timestamp not null,
 
-create table if not exists metrics_users
+    foreign key (event_id) references events (event_id), -- dont delete on cascade to avoid
+    -- deleting the event when a stage is deleted
+    constraint price_check check ( price > 0 ),
+    constraint stock_check check ( stock > 0 )
+);
+create index if not exists idx_events_stages_event_id on events_stages (event_id);
+
+create table if not exists users_tickets
 (
-    metric_user_id     bigserial primary key, -- index
-    metric_id          bigint not null,
-    visits             int default 0,
-    started_but_denied int default 0,
-    in_fav             int default 0,
-    foreign key (metric_id) references metrics (metric_id) on delete cascade
+    ticket_id     serial primary key,
+    user_id       integer,
+    stage_id      integer,
+    used          bool      default false,
+    notes         varchar(50)[],
+    ticket_c_date timestamp default current_timestamp,
+
+    foreign key (user_id) references users (user_id),
+    foreign key (stage_id) references events_stages (event_stage_id)
 );
 
+create table if not exists validations
+(
+    validation_id     serial primary key,
+    validator_id      integer,
+    user_id           integer,
+    name              varchar(100) not null,
+    ticket_id         integer,
+    state             varchar(100) not null,
+    validation_c_date timestamp default current_timestamp,
+
+    -- avoid delete cascade
+
+    foreign key (validator_id) references users (user_id),
+    foreign key (user_id) references users (user_id),
+    foreign key (ticket_id) references users_tickets (ticket_id)
+);
+
+drop table if exists c_date cascade;
+drop table if exists events_stages cascade;
+drop table if exists temporal cascade;
+drop table if exists validations cascade;
+drop table if exists events cascade;
+drop table if exists events_producers cascade;
+drop table if exists producers cascade;
+drop table if exists users cascade;
+drop table if exists users_tickets cascade;

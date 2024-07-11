@@ -29,8 +29,9 @@ interface propsPEV {
 // TODO no me toma la variable de entorno
 const mercadopago_public_key = process.env.MERCADO_PAGO_PUBLIC_KEY;
 
-function PublicEventDetailed({event}: propsPEV) {
+function PublicEventDetailed({event}: { event: IEvent }) {
     const [preferenceId, setPreferenceId] = useState(null)
+    event.
 
     //console.log(process.env.MERCADO_PAGO_PUBLIC_KEY)
     // if(mercadopago_public_key === undefined){
