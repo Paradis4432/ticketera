@@ -1,13 +1,20 @@
 "use server"
 
-import db from "@/app/db/db";
-import {events} from "@/models/queries/events";
-
-async function fetchEventByID(id: string):Promise<IEvent>{
-    const data = await db.query(events.selByID, [id]);
-    return data.rows[0] as IEvent
+async function fetchEventByID(id: number) {
+    try {
+        //return await qquery<Events>(events.selByID, [id])
+    } catch (err) {
+        console.error(err)
+        return null;
+    }
 }
 
+async function get() { // TODO next convierte metodos a api automaticamente y nose  que mas, estoy casi seguro que esto es un problema
+    return process.env.MERCADO_PAGO_PUBLIC_KEY
+}
+
+
 export {
-    fetchEventByID
+    fetchEventByID,
+    get
 }

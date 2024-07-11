@@ -1,5 +1,6 @@
 
 
+/*
 function MetricSales ({metricSales}:{metricSales: IMetricSales}) {
   return (
     <div>
@@ -36,4 +37,4 @@ function MetricSales ({metricSales}:{metricSales: IMetricSales}) {
 
 export {
   MetricSales
-}
+}*/

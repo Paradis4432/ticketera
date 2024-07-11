@@ -1,9 +1,10 @@
 "use client"
 
-import {ContactForm} from "@/app/components/ui/contact";
+import {Contact} from "@/app/components/ui/contact";
 import {ContactFormInputs, ContactFormSchema} from "@/app/validations/mails";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
+import  Navbar from "@/app/components/ui/navbar";
 
 function Page() {
     const {
@@ -16,7 +17,12 @@ function Page() {
     })
 
     return (
-        <ContactForm/>
+        <main>
+            <body>
+                <Navbar />
+                <Contact />
+            </body>
+        </main>
     )
 
 }

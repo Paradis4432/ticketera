@@ -1,13 +1,12 @@
 "use client"
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
-import {UserEventDetailed} from "@/app/components/ui/events";
 import {getUserEvent} from "@/app/(profile)/profile/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
 
 function Page() {
     const {data: session} = useSession();
-    const [events, setEvents] = useState<IEvent[]>([]);
+    const [events, setEvents] = useState<Events[]>([]);
 
     useEffect(() => {
         if (session?.user) {
@@ -27,9 +26,10 @@ function Page() {
             <h1>My Events</h1>
             {
                 events.map((event) => (
-                    <LoadingWrapper of={events} key={event.event_id}>
-                        <UserEventDetailed event={event} setEvents={setEvents}/>
-                    </LoadingWrapper>
+/*                    <LoadingWrapper of={events} key={event.event_id}>
+                        {/!*<UserEventDetailed event={event} setEvents={setEvents}/>*!/}
+                    </LoadingWrapper>*/
+                    <></>
                 ))
             }
         </div>

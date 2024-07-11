@@ -1,16 +1,12 @@
 "use client"
 import {useSession} from "next-auth/react";
-import {useEffect, useState} from "react";
-import {getEventMetricSale, getEventMetricUser} from "@/app/(profile)/profile/myevents/[id]/actions";
-import {MetricSales} from "@/app/components/ui/metrics";
-import {LoadingWrapper} from "@/app/components/ui/loader";
 
 function Page({params}: { params: { id: string } }) {
     const {data: session} = useSession();
-    const [metricSales, setMetricSales] = useState<IMetricSales[]>([]);
-    const [metricUsers, setMetricUsers] = useState<IMetricUsers[]>([]);
+   /* const [metricSales, setMetricSales] = useState<IMetricSales[]>([]);
+    const [metricUsers, setMetricUsers] = useState<IMetricUsers[]>([]);*/
 
-    useEffect(() => {
+/*    useEffect(() => {
         getEventMetricSale(Number(params.id))
             .then(metricSales => {
                 setMetricSales(metricSales);
@@ -19,7 +15,7 @@ function Page({params}: { params: { id: string } }) {
             .then(metricUsers => {
                 setMetricUsers(metricUsers);
             })
-    }, [params.id, session]);
+    }, [params.id, session]);*/
 
 
     return (
@@ -33,17 +29,19 @@ function Page({params}: { params: { id: string } }) {
 
                 )
             }*/}
-            <LoadingWrapper of={metricSales}>
+        {/*    <LoadingWrapper of={metricSales}>
                 {
                     metricSales.map((metricSale, id) => (
                         <MetricSales metricSales={metricSale} key={id}/>
+
+
                     ))
                 }
             </LoadingWrapper>
 
 
             <h2>metric users</h2>
-            {/*            {metricUsers ? (
+                        {metricUsers ? (
 
                 <ul>
                     <li>
@@ -58,7 +56,7 @@ function Page({params}: { params: { id: string } }) {
                 </ul>
             ) : (
                 <h2>loading</h2>
-            )}*/}
+            )}
 
             <LoadingWrapper of={metricUsers}>
                 <ul>
@@ -72,7 +70,7 @@ function Page({params}: { params: { id: string } }) {
                         <h3>En favoritos: {metricUsers[0]?.in_fav}</h3>
                     </li>
                 </ul>
-            </LoadingWrapper>
+            </LoadingWrapper>*/}
 
 
         </div>

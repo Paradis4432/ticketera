@@ -1,9 +1,35 @@
 /* TODO set colo scheme */
 
-:root {
-    --foreground-rgb: 0, 0, 0;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import 'tailwindcss/tailwind.css';
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+.right-to-left {
+    animation: right-to-left 20s infinite linear;
+}
+
+@keyframes right-to-left {
+    0% {
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(-50%);
+    }
+    
 }
 
 body {
     color: rgb(var(--foreground-rgb));
+}
+
+Link {
+    text-decoration: none;
 }
