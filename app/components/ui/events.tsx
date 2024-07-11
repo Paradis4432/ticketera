@@ -1,9 +1,4 @@
 import Link from "next/link";
-import React, {useEffect, useState} from "react";
-import {deleteUserEvent} from "@/app/(profile)/profile/actions";
-import {initMercadoPago, Payment} from "@mercadopago/sdk-react";
-import axios from "axios";
-
 
 // evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
 function PublicEvent({event}: { event: IEvent }) {
@@ -43,7 +38,7 @@ function PublicEventDetailed({event}: propsPEV) {
     // }
 
     initMercadoPago("APP_USR-6bdd950c-253c-4edb-9a31-490c573e14ec")
-    const createPreference = async() =>{
+    const createPreference = async () => {
         try {
             const response = await axios.post("http://localhost:3000/api/mercadopago", {
                 id: event?.event_id,
@@ -56,7 +51,7 @@ function PublicEventDetailed({event}: propsPEV) {
 
             const {id} = response.data
             return id;
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -72,7 +67,7 @@ function PublicEventDetailed({event}: propsPEV) {
         fetchPreference();
     }, [event]);
 
-    const handleBuy = async() => {
+    const handleBuy = async () => {
         console.log("comprando")
         // mail to use session
     }
@@ -100,13 +95,20 @@ function PublicEventDetailed({event}: propsPEV) {
                     <h4>price: $100</h4>
                 </li>
                 <li>
-                   {preferenceId &&
+                    {preferenceId &&
                         <Payment
-                            initialization={{ preferenceId: preferenceId, amount: 100}}
-                            customization={{ paymentMethods: { maxInstallments: 1, mercadoPago: "all", creditCard:"all", debitCard: "all", } }}
+                            initialization={{preferenceId: preferenceId, amount: 100}}
+                            customization={{
+                                paymentMethods: {
+                                    maxInstallments: 1,
+                                    mercadoPago: "all",
+                                    creditCard: "all",
+                                    debitCard: "all",
+                                }
+                            }}
                             onSubmit={handleBuy}
                         />
-                   }
+                    }
                 </li>
             </ul>
         </>
@@ -140,7 +142,26 @@ export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents})
     );
 };
 
+const Events = () => {
+    return (
+        <div className="max-w-[1440px] flex justify-center relative mx-auto">
+            <div className="flex flex-col justify-center">
+                <div
+                    className="py-[8px] px-4 bg-[#292929] text-white rounded-3xl text-xl font-normal mt-5 mx-auto flex">
+                    <Image className="w-[25px] mr-[10px]" src={logoG} alt=""/>
+                    Accesos Rápidos & seguros con nuestros QRs
+                </div>
+                <h1 className="text-black text-5xl font-koulen mt-5 mx-auto">descubre los eventos disponibles</h1>
+                <p className="text-gray-400 text-base font-normal mt-3 mx-auto">Busca todos los eventos que existen en
+                    nuestra plataforma.</p>
+            </div>
+        </div>
+    )
+}
+
+export default Events
+
 export {
     PublicEvent,
-    PublicEventDetailed
+    PublicEventDetailed,
 }

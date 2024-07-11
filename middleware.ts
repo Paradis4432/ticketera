@@ -5,11 +5,11 @@ import {getToken} from 'next-auth/jwt';
 export async function middleware(ctx: NextRequest) {
     const secret = process.env.NEXTAUTH_SECRET as string;
 
-    const token = await getToken({req: ctx, secret});
+    //const token = await getToken({req: ctx, secret});
 
-    if (!token) {
-        return NextResponse.redirect(new URL("/login", ctx.url))
-    }
+    //if (!token) {
+        //return NextResponse.redirect(new URL("", ctx.url))
+    //}
 
 
 
@@ -17,6 +17,6 @@ export async function middleware(ctx: NextRequest) {
     return NextResponse.next();
 }
 
-export const config = {
-    matcher: ['/profile/:path*'],
-}
+//export const config = {
+    //matcher: ['/profile/:path*'],
+//}

@@ -1,64 +1,53 @@
 "use client"
 
+import Events from '@/app/components/ui/events';
+import Hero from '@/app/components/ui/hero';
+import Navbar from '@/app/components/ui/navbar';
+import Productor from '@/app/components/ui/productor';
+import Pregsec from '@/app/components/ui/pregsec';
+import {SearchBar} from '../components';
 import {useEffect, useState} from "react";
-import {fetchAllEvents} from "@/app/(home)/actions";
-import {PublicEvent} from "@/app/components/ui/events";
+import {fetchTop10Events} from "@/app/(home)/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
-import Link from "next/link";
+import Image from "next/image";
+import bynlogo from "../../assets/bynlogo.png"
 
-function Page() {
-    // TODO convert finder by id to component and load this server side, but the component client side
-    const [events, setEvents] = useState<IEvent[]>([])
+export default function Home() {
+    const [events, setEvents] = useState<IEvent[]>([]);
+
     useEffect(() => {
-        /*fetchAllEvents().then(data => {
-            console.log(data)
-            setEvents(data);
-        })*/
+        fetchTop10Events()
+            .then(events => { // .then solo si es Promise
+                setEvents(events)
+            })
 
     }, []);
 
-
     return (
-        <div className="container-fluid">
-            <h1 className={"test"}>Tests</h1>
-
-            <h1>find by id:</h1>
-            <input type="text" id="find-by-id" placeholder="id"/>
-            <button onClick={() => {
-                const id = (document.getElementById("find-by-id") as HTMLInputElement).value
-                window.location.href = `/events/${id}`
-            }}>find
-            </button>
-
-            <h1>Main events: disabled</h1>
-            {/*            {events.map((e,i) => (
-                <p>test</p>
-            ))}*/}
-            {/*            {
-                events.length > 0 ? (
-                    <p>loading</p>
-                ) : (
-                    <p></p>
-                )
-            }*/}
-
-{/*            <LoadingWrapper of={events}>
-                {events.map((e, i) => (
-                    <ul key={i}>
-                        <li>
-                            <PublicEvent event={e}/>
-                        </li>
-
-                    </ul>
-                ))}
-            </LoadingWrapper>*/}
-            {/*
-                ))}*/}
-
-
-            <Link href={"/profile/myevents"}>tus eventos</Link>
-        </div>
+        <main>
+            <Navbar/>
+            <Hero/>
+            <div className="w-full min-h-[76px] bg-[#54E686] z-1 mt-0 flex items-center justify-start">
+                <div className="w-full text-white overflow-hidden flex space-around mx-0">
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
+                </div>
+            </div>
+            <Events/>
+            <SearchBar/>
+            <LoadingWrapper of={events}>
+                {
+                    events.map(e => (
+                        (e.name)
+                    ))
+                }
+            </LoadingWrapper>
+            <Productor/>
+            <Pregsec/>
+        </main>
     )
 }
-
-export default Page;
