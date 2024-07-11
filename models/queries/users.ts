@@ -1,3 +1,15 @@
+/**
+ * TODO:
+ *
+ * - is user created
+ * - is user producer
+ * - TODO pull request with fav_rrpps, fav_validators null ref to users.id and fav_partner null ref to producers.id
+ * - create | update | delete | select user RRPP for producer based on producer.id, ZOD
+ * - create | update | delete | select user validator for producer based on producer.id, ZOD
+ * - create | update | delete | select user partner for producer based on producer.id, ZOD
+ *
+ */
+
 export enum users {
     //selUserTicket = "select * from ticket as t join event as e join user as u where user_id = ? and e.event_id = t.event_id;"
     /*selUserEvents=`
@@ -18,7 +30,9 @@ export enum users {
             u.email = ?;
     `,
 */
-    selUserId = `select user_id from users where email = $1`,
+    selUserId = `select user_id
+                 from users
+                 where email = $1`,
     selUserEvents = `
         select e.*
         from events e
@@ -56,11 +70,12 @@ export enum users {
                  join users u on t.user_id = u.user_id
         where u.email = $1
     `,
-    selUserData=  `
+    selUserData = `
         select t.*, e.*
         from tickets t
                  join events e on t.event_id = e.event_id
-        where user_id = $1 and ticket_id = $2
+        where user_id = $1
+          and ticket_id = $2
     `,
     selTicketDataByID = `
         select t.*, e.*

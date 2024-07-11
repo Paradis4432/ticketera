@@ -19,21 +19,17 @@ limit 10;
 
 select e.*, es.*
 from events e
-         join (
-    select distinct on (es.event_id) *
-    from events_stages es
-    order by es.event_id
-) es on es.event_id = e.event_id
+         join (select distinct on (es.event_id) *
+               from events_stages es
+               order by es.event_id) es on es.event_id = e.event_id
 order by es.price;
 
 select e.*, es.*
 from events e
-         join (
-    select distinct on (es.event_id) *
-    from events_stages es
-    order by es.event_id
-    limit 10
-) es on es.event_id = e.event_id;
+         join (select distinct on (es.event_id) *
+               from events_stages es
+               order by es.event_id
+               limit 10) es on es.event_id = e.event_id;
 
 select *
 from events;
@@ -117,7 +113,7 @@ begin
     for i in 1..num_rows
         loop
             insert into users
-            (name, email)
+                (name, email)
             values ('Random Username ' || floor(random() * 100 + 1),
                     'random' || floor(random() * 10000 + 1) || '@gmail.com');
         end loop;
@@ -185,18 +181,18 @@ $$ language plpgsql;
 
 select seed_users_tickets(10);
 
-select *
-from users_tickets;
-select *
-from users;
+create or replace function seed_producers() returns void as
+$$
+declare
+    i integer;
+begin
+    for i in 3..10
+        loop
+            insert into producers (name, display_name, email)
+            values ('Producer ' || i, 'Display Name ', 'randomproducer-' || i || '@gmail.com');
+        end loop;
+end
+$$ language plpgsql;
 
-select *
-from users_tickets;
+select seed_producers();
 
--- get user tickest
-select *
-from users_tickets ut
-         join events_stages es on ut.stage_id = es.stage_id
-         join events e on es.event_id = e.event_id
-
-where ut.user_id = 5

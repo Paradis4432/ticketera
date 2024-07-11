@@ -1,10 +1,10 @@
 create table if not exists events
 (
     event_id         serial primary key,
-    rrpps            integer[], -- nullable -> nullable reference to users.id
-    validators       integer[], -- nullable -> nullable reference to users.id
+    rrpps            integer[],    -- nullable -> nullable reference to users.id
+    validators       integer[],    -- nullable -> nullable reference to users.id
     name             varchar(100) not null,
-    description      varchar(500),         -- nullable
+    description      varchar(500), -- nullable
     location         varchar(100) not null,
     max_capacity     integer      not null,
     min_age          integer   default 18,
