@@ -29,9 +29,9 @@ export const readEvents = {
     },
     readId: async (id?: number) => {
         return await qquery<
-            IEvent & {
-            nameasd: string
-        }
+            {
+                nameasd: string
+            }
         >(`select *
            from events
            where event_id = $1`, [id == null ? 0 : id])

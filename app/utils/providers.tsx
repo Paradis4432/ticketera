@@ -15,3 +15,6 @@ export const Providers = ({children}: providersProps) => {
         </SessionProvider>
     );
 };
+
+
+export type RT<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
