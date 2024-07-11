@@ -5,7 +5,7 @@ import Hero from '@/app/components/ui/hero';
 import Navbar from '@/app/components/ui/navbar';
 import Productor from '@/app/components/ui/productor';
 import Pregsec from '@/app/components/ui/pregsec';
-import { SearchBar } from '../components';
+import {SearchBar} from '../components';
 import {useEffect, useState} from "react";
 import {fetchTop10Events} from "@/app/(home)/actions";
 import {LoadingWrapper} from "@/app/components/ui/loader";
@@ -20,11 +20,12 @@ export default function Home() {
             .then(events => { // .then solo si es Promise
                 setEvents(events)
             })
+
     }, []);
 
     return (
         <main>
-            <Navbar />
+            <Navbar/>
             <Hero/>
             <div className="w-full min-h-[76px] bg-[#54E686] z-1 mt-0 flex items-center justify-start">
                 <div className="w-full text-white overflow-hidden flex space-around mx-0">
@@ -37,7 +38,7 @@ export default function Home() {
                 </div>
             </div>
             <Events/>
-            <SearchBar />
+            <SearchBar/>
             <LoadingWrapper of={events}>
                 {
                     events.map(e => (
@@ -45,9 +46,8 @@ export default function Home() {
                     ))
                 }
             </LoadingWrapper>
-            <Productor />
-            <Pregsec />
-
+            <Productor/>
+            <Pregsec/>
         </main>
     )
 }

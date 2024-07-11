@@ -22,15 +22,10 @@ const handler = NextAuth({
         },
         async session({session, token}: { session: any, token: any }) {
             session.user.id = token.id;
-            //session.user.test = "test" // estoy casi seguro que aca se pueden agregar cosas para el user
-            // actualizando un par de cosas, a considerar
-
             return session;
         },
         async jwt({token, user}: { token: any, user: any }) {
-            if (user) {
-                token.id = user.id;
-            }
+            if (user) token.id = user.id;
             return token;
         },
         async redirect({url, baseUrl}) {

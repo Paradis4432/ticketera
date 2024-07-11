@@ -10,7 +10,7 @@ interface IEvent extends Castable {
     state: number,
 }
 
-interface IContactFormEmailProps extends Castable {
+interface IContactFormEmailProps {
     name: string,
     email: string,
     message: string
