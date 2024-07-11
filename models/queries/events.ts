@@ -19,25 +19,25 @@ export enum events {
 
 import {qquery} from "@/app/db/db";
 
-// USE CRUD DESIGN
+// USE CRUD DESIGN  create, read, update and delete.
+
+export const createEvents = {}
 
 export const readEvents = {
-    read50: async () => {
-        return await qquery<events>(`select *
-                                     from events
-                                     limit 50;`)
+    read: async (limit: number) => {
+        return await qquery<Events>(
+            `select *
+             from events
+             limit $1;`, [limit])
     },
-    readId: async (id?: number) => {
-        return await qquery<
-            {
-                nameasd: string
-            }
-        >(`select *
-           from events
-           where event_id = $1`, [id == null ? 0 : id])
+    readByID: async (id: number) => {
+        return await qquery<Events>(
+            `select *
+             from events
+             where event_id = $1`, [id])
     },
-    readEventStages: async (id: number) => {
-        return await qquery<(events_stages)[]>(
+    readEventStagesByEventID: async (id: number) => {
+        return await qquery<(Events & EventsStages)>(
             `select *
              from events_stages es
                       join events e on e.event_id = es.event_id
@@ -46,3 +46,5 @@ export const readEvents = {
 }
 
 export const updateEvents = {}
+
+export const deleteEvents = {}

@@ -1,8 +1,8 @@
 create table if not exists events
 (
     event_id         serial primary key,
-    rrpps            integer[] default [], -- nullable -> nullable reference to users.id
-    validators       integer[] default [], -- nullable -> nullable reference to users.id
+    rrpps            integer[], -- nullable -> nullable reference to users.id
+    validators       integer[], -- nullable -> nullable reference to users.id
     name             varchar(100) not null,
     description      varchar(500),         -- nullable
     location         varchar(100) not null,
@@ -62,7 +62,7 @@ create table if not exists events_stages
     constraint price_check check ( price > 0 ),
     constraint stock_check check ( stock > 0 )
 );
-create index idx_events_stages_event_id on events_stages (event_id);
+create index if not exists idx_events_stages_event_id on events_stages (event_id);
 
 create table if not exists users_tickets
 (

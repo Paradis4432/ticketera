@@ -18,7 +18,7 @@ function Page() {
 
     return (
         data?.map(e => {
-            return <p key={e.stage_id}>name: {e.test}</p>
+            return <p key={e.event_id}>name: {e.name}</p>
         })
     )
 }

@@ -86,8 +86,8 @@ begin
     for i in 1..num_rows
         loop
             insert into events
-            (rrpps, validators, name, description, location, max_capacity, min_age, cbu, start_date,
-             end_date)
+            (rrpps, validators, name, description, location, max_capacity, min_age, cbu, event_start_date,
+             event_end_date)
             values (ARRAY(SELECT floor(random() * 100 + 1)::INTEGER
                           FROM generate_series(1, floor(random() * 5 + 1)::INTEGER)),
                     ARRAY(SELECT floor(random() * 100 + 1)::INTEGER
@@ -139,7 +139,7 @@ begin
             from events
             order by random()
             limit 1;
-            insert into events_stages (start_date, end_date, event_id, price, stock)
+            insert into events_stages (event_stage_start_date, event_stage_end_date, event_id, price, stock)
 
             values (NOW() + INTERVAL '1 day' * floor(random() * 5 + 1),
                     NOW() + INTERVAL '1 day' * floor(random() * 5 + 1),
@@ -150,6 +150,8 @@ begin
         end loop;
 end;
 $$ language plpgsql;
+
+select seed_events_stages(10);
 
 create or replace function seed_users_tickets(num_rows integer) returns void as
 $$
@@ -166,7 +168,7 @@ begin
             order by random()
             limit 1;
 
-            select stage_id
+            select event_stage_id
             into random_stage_id
             from events_stages
             order by random()
@@ -181,14 +183,7 @@ begin
 end;
 $$ language plpgsql;
 
-select *
-from events_stages;
-
-select *
-from seed_events_stages(10);
-
-select *
-from seed_users_tickets(10);
+select seed_users_tickets(10);
 
 select *
 from users_tickets;

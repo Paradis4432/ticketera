@@ -17,14 +17,14 @@ const db: Pool = new Pool({
  * @param p2 list[] of values
  * @return always list of values, even if only 1 found
  */
-async function qquery<T>(p1: string, p2?: any[]): Promise<T> {
+async function qquery<T>(p1: string, p2?: any[]): Promise<T[]> {
     let q: string;
     let v: any[];
 
     q = p1;
     v = p2 ?? [];
 
-    return (await db.query(q, v)).rows as T;
+    return (await db.query(q, v)).rows as T[];
 }
 
 export {

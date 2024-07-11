@@ -1,7 +1,7 @@
 interface Events {
     event_id?: number;
-    rrpps?: number[] | null;
-    validators?: number[] | null;
+    rrpps: number[] | null;
+    validators: number[] | null;
     name: string;
     description?: string | null;
     location: string;
