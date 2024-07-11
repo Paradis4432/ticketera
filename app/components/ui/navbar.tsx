@@ -38,9 +38,9 @@ const Navbar = () => {
                         Home
                     </Link>*/}
                     <NavBarLink link={"/"} path={"/"} text={"Home"}></NavBarLink>
-                    <NavBarLink link={"/"} path={"/events"} text={"Eventos"}></NavBarLink>
-                    <NavBarLink link={"/"} path={"/login"} text={"Productores"}></NavBarLink>
-                    <NavBarLink link={"/"} path={"/contact"} text={"Preguntas"}></NavBarLink>
+                    <NavBarLink link={"/events"} path={"/events"} text={"Eventos"}></NavBarLink>
+                    <NavBarLink link={"/login"} path={"/login"} text={"Productores"}></NavBarLink>
+                    <NavBarLink link={"/contact"} path={"/contact"} text={"Preguntas"}></NavBarLink>
                     {/*<Link href="/profile"
                           className={isClient && pathname === '/profile' ? 'text-blue-500 font-semibold text-sm' : 'text-black font-medium text-sm'}>
                         Eventos
