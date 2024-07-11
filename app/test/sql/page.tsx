@@ -4,12 +4,12 @@ import {useEffect, useState} from "react";
 import {getRandomEvents} from "@/app/test/sql/actions";
 
 function Page() {
-    const [data, setData] = useState<(events_stages & events & IEvent)[]>();
+    //let [data, setData] = useState<Awaited<ReturnType<typeof getRandomEvents>>[]>([]);
+    let [data, setData] = useState<Awaited<ReturnType<typeof getRandomEvents>>>([]);
+
 
     useEffect(() => {
         getRandomEvents().then(events => {
-            console.log(events)
-
             return setData(events);
         })
     }, [])

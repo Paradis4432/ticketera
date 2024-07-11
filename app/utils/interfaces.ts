@@ -52,7 +52,7 @@ interface events_stages extends c_date, temporal {
     stage_id: number;
     event_id: number;
     price: number;
-    stick: number;
+    stock: number;
 }
 
 interface IContactFormEmailProps {

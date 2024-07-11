@@ -17,20 +17,15 @@ export enum events {
 */
 
 
-
 import {qquery} from "@/app/db/db";
 
 // USE CRUD DESIGN
 
 export const readEvents = {
     read50: async () => {
-        return await qquery<
-            {
-                name: string
-            }[]
-        >(`select *
-           from events
-           limit 50;`)
+        return await qquery<events>(`select *
+                                     from events
+                                     limit 50;`)
     },
     readId: async (id?: number) => {
         return await qquery<
@@ -42,12 +37,11 @@ export const readEvents = {
            where event_id = $1`, [id == null ? 0 : id])
     },
     readEventStages: async (id: number) => {
-        return await qquery<
-            (events_stages &
-            events)[]>(`select *
-                     from events_stages es
-                              join events e on e.event_id = es.event_id
-                     where e.event_id = $1`, [id])
+        return await qquery<(events_stages)[]>(
+            `select *
+             from events_stages es
+                      join events e on e.event_id = es.event_id
+             where e.event_id = $1`, [id])
     }
 }
 
