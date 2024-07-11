@@ -15,9 +15,17 @@ function Page() {
         })
     }, [])*/
 
+    let [data, setData] = useState<RT<typeof getRandomEvents>>();
+
+    useEffect(() => {
+        getRandomEvents().then(data => {
+            setData(data);
+        })
+    }, []);
+
 
     return (
-        <p>lol</p>
+        <></>
 
     )
 }
