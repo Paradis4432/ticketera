@@ -28,7 +28,7 @@ function NavBarLink({link, path, valid, invalid, text}: {
 const Navbar = () => {
     return (
         <header className="w-full bg-gray-100 max-h-[72px] z-10 absolute">
-            <nav className="w-full flex justify-around items-center md:px-16 px-4 py-3">
+            <nav className="max-w-[1440px] flex justify-around mx-auto items-center md:px-16 px-4 py-3">
                 <Link href="/">
                     <Image className="h-[24px] md:h-[32px] w-[132px] md:w-[200px]" src={logo} alt="Selva Tickets logo"/>
                 </Link>

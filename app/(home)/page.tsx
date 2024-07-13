@@ -5,6 +5,7 @@ import Hero from '@/app/components/ui/hero';
 import Navbar from '@/app/components/ui/navbar';
 import Productor from '@/app/components/ui/productor';
 import Pregsec from '@/app/components/ui/pregsec';
+import Banner from '@/app/components/ui/banner';
 import {SearchBar} from '../components';
 import {useEffect, useState} from "react";
 import {fetchAllEvents} from "@/app/(home)/actions";
@@ -28,16 +29,7 @@ export default function Home() {
         <main>
             <Navbar/>
             <Hero/>
-            <div className="w-full min-h-[76px] bg-[#54E686] z-1 mt-0 flex items-center justify-start">
-                <div className="w-full text-white overflow-hidden flex space-around mx-0">
-                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                    <Image className="h-[32px] w-[195px]" src={bynlogo} alt=""/>
-                </div>
-            </div>
+            <Banner/>
             <Events/>
             <SearchBar/>
             <LoadingWrapper of={events}>
@@ -47,6 +39,7 @@ export default function Home() {
                     ))
                 }
             </LoadingWrapper>
+            <Banner />
             <Productor/>
             <Pregsec/>
         </main>
