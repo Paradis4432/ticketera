@@ -8,7 +8,7 @@
  * - update event by id, pedir todos los datos y hacer update, si es igual al viejo no cambia nada, ZOD para argumentos [x]
  * - active events by user id, where event_end_date < now? [x]
  *
- * - sel top events by price
+ * - sel top events by price [x]
  * select *
  * from events e
  *          join (select distinct on (es.event_id) *
@@ -16,8 +16,8 @@
  *                order by es.event_id) es on es.event_id = e.event_id
  * order by es.price;
  *
- * - sel events by name
- * - sel producers of events
+ * - sel events by name [x]
+ * - sel producers of events [x]
  * select p.*
  * from events e
  *          join producers p on p.producer_id = any (e.rrpps)
@@ -140,7 +140,24 @@ export const readEvents = {
              ) es ON es.event_id = e.event_id
              ORDER BY es.price;`
         );
-    }
+    },
+    byName: async (name: string) => {
+        return await qquery<Events>(
+            `SELECT *
+             FROM events
+             WHERE name = $1;`, [name]
+        );
+    },
+    producersOfEvent: async (event_id: number) => {
+        return await qquery<Producers>(
+            `SELECT p.*
+             FROM events e
+                      JOIN producers p ON p.producer_id = ANY (e.rrpps)
+             WHERE event_id = $1;`, [event_id]
+        );
+    },
+    
+
 }
 //coalesce to avoid null values
 export const updateEvents = {
