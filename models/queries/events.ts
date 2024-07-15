@@ -5,8 +5,8 @@
  * arreglar y actualizar todos los eventos para tener fechas reales
  *
  * - delete event by id [x]
- * - update event by id, pedir todos los datos y hacer update, si es igual al viejo no cambia nada, ZOD para argumentos
- * - active events by user id, where event_end_date < now?
+ * - update event by id, pedir todos los datos y hacer update, si es igual al viejo no cambia nada, ZOD para argumentos [x]
+ * - active events by user id, where event_end_date < now? [x]
  *
  * - sel top events by price
  * select *
@@ -121,6 +121,25 @@ export const readEvents = {
              from events_stages es
                       join events e on e.event_id = es.event_id
              where e.event_id = $1`, [id])
+    },
+    activeEvents: async () => {
+        return await qquery<Events>(
+            `SELECT *
+             FROM events
+             WHERE NOW() BETWEEN event_start_date AND event_end_date;`
+        );
+    },
+    topEventsByPrice: async () => {
+        return await qquery<Events>(
+            `SELECT *
+             FROM events e
+             JOIN (
+                 SELECT DISTINCT ON (es.event_id) *
+                 FROM events_stages es
+                 ORDER BY es.event_id
+             ) es ON es.event_id = e.event_id
+             ORDER BY es.price;`
+        );
     }
 }
 //coalesce to avoid null values
