@@ -12,6 +12,33 @@ interface Events {
     event_start_date: string;
     event_end_date: string;
 }
+interface CreateEvent {
+    rrpps?: number[] | null;
+    validators?: number[] | null;
+    name: string;
+    description?: string | null;
+    location: string;
+    max_capacity: number;
+    min_age?: number; // optional
+    cbu: string;
+    event_start_date: string;
+    event_end_date: string;
+}
+interface UpdateEvent {
+    event_id: number;
+    rrpps?: number[] | null;
+    validators?: number[] | null;
+    name?: string;
+    description?: string | null;
+    location?: string;
+    max_capacity?: number;
+    min_age?: number | null;
+    cbu?: string;
+    event_start_date?: string;
+    event_end_date?: string;
+}
+
+
 
 interface Users {
     user_id?: number;

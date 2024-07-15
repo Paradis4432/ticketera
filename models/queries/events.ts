@@ -4,7 +4,7 @@
  * la funcion para conseguir una fecha random no funciona: NOW() + INTERVAL '1 day' * floor(random() * 5 + 1),
  * arreglar y actualizar todos los eventos para tener fechas reales
  *
- * - delete event by id
+ * - delete event by id [x]
  * - update event by id, pedir todos los datos y hacer update, si es igual al viejo no cambia nada, ZOD para argumentos
  * - active events by user id, where event_end_date < now?
  *
@@ -46,9 +46,55 @@
 
 import {qquery} from "@/app/db/db";
 
-// USE CRUD DESIGN  create, read, update and delete.
+// [x] USE CRUD DESIGN  create, read, update and delete.
 
-export const createEvents = {}
+//returning avoid a second query to get the inserted row
+export const createEvents = {
+    create: async (event: CreateEvent): Promise<Events> => {
+        const {
+            rrpps,
+            validators,
+            name,
+            description,
+            location,
+            max_capacity,
+            min_age = 18, // by default?
+            cbu,
+            event_start_date,
+            event_end_date
+        } = event;
+
+        const result = await qquery<Events>(
+            `insert into events (
+                rrpps,
+                validators,
+                name,
+                description,
+                location,
+                max_capacity,
+                min_age,
+                cbu,
+                event_start_date,
+                event_end_date
+            ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+            returning *;`,
+            [
+                rrpps,
+                validators,
+                name,
+                description,
+                location,
+                max_capacity,
+                min_age,
+                cbu,
+                event_start_date,
+                event_end_date
+            ]
+        );
+
+        return result[0];
+    }
+};
 
 export const readEvents = {
     read: async (limit: number) => {
@@ -77,7 +123,63 @@ export const readEvents = {
              where e.event_id = $1`, [id])
     }
 }
+//coalesce to avoid null values
+export const updateEvents = {
+    updateById: async (event: UpdateEvent): Promise<Events> => {
+        const {
+            event_id,
+            rrpps,
+            validators,
+            name,
+            description,
+            location,
+            max_capacity,
+            min_age,
+            cbu,
+            event_start_date,
+            event_end_date
+        } = event;
+        const result = await qquery<Events>(
+            `update events set
+                rrpps = coalesce($1, rrpps),
+                validators = coalesce($2, validators),
+                name = coalesce($3, name),
+                description = coalesce($4, description),
+                location = coalesce($5, location),
+                max_capacity = coalesce($6, max_capacity),
+                min_age = coalesce($7, min_age),
+                cbu = coalesce($8, cbu),
+                event_start_date = coalesce($9, event_start_date),
+                event_end_date = coalesce($10, event_end_date)
+            where event_id = $11
+            returning *;`,
+            [
+                rrpps,
+                validators,
+                name,
+                description,
+                location,
+                max_capacity,
+                min_age,
+                cbu,
+                event_start_date,
+                event_end_date,
+                event_id
+            ]
+        );
 
-export const updateEvents = {}
+        return result[0];
+    }
+};
 
-export const deleteEvents = {}
+export const deleteEvents = {
+    deleteById: async (event_id: number): Promise<{ success: boolean }> => {
+        await qquery(
+            `DELETE FROM events
+             WHERE event_id = $1;`,
+            [event_id]
+        );
+
+        return { success: true };
+    }
+};
