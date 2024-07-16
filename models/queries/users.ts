@@ -1,8 +1,8 @@
 /**
  * TODO:
  *
- * - is user created
- * - is user producer
+ * - is user created [x]
+ * - is user producer [x]
  * - TODO pull request with fav_rrpps, fav_validators null ref to users.id and fav_partner null ref to producers.id
  * - create | update | delete | select user RRPP for producer based on producer.id, ZOD
  * - create | update | delete | select user validator for producer based on producer.id, ZOD
@@ -12,6 +12,18 @@
 
 import {qquery} from "@/app/db/db";
 
+export const isUserCreated = async (userId: number): Promise<boolean> => {
+    const result = await qquery<{ exists: boolean }>(
+        `select exists(select 1 from users where user_id = $1);`, [userId]
+    );
+    return result[0]?.exists ?? false;
+};
+export const isUserProducer = async (userId: number): Promise<boolean> => {
+    const result = await qquery<{ exists: boolean }>(
+        `select exists(select 1 from producers where user_id = $1);`, [userId]
+    );
+    return result[0]?.exists ?? false;
+};
 
 export const readUserTickets = {
     byEmail: async (email: string) => {
