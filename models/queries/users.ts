@@ -12,6 +12,7 @@
 
 import {qquery} from "@/app/db/db";
 
+
 export const isUserCreated = async (userId: number): Promise<boolean> => {
     const result = await qquery<{ exists: boolean }>(
         `select exists(select 1 from users where user_id = $1);`, [userId]
