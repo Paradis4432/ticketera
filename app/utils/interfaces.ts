@@ -71,6 +71,25 @@ interface EventsStages {
     event_stage_end_date: string;
 }
 
+interface CreateEventStage {
+    name: string;
+    event_id: number;
+    price: number;
+    stock: number;
+    event_stage_start_date: string;
+    event_stage_end_date: string;
+}
+
+interface UpdateEventStage {
+    event_stage_id: number;
+    name?: string;
+    event_id?: number;
+    price?: number;
+    stock?: number;
+    event_stage_start_date?: string;
+    event_stage_end_date?: string;
+}
+
 interface UsersTickets {
     ticket_id?: number;
     user_id: number;

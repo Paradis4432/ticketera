@@ -10,6 +10,28 @@
  *
  */
 
+import {qquery} from "@/app/db/db";
+
+
+export const readUserTickets = {
+    byEmail: async (email: string) => {
+        return await qquery<UsersTickets>(
+            `select *
+             from users_tickets ut
+             join users u on u.user_id = ut.user_id
+             where u.email = $1;`, [email]
+        );
+    },
+    byUserId: async (userId: number) => {
+        return await qquery<UsersTickets>(
+            `select *
+             from users_tickets ut
+             join users u on u.user_id = ut.user_id
+             where u.user_id = $1;`, [userId]
+        );
+    }
+}
+
 export enum users {
     //selUserTicket = "select * from ticket as t join event as e join user as u where user_id = ? and e.event_id = t.event_id;"
     /*selUserEvents=`
