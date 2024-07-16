@@ -12,31 +12,6 @@ interface Events {
     event_start_date: string;
     event_end_date: string;
 }
-interface CreateEvent {
-    rrpps?: number[] | null;
-    validators?: number[] | null;
-    name: string;
-    description?: string | null;
-    location: string;
-    max_capacity: number;
-    min_age?: number; // optional
-    cbu: string;
-    event_start_date: string;
-    event_end_date: string;
-}
-interface UpdateEvent {
-    event_id: number;
-    rrpps?: number[] | null;
-    validators?: number[] | null;
-    name?: string;
-    description?: string | null;
-    location?: string;
-    max_capacity?: number;
-    min_age?: number | null;
-    cbu?: string;
-    event_start_date?: string;
-    event_end_date?: string;
-}
 
 
 
@@ -71,24 +46,7 @@ interface EventsStages {
     event_stage_end_date: string;
 }
 
-interface CreateEventStage {
-    name: string;
-    event_id: number;
-    price: number;
-    stock: number;
-    event_stage_start_date: string;
-    event_stage_end_date: string;
-}
 
-interface UpdateEventStage {
-    event_stage_id: number;
-    name?: string;
-    event_id?: number;
-    price?: number;
-    stock?: number;
-    event_stage_start_date?: string;
-    event_stage_end_date?: string;
-}
 
 interface UsersTickets {
     ticket_id?: number;

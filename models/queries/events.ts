@@ -46,12 +46,19 @@
 
 
 import {qquery} from "@/app/db/db";
-
+import { z } from 'zod';
+import {
+    createEventSchema,
+    createEventStageSchema,
+    updateEventSchema,
+    updateEventStageSchema
+} from "@/models/dtos/events";
 // [x] USE CRUD DESIGN  create, read, update and delete.
 
 // returning avoid a second query to get the inserted row
 export const createEvents = {
-    create: async (event: CreateEvent): Promise<Events> => {
+    create: async (event: z.infer<typeof createEventSchema>): Promise<Events> => {
+        createEventSchema.parse(event);
         const {
             rrpps,
             validators,
@@ -59,7 +66,7 @@ export const createEvents = {
             description,
             location,
             max_capacity,
-            min_age = 18, // by default?
+            min_age = 18,
             cbu,
             event_start_date,
             event_end_date
@@ -176,7 +183,9 @@ export const readEvents = {
 
 // coalesce to avoid null values
 export const updateEvents = {
-    updateById: async (event: UpdateEvent): Promise<Events> => {
+    updateById: async (event: z.infer<typeof updateEventSchema>): Promise<Events> => {
+        updateEventSchema.parse(event);
+
         const {
             event_id,
             rrpps,
@@ -190,6 +199,7 @@ export const updateEvents = {
             event_start_date,
             event_end_date
         } = event;
+
         const result = await qquery<Events>(
             `update events set
                 rrpps = coalesce($1, rrpps),
@@ -235,7 +245,9 @@ export const deleteEvents = {
 };
 
 export const createEventStage = {
-    create: async (stage: CreateEventStage): Promise<EventsStages> => {
+    create: async (stage: z.infer<typeof createEventStageSchema>): Promise<EventsStages> => {
+        createEventStageSchema.parse(stage);
+
         const {
             name,
             event_id,
@@ -270,7 +282,9 @@ export const createEventStage = {
 };
 
 export const updateEventStage = {
-    updateById: async (stage: UpdateEventStage): Promise<EventsStages> => {
+    updateById: async (stage: z.infer<typeof updateEventStageSchema>): Promise<EventsStages> => {
+        updateEventStageSchema.parse(stage);
+
         const {
             event_stage_id,
             name,
