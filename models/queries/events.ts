@@ -30,7 +30,7 @@
  *          join producers p on p.producer_id = any (e.rrpps)
  * where e.event_id = 2;
  *
- * // in users.ts
+ * // in tickets.ts
  * - get user tickets by email | id [x]
  * select *
  * from users_tickets ut

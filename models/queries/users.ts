@@ -25,24 +25,7 @@ export const isUserProducer = async (userId: number): Promise<boolean> => {
     return result[0]?.exists ?? false;
 };
 
-export const readUserTickets = {
-    byEmail: async (email: string) => {
-        return await qquery<UsersTickets>(
-            `select *
-             from users_tickets ut
-             join users u on u.user_id = ut.user_id
-             where u.email = $1;`, [email]
-        );
-    },
-    byUserId: async (userId: number) => {
-        return await qquery<UsersTickets>(
-            `select *
-             from users_tickets ut
-             join users u on u.user_id = ut.user_id
-             where u.user_id = $1;`, [userId]
-        );
-    }
-}
+
 
 
 export enum users {

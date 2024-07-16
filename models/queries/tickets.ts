@@ -33,7 +33,24 @@ export const tickets = {
         );
         return result[0];
     },
-
+    readUserTickets: {
+        byEmail: async (email: string) => {
+            return await qquery<UsersTickets>(
+                `select *
+                 from users_tickets ut
+                          join users u on u.user_id = ut.user_id
+                 where u.email = $1;`, [email]
+            );
+        },
+        byUserId: async (userId: number) => {
+            return await qquery<UsersTickets>(
+                `select *
+                 from users_tickets ut
+                          join users u on u.user_id = ut.user_id
+                 where u.user_id = $1;`, [userId]
+            );
+        }
+    },
     getTicketByUserIdAndTicketId: async (userId: number, ticketId: number): Promise<UsersTickets | null> => {
         const result = await qquery<UsersTickets>(
             `select * from users_tickets where user_id = $1 and ticket_id = $2;`,
