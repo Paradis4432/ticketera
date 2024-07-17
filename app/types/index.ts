@@ -7,6 +7,7 @@ export interface ButtonProps {
     handleClick?:
     MouseEventHandler<HTMLButtonElement>;
     navigateTo?:string;
+    icon?:string;
 }
 
 export interface searchEventsProps {
