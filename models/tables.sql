@@ -15,7 +15,7 @@ create table if not exists events
 
     constraint min_age_check check (min_age >= 0 AND min_age <= 120),
     constraint cap_check check ( max_capacity >= 0 )
-);
+    );
 
 create table if not exists users
 (
@@ -23,7 +23,7 @@ create table if not exists users
     name        varchar(255) not null,
     email       varchar(255) not null unique,
     user_c_date timestamp default current_timestamp
-);
+    );
 
 -- when user converts to producer -> del from users -> ins to producers
 create table if not exists producers
@@ -31,10 +31,10 @@ create table if not exists producers
     producer_id     serial primary key,
     name            varchar(50)  not null,
     display_name    varchar(255) not null, -- nombre de la productora
-    -- link to cdn?
+-- link to cdn?
     email           varchar(255) not null unique,
     producer_c_date timestamp default current_timestamp
-);
+    );
 
 create table if not exists events_producers
 (
@@ -44,7 +44,7 @@ create table if not exists events_producers
     primary key (event_id, producer_id),
     foreign key (event_id) references events (event_id) on delete cascade,
     foreign key (producer_id) references producers (producer_id) on delete cascade
-);
+    );
 
 create table if not exists events_stages
 (
@@ -58,10 +58,10 @@ create table if not exists events_stages
     event_stage_end_date   timestamp not null,
 
     foreign key (event_id) references events (event_id), -- dont delete on cascade to avoid
-    -- deleting the event when a stage is deleted
+-- deleting the event when a stage is deleted
     constraint price_check check ( price > 0 ),
     constraint stock_check check ( stock > 0 )
-);
+    );
 create index if not exists idx_events_stages_event_id on events_stages (event_id);
 
 create table if not exists users_tickets
@@ -75,7 +75,7 @@ create table if not exists users_tickets
 
     foreign key (user_id) references users (user_id),
     foreign key (stage_id) references events_stages (event_stage_id)
-);
+    );
 
 create table if not exists validations
 (
@@ -92,7 +92,7 @@ create table if not exists validations
     foreign key (validator_id) references users (user_id),
     foreign key (user_id) references users (user_id),
     foreign key (ticket_id) references users_tickets (ticket_id)
-);
+    );
 
 drop table if exists c_date cascade;
 drop table if exists events_stages cascade;

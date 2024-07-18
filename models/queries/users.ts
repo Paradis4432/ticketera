@@ -9,23 +9,158 @@
  * - create | update | delete | select user partner for producer based on producer.id, ZOD
  *
  */
-
+import { z } from 'zod';
 import {qquery} from "@/app/db/db";
+import {
+    deleteUserProducerRelationSchema,
+    updateUserProducerSchema,
+    userEventRelationSchema,
+    userProducerSchema
+} from "@/models/dtos/users";
 
 
-export const isUserCreated = async (userId: number): Promise<boolean> => {
-    const result = await qquery<{ exists: boolean }>(
-        `select exists(select 1 from users where user_id = $1);`, [userId]
-    );
-    return result[0]?.exists ?? false;
+
+export const createUser = {
+    rrpp: async (data: z.infer<typeof userEventRelationSchema>) => {
+        userEventRelationSchema.parse(data);
+        const { userId, eventId } = data;
+
+        const result = await qquery(
+            `update events set rrpps = array_append(rrpps, $1) where event_id = $2 returning *;`,
+            [userId, eventId]
+        );
+        return result[0];
+    },
+    validator: async (data: z.infer<typeof userEventRelationSchema>) => {
+        userEventRelationSchema.parse(data);
+        const { userId, eventId } = data;
+
+        const result = await qquery(
+            `update events set validators = array_append(validators, $1) where event_id = $2 returning *;`,
+            [userId, eventId]
+        );
+        return result[0];
+    },
+    partner: async (data: Producers) => {
+
+        const { name, display_name, email } = data;
+
+        const result = await qquery(
+            `insert into producers (name, display_name, email) values ($1, $2, $3) returning *;`,
+            [name, display_name, email]
+        );
+        return result[0];
+    },
 };
-export const isUserProducer = async (userId: number): Promise<boolean> => {
-    const result = await qquery<{ exists: boolean }>(
-        `select exists(select 1 from producers where user_id = $1);`, [userId]
-    );
-    return result[0]?.exists ?? false;
+
+
+export const readUser = {
+    rrppByEventId: async (eventId: number) => {
+        return await qquery(
+            `select rrpps from events where event_id = $1;`,
+            [eventId]
+        );
+    },
+    validatorByEventId: async (eventId: number) => {
+        return await qquery(
+            `select validators from events where event_id = $1;`,
+            [eventId]
+        );
+    },
+    partnerByProducerId: async (producerId: number) => {
+        return await qquery(
+            `select * from producers where producer_id = $1;`,
+            [producerId]
+        );
+    },
+    isUserCreated: async (userId: number): Promise<boolean> => {
+        const result = await qquery<{ exists: boolean }>(
+            `select exists(select 1 from users where user_id = $1);`, [userId]
+        );
+        return result[0]?.exists ?? false;
+    },
+    isUserProducer: async (userId: number): Promise<boolean> => {
+        const result = await qquery<{ exists: boolean }>(
+            `select exists(select 1 from producers where user_id = $1);`, [userId]
+        );
+        return result[0]?.exists ?? false;
+    }
 };
 
+
+export const deleteUser = {
+    rrpp: async (data: z.infer<typeof deleteUserProducerRelationSchema>) => {
+        deleteUserProducerRelationSchema.parse(data);
+        const { userId, producerId } = data;
+
+        const result = await qquery(
+            `update events set rrpps = array_remove(rrpps, $1) where event_id = $2 returning *;`,
+            [userId, producerId]
+        );
+        return { success: true };
+    },
+    validator: async (data: z.infer<typeof deleteUserProducerRelationSchema>) => {
+        deleteUserProducerRelationSchema.parse(data);
+        const { userId, producerId } = data;
+
+        const result = await qquery(
+            `update events set validators = array_remove(validators, $1) where event_id = $2 returning *;`,
+            [userId, producerId]
+        );
+        return { success: true };
+    },
+    partner: async (data: z.infer<typeof deleteUserProducerRelationSchema>) => {
+        deleteUserProducerRelationSchema.parse(data);
+        const { producerId } = data;
+
+        const result = await qquery(
+            `delete from producers where producer_id = $1 returning *;`,
+            [producerId]
+        );
+        return { success: true };
+    },
+};
+
+
+export const updateUser = {
+    rrpp: async (data: z.infer<typeof userEventRelationSchema>) => {
+        userEventRelationSchema.parse(data);
+        const { userId, eventId } = data;
+
+        // Assuming the update logic involves some change to the user or event relation
+        const result = await qquery(
+            `update events set rrpps = array_replace(rrpps, $1, $1) where event_id = $2 returning *;`,
+            [userId, eventId]
+        );
+        return result[0];
+    },
+    validator: async (data: z.infer<typeof userEventRelationSchema>) => {
+        userEventRelationSchema.parse(data);
+        const { userId, eventId } = data;
+
+        // Assuming the update logic involves some change to the user or event relation
+        const result = await qquery(
+            `update events set validators = array_replace(validators, $1, $1) where event_id = $2 returning *;`,
+            [userId, eventId]
+        );
+        return result[0];
+    },
+    partner: async (data: z.infer<typeof updateUserProducerSchema>) => {
+        updateUserProducerSchema.parse(data);
+        const { producerId, name, displayName, email } = data;
+
+        const result = await qquery(
+            `update producers set 
+                name = coalesce($2, name), 
+                display_name = coalesce($3, display_name), 
+                email = coalesce($4, email) 
+             where producer_id = $1 
+             returning *;`,
+            [producerId, name, displayName, email]
+        );
+        return result[0];
+    },
+};
 
 
 

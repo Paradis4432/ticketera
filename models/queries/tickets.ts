@@ -21,12 +21,26 @@ import {qquery} from "@/app/db/db";
 import {buyTicketSchema} from "@/models/dtos/tickets";
 import { z } from 'zod';
 
+
 export const createTickets = {
     buyTicket: async (data: z.infer<typeof buyTicketSchema>): Promise<UsersTickets> => {
         const { userId, stageId, notes } = data;
         const result = await qquery<UsersTickets>(
             `insert into users_tickets (user_id, stage_id, notes) values ($1, $2, $3) returning *;`,
             [userId, stageId, notes]
+        );
+        return result[0];
+    },
+    insertValidation: async (validatorId: number, ticketId: number) => {
+        const result = await qquery<Validations>(
+            `insert into validations (validator_id, user_id, ticket_id, state, name) 
+             select $1, user_id, $2, 'VALIDATED', e.name 
+             from users_tickets ut 
+             join events_stages es on ut.stage_id = es.event_stage_id
+             join events e on es.event_id = e.event_id
+             where ut.ticket_id = $2
+             returning *;`,
+            [validatorId, ticketId]
         );
         return result[0];
     }
@@ -66,18 +80,24 @@ export const readTickets = {
             [ticketId]
         );
         return result.length > 0 ? result[0].event_id : null;
-    }
-};
-
-
-export const validateTickets = {
+    },
+    getUserValidations: async (validatorId: number): Promise<Validations[]> => {
+        return await qquery<Validations>(
+            `select * from validations where validator_id = $1;`,
+            [validatorId]
+        );
+    },
     userHasPermsToScanTicket: async (eventId: number, userId: number): Promise<boolean> => {
         const result = await qquery<{ exists: boolean }>(
             `select exists(select 1 from events where event_id = $1 and $2 = any(validators));`,
             [eventId, userId]
         );
         return result[0]?.exists ?? false;
-    },
+    }
+};
+
+
+export const updateTickets = {
     validateTicket: async (ticketId: number, validatorId: number, userId: number): Promise<{ status: string, ticket?: UsersTickets }> => {
         const ticket = await readTickets.getTicketByUserIdAndTicketId(userId, ticketId);
         if (!ticket) {
@@ -94,7 +114,7 @@ export const validateTickets = {
         }
 
         // permissions verification
-        const hasPerms = await validateTickets.userHasPermsToScanTicket(eventId, validatorId);
+        const hasPerms = await readTickets.userHasPermsToScanTicket(eventId, validatorId);
         if (!hasPerms) {
             throw new Error("User does not have permissions to scan this ticket");
         }
@@ -106,22 +126,8 @@ export const validateTickets = {
         );
 
         // insert validations
-        await qquery<Validations>(
-            `insert into validations (validator_id, user_id, ticket_id, state, name) 
-             select $1, user_id, $2, 'VALIDATED', e.name 
-             from users_tickets ut 
-             join events_stages es on ut.stage_id = es.event_stage_id
-             join events e on es.event_id = e.event_id
-             where ut.ticket_id = $2
-             returning *;`,
-            [validatorId, ticketId]
-        );
+        await createTickets.insertValidation(validatorId, ticketId);
+
         return { status: "validated", ticket };
-    },
-    getUserValidations: async (validatorId: number): Promise<Validations[]> => {
-        return await qquery<Validations>(
-            `select * from validations where validator_id = $1;`,
-            [validatorId]
-        );
     }
 };
