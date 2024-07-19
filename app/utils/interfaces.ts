@@ -13,6 +13,8 @@ interface Events {
     event_end_date: string;
 }
 
+
+
 interface Users {
     user_id?: number;
     name: string;
@@ -43,6 +45,8 @@ interface EventsStages {
     event_stage_start_date: string;
     event_stage_end_date: string;
 }
+
+
 
 interface UsersTickets {
     ticket_id?: number;
