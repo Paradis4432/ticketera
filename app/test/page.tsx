@@ -6,6 +6,7 @@ function Page() {
     const [data, setData] = useState<string[]>([])
     const [loading, setLoading] = useState<boolean>(true)
 
+
     useEffect(() => {
         // Wait 2 seconds and set data to something
         const timer = setTimeout(() => {
@@ -36,3 +37,4 @@ function Page() {
 }
 
 export default Page
+
