@@ -13,6 +13,7 @@ create table if not exists events
     event_start_date timestamp    not null,
     event_end_date   timestamp    not null,
 
+
     constraint min_age_check check (min_age >= 0 AND min_age <= 120),
     constraint cap_check check ( max_capacity >= 0 )
     );

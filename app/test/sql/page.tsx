@@ -5,23 +5,28 @@ import {getRandomEvents} from "@/app/test/sql/actions";
 import {RT} from "@/app/utils/providers";
 
 function Page() {
-/*    //let [data, setData] = useState<Awaited<ReturnType<typeof getRandomEvents>>[]>([]);
-    let [data, setData] = useState<RT<typeof getRandomEvents>>([]);
+    /*    //let [data, setData] = useState<Awaited<ReturnType<typeof getRandomEvents>>[]>([]);
+        let [data, setData] = useState<RT<typeof getRandomEvents>>([]);
 
 
-    useEffect(() => {
-        getRandomEvents().then(events => {
-            return setData(events);
-        })
-    }, [])*/
+        useEffect(() => {
+            getRandomEvents().then(events => {
+                return setData(events);
+            })
+        }, [])*/
 
     let [data, setData] = useState<RT<typeof getRandomEvents>>();
 
     useEffect(() => {
-        getRandomEvents().then(data => {
-            setData(data);
-        })
+        getRandomEvents()
+            .then(data => {
+                setData(data);
+            })
+            .catch(e => {
+                console.log(e)
+            })
     }, []);
+
 
 
     return (
