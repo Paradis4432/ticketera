@@ -37,18 +37,18 @@ const Page = () => {
                 <div className='gap-8 flex justify-center '>
                 <Buttons
                  text="Mis Tickets"
-                 containerStyle="bg-white flex text-white rounded-xl mt-10 py-[8px] px-[10px] text-lg font-normal tracking-wide gap-[10px]"
+                 containerStyle="bg-white flex text-black rounded-xl mt-10 py-[8px] px-[10px] text-lg font-normal tracking-wide gap-[10px]"
                  navigateTo='/'
                  icon='/assets/qricon.png'
                 />
                 <Buttons 
                  text="Comprar Tickets"
-                 containerStyle="bg-white text-white rounded-xl mt-10 py-[8px] px-[10px] text-lg font-normal tracking-wide gap-[10px]"
+                 containerStyle="bg-white text-black rounded-xl mt-10 py-[8px] px-[10px] text-lg font-normal tracking-wide gap-[10px]"
                  navigateTo='/'
                 />
                 <Buttons 
                  text="Soporte"
-                 containerStyle="bg-white text-white rounded-xl mt-10 py-[8px] px-[10px] text-lg font-normal tracking-wide gap-[10px]"
+                 containerStyle="bg-white text-black     rounded-xl mt-10 py-[8px] px-[10px] text-lg font-normal tracking-wide gap-[10px]"
                  navigateTo='/'
                 />
                 </div>
