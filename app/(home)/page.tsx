@@ -1,6 +1,6 @@
 "use client"
 
-import Events from '@/app/components/ui/events';
+import Eventsec from '@/app/components/ui/eventsec';
 import Hero from '@/app/components/ui/hero';
 import Navbar from '@/app/components/ui/navbar';
 import Productor from '@/app/components/ui/productor';
@@ -30,7 +30,7 @@ export default function Home() {
             <Navbar/>
             <Hero/>
             <Banner/>
-            <Events/>
+            <Eventsec/>
             <SearchBar/>
             <LoadingWrapper of={events}>
                 {
