@@ -2,7 +2,9 @@ import React from 'react'
 import Image from 'next/image';
 import isoCol from "@/assets/isoColW.png";
 
+
 const Eventsec = () => {
+
     return (
         <div className="max-w-[1440px] flex justify-center relative mx-auto">
             <div className="flex flex-col justify-center">
