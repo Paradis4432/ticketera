@@ -9,21 +9,12 @@
  * - create | update | delete | select user partner for producer based on producer.id, ZOD
  *
  */
-import { z } from 'zod';
 import {qquery} from "@/app/db/db";
-import {
-    deleteUserProducerRelationSchema,
-    updateUserProducerSchema,
-    userEventRelationSchema,
-    userProducerSchema
-} from "@/models/dtos/users";
 
 
 
 export const createUser = {
-    rrpp: async (data: z.infer<typeof userEventRelationSchema>) => {
-        userEventRelationSchema.parse(data);
-        const { userId, eventId } = data;
+    rrpp: async (userId: number, eventId: number) => {
 
         const result = await qquery(
             `update events set rrpps = array_append(rrpps, $1) where event_id = $2 returning *;`,
@@ -31,9 +22,8 @@ export const createUser = {
         );
         return result[0];
     },
-    validator: async (data: z.infer<typeof userEventRelationSchema>) => {
-        userEventRelationSchema.parse(data);
-        const { userId, eventId } = data;
+    validator: async (userId:number, eventId:number) => {
+
 
         const result = await qquery(
             `update events set validators = array_append(validators, $1) where event_id = $2 returning *;`,
@@ -89,9 +79,7 @@ export const readUser = {
 
 
 export const deleteUser = {
-    rrpp: async (data: z.infer<typeof deleteUserProducerRelationSchema>) => {
-        deleteUserProducerRelationSchema.parse(data);
-        const { userId, producerId } = data;
+    rrpp: async (userId: number, producerId: number) => {
 
         const result = await qquery(
             `update events set rrpps = array_remove(rrpps, $1) where event_id = $2 returning *;`,
@@ -99,9 +87,7 @@ export const deleteUser = {
         );
         return { success: true };
     },
-    validator: async (data: z.infer<typeof deleteUserProducerRelationSchema>) => {
-        deleteUserProducerRelationSchema.parse(data);
-        const { userId, producerId } = data;
+    validator: async (userId: number, producerId: number) => {
 
         const result = await qquery(
             `update events set validators = array_remove(validators, $1) where event_id = $2 returning *;`,
@@ -109,10 +95,7 @@ export const deleteUser = {
         );
         return { success: true };
     },
-    partner: async (data: z.infer<typeof deleteUserProducerRelationSchema>) => {
-        deleteUserProducerRelationSchema.parse(data);
-        const { producerId } = data;
-
+    partner: async (producerId: number) => {
         const result = await qquery(
             `delete from producers where producer_id = $1 returning *;`,
             [producerId]
@@ -123,10 +106,7 @@ export const deleteUser = {
 
 
 export const updateUser = {
-    rrpp: async (data: z.infer<typeof userEventRelationSchema>) => {
-        userEventRelationSchema.parse(data);
-        const { userId, eventId } = data;
-
+    rrpp: async (userId: number, eventId: number) => {
         // Assuming the update logic involves some change to the user or event relation
         const result = await qquery(
             `update events set rrpps = array_replace(rrpps, $1, $1) where event_id = $2 returning *;`,
@@ -134,9 +114,7 @@ export const updateUser = {
         );
         return result[0];
     },
-    validator: async (data: z.infer<typeof userEventRelationSchema>) => {
-        userEventRelationSchema.parse(data);
-        const { userId, eventId } = data;
+    validator: async (userId: number, eventId: number) => {
 
         // Assuming the update logic involves some change to the user or event relation
         const result = await qquery(
@@ -145,9 +123,9 @@ export const updateUser = {
         );
         return result[0];
     },
-    partner: async (data: z.infer<typeof updateUserProducerSchema>) => {
-        updateUserProducerSchema.parse(data);
-        const { producerId, name, displayName, email } = data;
+    partner: async (producer: Producers) => {
+
+        const { producer_id, name, display_name, email } = producer;
 
         const result = await qquery(
             `update producers set 
@@ -156,7 +134,7 @@ export const updateUser = {
                 email = coalesce($4, email) 
              where producer_id = $1 
              returning *;`,
-            [producerId, name, displayName, email]
+            [producer_id, name, display_name, email]
         );
         return result[0];
     },

@@ -46,19 +46,13 @@
 
 
 import {qquery} from "@/app/db/db";
-import { z } from 'zod';
-import {
-    createEventSchema,
-    createEventStageSchema,
-    updateEventSchema,
-    updateEventStageSchema
-} from "@/models/dtos/events";
+
 // [x] USE CRUD DESIGN  create, read, update and delete.
 
 // returning avoid a second query to get the inserted row
 export const createEvents = {
-    create: async (event: z.infer<typeof createEventSchema>): Promise<Events> => {
-        createEventSchema.parse(event);
+    create: async (event: Events): Promise<Events> => {
+
         const {
             rrpps,
             validators,
@@ -183,8 +177,7 @@ export const readEvents = {
 
 // coalesce to avoid null values
 export const updateEvents = {
-    updateById: async (event: z.infer<typeof updateEventSchema>): Promise<Events> => {
-        updateEventSchema.parse(event);
+    updateById: async (event: Events): Promise<Events> => {
 
         const {
             event_id,
@@ -245,8 +238,7 @@ export const deleteEvents = {
 };
 
 export const createEventStage = {
-    create: async (stage: z.infer<typeof createEventStageSchema>): Promise<EventsStages> => {
-        createEventStageSchema.parse(stage);
+    create: async (stage: EventsStages): Promise<EventsStages> => {
 
         const {
             name,
@@ -282,9 +274,7 @@ export const createEventStage = {
 };
 
 export const updateEventStage = {
-    updateById: async (stage: z.infer<typeof updateEventStageSchema>): Promise<EventsStages> => {
-        updateEventStageSchema.parse(stage);
-
+    updateById: async (stage: EventsStages): Promise<EventsStages> => {
         const {
             event_stage_id,
             name,
