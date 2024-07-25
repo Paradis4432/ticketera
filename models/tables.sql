@@ -78,6 +78,20 @@ create table if not exists users_tickets
     foreign key (stage_id) references events_stages (event_stage_id)
     );
 
+create table if not exists users_tickets (
+    ticket_id     serial primary key,
+    user_id       integer,
+    stage_id      integer,
+    rpp_id        integer,  -- nuevo campo para asociar un RRPP
+    used          bool      default false,
+    notes         varchar(50)[],
+    ticket_c_date timestamp default current_timestamp,
+    foreign key (user_id) references users (user_id),
+    foreign key (stage_id) references events_stages (event_stage_id),
+    foreign key (rpp_id) references users (user_id)
+);
+
+
 create table if not exists validations
 (
     validation_id     serial primary key,
@@ -108,6 +122,16 @@ create table if not exists metrics (
     foreign key (stage_id) references events_stages (event_stage_id)
 );
 
+create table if not exists rpp_metrics (
+    rpp_id          integer not null,
+    event_id        integer not null,
+    tickets_sold    integer,
+    revenue         numeric,
+    last_updated    timestamp default current_timestamp,
+    primary key (rpp_id, event_id),
+    foreign key (rpp_id) references users (user_id),
+    foreign key (event_id) references events (event_id)
+);
 
 
 drop table if exists c_date cascade;
@@ -120,3 +144,4 @@ drop table if exists producers cascade;
 drop table if exists users cascade;
 drop table if exists users_tickets cascade;
 drop table if exists metrics cascade;
+drop table if exists rpp_metrics cascade;

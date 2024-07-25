@@ -268,9 +268,71 @@ end;
 $$ language plpgsql;
 
 -- ejecutar la función de seed de métricas
-select * from seed_metrics();-- Verificar los resultados
-SELECT * FROM metrics;
-select * from events;
-select * from events_stages;
-select * from users;
-select * from users_tickets;
+select * from seed_metrics();
+
+
+create or replace function seed_rpp_metrics() returns table (
+                                                                message text,
+                                                                rows_affected integer
+                                                            ) as
+$$
+declare
+    total_rows integer := 0;
+    processed_rows integer := 0;
+    affected_rows integer := 0;
+    ev_id integer;
+    rpp_id integer;
+    tickets_sold integer;
+    revenue numeric;
+begin
+    -- contar el número total de filas que vamos a procesar
+    select count(distinct ut.rpp_id, es.event_id)
+    into total_rows
+    from users_tickets ut
+             join events_stages es on ut.stage_id = es.event_stage_id
+    where ut.rpp_id is not null;
+
+    return query select 'total de filas a procesar'::text, total_rows;
+
+    if total_rows = 0 then
+        return query select 'no hay datos para procesar. verificar tabla users_tickets.'::text, 0;
+        return;
+    end if;
+
+    for ev_id, rpp_id in
+        select distinct es.event_id, ut.rpp_id
+        from users_tickets ut
+                 join events_stages es on ut.stage_id = es.event_stage_id
+        where ut.rpp_id is not null
+        loop
+            processed_rows := processed_rows + 1;
+
+            -- calcular el número de entradas vendidas y el revenue
+            select count(ut.ticket_id), coalesce(sum(es.price), 0)
+            into tickets_sold, revenue
+            from users_tickets ut
+                     join events_stages es on ut.stage_id = es.event_stage_id
+            where es.event_id = ev_id and ut.rpp_id = rpp_id;
+
+            -- insertar o actualizar la tabla rpp_metrics
+            insert into rpp_metrics (rpp_id, event_id, tickets_sold, revenue)
+            values (rpp_id, ev_id, tickets_sold, revenue)
+            on conflict (rpp_id, event_id)
+                do update set
+                              tickets_sold = excluded.tickets_sold,
+                              revenue = excluded.revenue,
+                              last_updated = current_timestamp;
+
+            get diagnostics affected_rows = row_count;
+            return query select 'fila insertada o actualizada'::text, affected_rows;
+        end loop;
+
+    return query select 'total de filas procesadas'::text, processed_rows;
+
+    select count(*) into affected_rows from rpp_metrics;
+    return query select 'total de filas en rpp_metrics después de la operación'::text, affected_rows;
+end;
+$$ language plpgsql;
+
+-- ejecutar la función de seed de métricas de RRPP
+select * from seed_rpp_metrics();
