@@ -95,6 +95,21 @@ create table if not exists validations
     foreign key (ticket_id) references users_tickets (ticket_id)
     );
 
+create table if not exists metrics (
+    event_id          integer not null,
+    stage_id          integer not null,
+    stage_name        varchar(100),
+    tickets_sold      integer,
+    tickets_available integer,
+    revenue           numeric,
+    last_updated      timestamp default current_timestamp,
+    primary key (event_id, stage_id),
+    foreign key (event_id) references events (event_id),
+    foreign key (stage_id) references events_stages (event_stage_id)
+);
+
+
+
 drop table if exists c_date cascade;
 drop table if exists events_stages cascade;
 drop table if exists temporal cascade;
@@ -104,3 +119,4 @@ drop table if exists events_producers cascade;
 drop table if exists producers cascade;
 drop table if exists users cascade;
 drop table if exists users_tickets cascade;
+drop table if exists metrics cascade;

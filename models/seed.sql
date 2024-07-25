@@ -196,3 +196,81 @@ $$ language plpgsql;
 
 select seed_producers();
 
+create or replace function seed_metrics() returns table (
+                                                            message text,
+                                                            rows_affected integer
+                                                        ) as
+$$
+declare
+    total_rows integer := 0;
+    processed_rows integer := 0;
+    affected_rows integer := 0;
+    ev_id integer;
+    es_id integer;
+    st_name text;
+    price numeric;
+    stock integer;
+    tickets_sold integer;
+    revenue numeric;
+    tickets_available integer;
+begin
+    -- contar el número total de filas que vamos a procesar
+    select count(*)
+    into total_rows
+    from events_stages;
+
+    return query select 'total de filas a procesar'::text, total_rows;
+
+    if total_rows = 0 then
+        return query select 'no hay datos para procesar. verificar tabla events_stages.'::text, 0;
+        return;
+    end if;
+
+    for ev_id, es_id, st_name, price, stock in
+        select e.event_id, es.event_stage_id, coalesce(es.name, 'stage ' || es.event_stage_id::text), es.price, es.stock
+        from events e
+                 join events_stages es on es.event_id = e.event_id
+        loop
+            processed_rows := processed_rows + 1;
+
+            -- calcular el número de entradas vendidas
+            select count(ut.ticket_id)
+            into tickets_sold
+            from users_tickets ut
+            where ut.stage_id = es_id;
+
+            -- calcular ingresos
+            revenue := tickets_sold * price;
+
+            -- calcular entradas disponibles
+            tickets_available := stock - tickets_sold;
+
+            -- insertar o actualizar la tabla metrics
+            insert into metrics (event_id, stage_id, stage_name, tickets_sold, tickets_available, revenue)
+            values (ev_id, es_id, st_name, tickets_sold, tickets_available, revenue)
+            on conflict (event_id, stage_id)
+                do update set
+                              stage_name = excluded.stage_name,
+                              tickets_sold = excluded.tickets_sold,
+                              tickets_available = excluded.tickets_available,
+                              revenue = excluded.revenue,
+                              last_updated = current_timestamp;
+
+            get diagnostics affected_rows = row_count;
+            return query select 'fila insertada o actualizada'::text, affected_rows;
+        end loop;
+
+    return query select 'total de filas procesadas'::text, processed_rows;
+
+    select count(*) into affected_rows from metrics;
+    return query select 'total de filas en metrics después de la operación'::text, affected_rows;
+end;
+$$ language plpgsql;
+
+-- ejecutar la función de seed de métricas
+select * from seed_metrics();-- Verificar los resultados
+SELECT * FROM metrics;
+select * from events;
+select * from events_stages;
+select * from users;
+select * from users_tickets;
