@@ -81,7 +81,7 @@ export const readUser = {
         return result[0]?.exists ?? false;
     },
     userById: async (userId: number)=> {
-        return await qquery(`
+        return await qquery<Users>(`
             select * from users where user_id = $1;`,
             [userId]
             )

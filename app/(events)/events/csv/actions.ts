@@ -1,19 +1,19 @@
-
-import { z } from 'zod';
+"use server"
+import { z} from 'zod';
 import { parse } from 'csv-parse/sync';
-import {readEvents} from "@/models/queries/events";
-import {readUser} from "@/models/queries/users";
-import {createTickets} from "@/models/queries/tickets";
+import { readEvents } from "@/models/queries/events";
+import { readUser } from "@/models/queries/users";
+import { createTickets } from "@/models/queries/tickets";
 
 const csvRowSchema = z.object({
     EventName: z.string(),
     StageName: z.string(),
     userId: z.number().positive(),
     TicketQuantity: z.string().transform(Number).pipe(z.number().positive()),
-    Notes: z.string().optional()
+    Notes: z.array(z.string())
 });
 
-export async function processCSV(csvContent: string, validatorId: number) {
+export async function processCSV(csvContent: string) {
     const results = {
         success: [] as string[],
         errors: [] as string[]
@@ -30,35 +30,41 @@ export async function processCSV(csvContent: string, validatorId: number) {
                 const validatedRow = csvRowSchema.parse(record);
 
                 // Buscar si el evento existe
-                const event = await readEvents.byName(validatedRow.EventName);
-                if (!event[0]) {
-                    throw new Error(`El evento "${validatedRow.EventName}" no existe`);
+                const events = await readEvents.byName(validatedRow.EventName);
+                if (!events || events.length === 0 || !events[0].event_id) {
+                    throw new Error(`El evento "${validatedRow.EventName}" no existe o no tiene un ID válido`);
                 }
+                const eventId = events[0].event_id;
 
                 // Buscar si el stage existe
-                const stage = await readEvents.eventStagesByID(event[0].event_id);
-                if (!stage) {
-                    throw new Error(`El stage "${validatedRow.StageName}" no existe para el evento "${validatedRow.EventName}"`);
+                const stages = await readEvents.eventStagesByID(eventId);
+                if (!stages || stages.length === 0) {
+                    throw new Error(`No se encontraron stages para el evento "${validatedRow.EventName}"`);
+                }
+                const stage = stages.find(s => s.name === validatedRow.StageName);
+                if (!stage || typeof stage.event_stage_id === 'undefined') {
+                    throw new Error(`El stage "${validatedRow.StageName}" no existe o no tiene un ID válido para el evento "${validatedRow.EventName}"`);
                 }
 
-                // Buscar el usuario por email
-                const user = await readUser.userById(validatedRow.userId)
-                if (!user) {
-                    throw new Error(`No se encontró un usuario con el id "${validatedRow.userId}"`);
+                // Buscar el usuario por id
+                const users = await readUser.userById(validatedRow.userId);
+                if (!users || users.length === 0 || !users[0].user_id) {
+                    throw new Error(`No se encontró un usuario válido con el id "${validatedRow.userId}"`);
                 }
+                const userId = users[0].user_id;
 
                 // Crear los tickets
                 for (let i = 0; i < validatedRow.TicketQuantity; i++) {
-                    const ticket = await createTickets.buyTicket({
-                        userId: user.user_id,
-                        stageId: stage[0].event_stage_id,
-                        notes: validatedRow.Notes ? [validatedRow.Notes] : undefined
+                    await createTickets.buyTicket({
+                        user_id: userId,
+                        stage_id: stage.event_stage_id,
+                        notes: validatedRow.Notes
                     });
                 }
 
-                results.success.push(`Fila ${index + 1}: ${validatedRow.TicketQuantity} tickets creados para ${validatedRow.UserEmail}`);
+                results.success.push(`Fila ${index + 1}: ${validatedRow.TicketQuantity} tickets creados para el usuario con ID ${validatedRow.userId}`);
             } catch (error) {
-                results.errors.push(`Error en la fila ${index + 1}: ${error}`);
+                results.errors.push(`Error en la fila ${index + 1}: ${error instanceof Error ? error.message : String(error)}`);
             }
         }
 
@@ -72,7 +78,7 @@ export async function processCSV(csvContent: string, validatorId: number) {
         return {
             success: false,
             message: 'Error al procesar el CSV',
-            details: { errors: [error] }
+            details: { errors: [error instanceof Error ? error.message : String(error)] }
         };
     }
 }

@@ -1,17 +1,29 @@
 "use client"
 
 import React, { useState, ChangeEvent } from 'react';
+import {processCSV} from "@/app/(events)/events/csv/actions";
+
+type ProcessResult = {
+    success: boolean;
+    message: string;
+    details: {
+        success?: string[];
+        errors: string[];
+    };
+};
 
 function Page() {
     const [file, setFile] = useState<File | null>(null);
     const [uploadStatus, setUploadStatus] = useState<string>('');
+    const [results, setResults] = useState<ProcessResult['details'] | null>(null);
 
     const handleDownload = () => {
         const csvHeaders = [
             "EventName",
             "StageName",
-            "UserEmail",
-            "TicketQuantity"
+            "userId",
+            "TicketQuantity",
+            "Notes"
         ].join(',');
 
         const csvContent = csvHeaders + "\n";
@@ -41,23 +53,16 @@ function Page() {
             return;
         }
 
-        const formData = new FormData();
-        formData.append('csv', file);
-
         try {
-            const response = await fetch('/api/upload-csv', {
-                method: 'POST',
-                body: formData,
-            });
+            const fileContent = await file.text();
+            const result = await processCSV(fileContent);
 
-            if (response.ok) {
-                setUploadStatus('CSV cargado con éxito');
-            } else {
-                setUploadStatus('Error al cargar el CSV');
-            }
+            setUploadStatus(result.message);
+            setResults(result.details);
         } catch (error) {
             console.error('Error:', error);
-            setUploadStatus('Error al cargar el CSV');
+            setUploadStatus('Error al procesar el CSV');
+            setResults({ errors: ['Error inesperado al procesar el CSV'] });
         }
     }
 
@@ -69,6 +74,31 @@ function Page() {
             <input type="file" accept=".csv" onChange={handleFileChange} />
             <button onClick={handleUpload}>Cargar CSV</button>
             {uploadStatus && <p>{uploadStatus}</p>}
+            {results && (
+                <div>
+                    <h3>Resultados:</h3>
+                    {results.success && results.success.length > 0 && (
+                        <div>
+                            <h4>Éxitos:</h4>
+                            <ul>
+                                {results.success.map((msg, index) => (
+                                    <li key={index}>{msg}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                    {results.errors.length > 0 && (
+                        <div>
+                            <h4>Errores:</h4>
+                            <ul>
+                                {results.errors.map((msg, index) => (
+                                    <li key={index}>{msg}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     )
 }

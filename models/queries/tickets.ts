@@ -22,29 +22,28 @@ import { z } from 'zod';
 
 
 export const createTickets = {
-    buyTicket: async (): Promise<UsersTickets> => {
-        const { userId, stageId, notes } = data;
+    buyTicket: async (data: UsersTickets): Promise<UsersTickets> => {
+
         const result = await qquery<UsersTickets>(
             `insert into users_tickets (user_id, stage_id, notes) values ($1, $2, $3) returning *;`,
-            [userId, stageId, notes]
+            [data.user_id, data.stage_id, data.notes]
         );
         return result[0];
     },
     insertValidation: async (validatorId: number, ticketId: number) => {
         const result = await qquery<Validations>(
-            `insert into validations (validator_id, user_id, ticket_id, state, name) 
-             select $1, user_id, $2, 'VALIDATED', e.name 
-             from users_tickets ut 
-             join events_stages es on ut.stage_id = es.event_stage_id
-             join events e on es.event_id = e.event_id
+            `insert into validations (validator_id, user_id, ticket_id, state, name)
+             select $1, user_id, $2, 'VALIDATED', e.name
+             from users_tickets ut
+                      join events_stages es on ut.stage_id = es.event_stage_id
+                      join events e on es.event_id = e.event_id
              where ut.ticket_id = $2
              returning *;`,
             [validatorId, ticketId]
         );
         return result[0];
     }
-};
-
+}
 
 export const readTickets = {
     byEmail: async (email: string) => {
