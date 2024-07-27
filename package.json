@@ -11,13 +11,16 @@
   "dependencies": {
     "@headlessui/react": "^2.1.1",
     "@hookform/resolvers": "^3.4.2",
-    "@next/font": "^14.2.4",
     "@mercadopago/sdk-react": "^0.0.19",
+    "@next/font": "^14.2.4",
+    "@types/express": "^4.17.21",
     "@vercel/postgres": "^0.8.0",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "classnames": "^2.5.1",
     "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
     "mercadopago": "^2.0.9",
     "mysql2": "^3.9.2",
     "next": "^14.2.4",
@@ -44,5 +47,10 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "typescript": "^5"
-  }
+  },
+  "description": "la biblia: https://github.com/adrianhajdin/project_next_14_ai_prompt_sharing\r la nueva biblia: https://github.com/RiskyMH/EmailThing/tree/main/app\r que se puede usar para simular post y get requests?",
+  "main": "database.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

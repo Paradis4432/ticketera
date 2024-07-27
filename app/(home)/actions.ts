@@ -1,5 +1,4 @@
 "use server"
-
 import {readEvents} from "@/models/queries/events";
 
 async function fetchAllEvents() {

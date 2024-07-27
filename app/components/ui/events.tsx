@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {initMercadoPago} from "@mercadopago/sdk-react";
 import axios from "axios";
+import { Events } from "@/app/utils/interfaces";
 
 // evento que aparecen en el home, minimo -> on click render public event detailed on endpoint
 function PublicEvent({event}: { event: Events }) {
@@ -142,7 +143,7 @@ export const UserEventDetailed: React.FC<UserEventsProps> = ({event, setEvents})
 */
 
 
-export default Events
+/* export default Events */
 
 export {
     PublicEvent,

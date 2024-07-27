@@ -46,6 +46,8 @@
 
 
 import {qquery} from "@/app/db/db";
+import { Events } from '../../app/utils/interfaces';
+import { Pool } from 'pg';
 import { z } from 'zod';
 import {
     createEventSchema,
@@ -104,12 +106,24 @@ export const createEvents = {
     }
 };
 
+const pool = new Pool({
+    host: 'ep-blue-dream-a4eevgmh-pooler.us-east-1.aws.neon.tech',
+    user: 'default',
+    password:'tiKHPT7mrXb6',
+    database:'testing'
+    })
+
 export const readEvents = {
-    read: async (limit: number) => {
-        return await qquery<Events>(
-            `select *
-             from events
-             limit $1;`, [limit])
+    read: async (limit: number): Promise<Event[]> => {
+      const client = await pool.connect();
+      try {
+        const res = await client.query<Event>(
+          `SELECT * FROM events LIMIT $1;`, [limit]
+        );
+        return res.rows;
+      } finally {
+        client.release();
+      }
     },
     byID: async (id: number) => {
         return await qquery<Events>(
