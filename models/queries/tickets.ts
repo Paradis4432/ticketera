@@ -18,12 +18,11 @@
  *
  */
 import {qquery} from "@/app/db/db";
-import {buyTicketSchema} from "@/models/dtos/tickets";
 import { z } from 'zod';
 
 
 export const createTickets = {
-    buyTicket: async (data: z.infer<typeof buyTicketSchema>): Promise<UsersTickets> => {
+    buyTicket: async (): Promise<UsersTickets> => {
         const { userId, stageId, notes } = data;
         const result = await qquery<UsersTickets>(
             `insert into users_tickets (user_id, stage_id, notes) values ($1, $2, $3) returning *;`,

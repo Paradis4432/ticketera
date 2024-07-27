@@ -17,6 +17,7 @@ import {
     userEventRelationSchema,
     userProducerSchema
 } from "@/models/dtos/users";
+import {User} from "next-auth";
 
 
 
@@ -78,6 +79,12 @@ export const readUser = {
             `select exists(select 1 from users where user_id = $1);`, [userId]
         );
         return result[0]?.exists ?? false;
+    },
+    userById: async (userId: number)=> {
+        return await qquery(`
+            select * from users where user_id = $1;`,
+            [userId]
+            )
     },
     isUserProducer: async (userId: number): Promise<boolean> => {
         const result = await qquery<{ exists: boolean }>(
