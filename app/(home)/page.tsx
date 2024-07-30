@@ -21,9 +21,6 @@ type HomeProps = {
     events: Events[];
   };
 
-
-
-
   export default async function Home({ events }: HomeProps) {
 
     
@@ -35,7 +32,6 @@ type HomeProps = {
                 setEvents(events)
             })*/
     
-
     return (
         <main>
             <Navbar/>

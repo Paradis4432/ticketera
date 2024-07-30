@@ -1,4 +1,4 @@
-export interface Events {
+interface Events {
     event_id?: number;
     rrpps: number[] | null;
     validators: number[] | null;
