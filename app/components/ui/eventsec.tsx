@@ -1,12 +1,7 @@
-"use client"
+
 import React from 'react'
 import Image from 'next/image';
 import isoCol from "@/assets/isoColW.png";
-import { useEffect, useState } from 'react';
-
-
-
-
 
 const Eventsec = () => {
     return (
@@ -17,14 +12,13 @@ const Eventsec = () => {
                     <Image className="w-[25px] mr-[10px]" src={isoCol} alt=""/>
                     Accesos Rápidos & seguros con nuestros QRs
                 </div>
-                <h1 className="text-black text-5xl font-koulen mt-5 mx-auto">descubre los eventos disponibles</h1>
+                <h1 className="text-black text-5xl font-koulen mt-4 mx-auto"><span>&#x1F973;</span> descubre los eventos disponibles</h1>
                 <p className="text-gray-400 text-base font-normal mt-3 mx-auto">Busca todos los eventos que existen en
                     nuestra plataforma.</p>
 
                 <div className="max-w-4xl mx-auto p-4">
         </div>
-            </div>
-            
+        </div>
         </div>
     )
 }

@@ -1,5 +1,16 @@
-"use server"
+
 import {readEvents} from "@/models/queries/events";
+
+export const fetchActiveEvents = async (): Promise<Events[]> => {
+  try {
+    const events = await readEvents.activeEvents();
+    return events.slice(0, 6); // Fetch and limit to 6 events
+  } catch (error) {
+    console.error("Failed to fetch active events", error);
+    return [];
+  }
+};
+
 
 async function fetchAllEvents() {
     /*    const data = await db.query(events.selAll);
@@ -30,5 +41,5 @@ async function fetchTop10Events() {
 
 export {
     fetchAllEvents,
-    fetchTop10Events
+    fetchTop10Events,
 }

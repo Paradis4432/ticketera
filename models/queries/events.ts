@@ -46,7 +46,6 @@
 
 
 import { qquery } from "@/app/db/db";
-import { Pool } from 'pg';
 import { z } from 'zod';
 import {
     createEventSchema,
@@ -105,24 +104,12 @@ export const createEvents = {
     }
 };
 
-const pool = new Pool({
-    host: 'ep-blue-dream-a4eevgmh-pooler.us-east-1.aws.neon.tech',
-    user: 'default',
-    password: 'tiKHPT7mrXb6',
-    database: 'testing'
-})
-
 export const readEvents = {
-    read: async (limit: number): Promise<Event[]> => {
-        const client = await pool.connect();
-        try {
-            const res = await client.query<Event>(
-                `SELECT * FROM events LIMIT $1;`, [limit]
-            );
-            return res.rows;
-        } finally {
-            client.release();
-        }
+    read: async (limit: number) => {
+        return await qquery<Events>(
+            `select * 
+            from events 
+            LIMIT $1;`, [limit])
     },
     byID: async (id: number) => {
         return await qquery<Events>(
@@ -130,29 +117,29 @@ export const readEvents = {
              from events
              where event_id = $1`, [id])
     },
-    eventStagesByID: async (id: number) => {
-        return await qquery<EventsStages>(
-            `select *
+        eventStagesByID: async (id: number) => {
+            return await qquery<EventsStages>(
+                `select *
              from events_stages
              where event_id = $1`, [id])
-    },
-    eventStagesWithEventByID: async (id: number) => {
-        return await qquery<(Events & EventsStages)>(
-            `select *
+        },
+            eventStagesWithEventByID: async (id: number) => {
+                return await qquery<(Events & EventsStages)>(
+                    `select *
              from events_stages es
                       join events e on e.event_id = es.event_id
              where e.event_id = $1`, [id])
-    },
-    activeEvents: async () => {
-        return await qquery<Events>(
-            `select *
+            },
+                activeEvents: async () => {
+                    return await qquery<Events>(
+                        `select *
              from events
              where now() between event_start_date and event_end_date;`
-        );
-    },
-    topEventsByPrice: async () => {
-        return await qquery<Events>(
-            `select *
+                    );
+                },
+                    topEventsByPrice: async () => {
+                        return await qquery<Events>(
+                            `select *
              from events e
              join (
                  select distinct on (es.event_id) *
@@ -160,38 +147,38 @@ export const readEvents = {
                  order by es.event_id
              ) es on es.event_id = e.event_id
              order by es.price;`
-        );
-    },
-    byName: async (name: string) => {
-        return await qquery<Events>(
-            `select *
+                        );
+                    },
+                        byName: async (name: string) => {
+                            return await qquery<Events>(
+                                `select *
              from events
              where name = $1;`, [name]
-        );
-    },
-    producersOfEvent: async (event_id: number) => {
-        return await qquery<Producers>(
-            `select p.*
+                            );
+                        },
+                            producersOfEvent: async (event_id: number) => {
+                                return await qquery<Producers>(
+                                    `select p.*
              from events e
                       join producers p on p.producer_id = any (e.rrpps)
              where event_id = $1;`, [event_id]
-        );
-    },
-    byDate: async (date: string) => {
-        return await qquery<Events>(
-            `select *
+                                );
+                            },
+                                byDate: async (date: string) => {
+                                    return await qquery<Events>(
+                                        `select *
              from events
              where $1 between event_start_date and event_end_date
              order by event_start_date;`, [date]
-        );
-    },
-    orderByDate: async () => {
-        return await qquery<Events>(
-            `select *
+                                    );
+                                },
+                                    orderByDate: async () => {
+                                        return await qquery<Events>(
+                                            `select *
              from events
              order by event_start_date;`
-        );
-    }
+                                        );
+                                    }
 };
 
 // coalesce to avoid null values

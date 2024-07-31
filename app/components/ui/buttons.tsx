@@ -19,13 +19,12 @@ const Buttons = ({text, containerStyle, navigateTo, icon }: ButtonProps) => {
 
     return (
         <button className={`${containerStyle} flex items-center`} onClick={onClick}>
+            {text}
             {icon && (
             <div className="icon-wrapper">
                 <Image src={icon} alt="button icon" width={20} height={20} /> 
             </div>
         )}
-        
-            {text}
         </button>
     );
 };

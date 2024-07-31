@@ -1,29 +1,20 @@
-
-
 import Eventsec from '@/app/components/ui/eventsec';
 import Hero from '@/app/components/ui/hero';
 import Navbar from '@/app/components/ui/navbar';
 import Productor from '@/app/components/ui/productor';
 import Pregsec from '@/app/components/ui/pregsec';
 import Banner from '@/app/components/ui/banner';
-import Eventos from '@/app/components/ui/eventos';
 import {SearchBar} from '../components';
-import {useEffect, useState} from "react";
 import {fetchAllEvents} from "@/app/(home)/actions";
 import Link from "next/link";
 import {readEvents} from "@/models/queries/events";
-import { Events } from '../utils/interfaces';
 import {LoadingWrapper} from "@/app/components/ui/loader";
 import Image from "next/image";
-import bynlogo from "../../assets/bynlogo.png"
+import { fetchActiveEvents } from './actions';
+import Eventos from '@/app/components/ui/eventos';
 
-type HomeProps = {
-    events: Events[];
-  };
-
-  export default async function Home({ events }: HomeProps) {
-
-    
+const Home = async () => {
+    const events = await fetchActiveEvents();
     /* const [events, setEvents] = useState<Events[]>([]); */
 
     /* useEffect(() => {
@@ -54,3 +45,4 @@ type HomeProps = {
     )
 };
 
+export default Home

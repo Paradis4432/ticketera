@@ -5,7 +5,8 @@ import SearchBar from "./ui/searchbar";
 import SearchEvents from "./ui/searchevents";
 import Productor from "./ui/productor";
 import Pregsec from "./ui/pregsec";
-import Banner from "./ui/banner"
+import Banner from "./ui/banner";
+import Eventos from "./ui/eventos";
 
 
 export {
@@ -16,5 +17,6 @@ export {
     SearchEvents,
     Productor,
     Pregsec,
-    Banner
+    Banner,
+    Eventos,
 }
