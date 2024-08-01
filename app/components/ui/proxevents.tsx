@@ -27,9 +27,9 @@ const Proxevents: React.FC<EventosProps> = ({ events }) => {
                 <div className="max-w-4xl mx-auto p-4">
                 </div>
             </div>
-            <ul className="flex justify-between overflow-hidden gap-5">
+            <ul className="flex justify-center gap-5 mb-[40px]">
                 {events.map(event => (
-                    <li key={event.event_id} className="bg-white rounded-xl shadow-[0_0px_13.42px_0px_#0000008C;] p-4 w-[330px] h-[500px] mt-[30px]">
+                    <li key={event.event_id} className="bg-white rounded-xl shadow-[0_0px_13.42px_0px_#0000008C;] p-4 min-w-[330px] h-[500px]">
                         <Image src={Eventimg} alt='event image' />
                         <p className='p-[6px] rounded-xl text-sm mt-[20px] text-white bg-[#41B569]'>Preventa</p>
                         <h2 className="text-xl mt-[30px] font-semibold">{event.name}</h2>
