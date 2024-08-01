@@ -1,6 +1,16 @@
-"use server"
+import { readEvents } from "@/models/queries/events";
 
-async function fetchEventByID(id: number) {
+export const fetchActiveEvents = async (): Promise<Events[]> => {
+    try {
+      const events = await readEvents.activeEvents();
+      return events; // Fetch and limit to 6 events
+    } catch (error) {
+      console.error("Failed to fetch active events", error);
+      return [];
+    }
+  };
+
+/* async function fetchEventByID(id: number) {
     try {
         //return await qquery<Events>(events.selByID, [id])
     } catch (err) {
@@ -18,3 +28,4 @@ export {
     fetchEventByID,
     get
 }
+ */

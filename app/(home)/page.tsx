@@ -4,6 +4,7 @@ import Navbar from '@/app/components/ui/navbar';
 import Productor from '@/app/components/ui/productor';
 import Pregsec from '@/app/components/ui/pregsec';
 import Banner from '@/app/components/ui/banner';
+import Proxevents from '@/app/components/ui/proxevents';
 import {SearchBar} from '../components';
 import {fetchAllEvents} from "@/app/(home)/actions";
 import Link from "next/link";
@@ -38,6 +39,8 @@ const Home = async () => {
                 }
             </LoadingWrapper> */}
             <Eventos events={events} />
+            <Banner />
+            <Proxevents events={events}/>
             <Banner />
             <Productor/>
             <Pregsec/>

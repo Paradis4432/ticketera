@@ -7,6 +7,7 @@ import Productor from "./ui/productor";
 import Pregsec from "./ui/pregsec";
 import Banner from "./ui/banner";
 import Eventos from "./ui/eventos";
+import Proxevents from "./ui/proxevents";
 
 
 export {
@@ -19,4 +20,5 @@ export {
     Pregsec,
     Banner,
     Eventos,
+    Proxevents
 }
