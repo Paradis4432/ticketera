@@ -43,39 +43,46 @@
  * - sel events by date or order by date ?? PENDING
  */
 
-
-import {qquery} from "@/app/db/db";
+import { qquery } from "@/lib/db/db"
 
 // USE CRUD DESIGN  create, read, update and delete.
 
 export const createEvents = {}
 
 export const readEvents = {
-    read: async (limit: number) => {
-        return await qquery<Events>(
-            `select *
+  read: async (limit: number) => {
+    return await qquery<Events>(
+      `select *
              from events
-             limit $1;`, [limit])
-    },
-    byID: async (id: number) => {
-        return await qquery<Events>(
-            `select *
+             limit $1;`,
+      [limit]
+    )
+  },
+  byID: async (id: number) => {
+    return await qquery<Events>(
+      `select *
              from events
-             where event_id = $1`, [id])
-    },
-    eventStagesByID: async (id: number) => {
-        return await qquery<EventsStages>(
-            `select *
+             where event_id = $1`,
+      [id]
+    )
+  },
+  eventStagesByID: async (id: number) => {
+    return await qquery<EventsStages>(
+      `select *
              from events_stages
-             where event_id = $1`, [id])
-    },
-    eventStagesWithEventByID: async (id: number) => {
-        return await qquery<(Events & EventsStages)>(
-            `select *
+             where event_id = $1`,
+      [id]
+    )
+  },
+  eventStagesWithEventByID: async (id: number) => {
+    return await qquery<Events & EventsStages>(
+      `select *
              from events_stages es
                       join events e on e.event_id = es.event_id
-             where e.event_id = $1`, [id])
-    }
+             where e.event_id = $1`,
+      [id]
+    )
+  },
 }
 
 export const updateEvents = {}
