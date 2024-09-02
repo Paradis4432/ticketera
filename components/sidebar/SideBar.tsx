@@ -14,7 +14,7 @@ const SideBar = () => {
       {pathname !== "/login" && (
         <aside className="fixed left-0 top-0 w-64 h-screen bg-white shadow-md">
           <div className="p-4 border-b">
-            <h1 className="text-xl font-bold flex items-center">
+            <h1 className="text-xl font-bold flex items-center cursor-pointer">
               <Ticket className="mr-2" />
               Selva Tickets
             </h1>
@@ -33,7 +33,7 @@ const SideBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href={"#"}>
+                <Link href={"/my-events"}>
                   <Button
                     variant="ghost"
                     className="w-full justify-start hover:bg-white hover:shadow-[0_2px_5px_#000] transition-all duration-200"

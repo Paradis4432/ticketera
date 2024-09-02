@@ -17,18 +17,9 @@ import { Palmtree } from "lucide-react"
 import Image from "next/image"
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEmail(e.target.value)
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setPassword(e.target.value)
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Handle login logic here
-    console.log("Login submitted", { email, password })
   }
 
   return (
