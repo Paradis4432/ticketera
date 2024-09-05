@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator"
 import React from "react"
 import { Calendar } from "lucide-react"
 import CardEvents from "@/components/dashboard/CardEvents"
+import Link from "next/link"
 
 const MyEvents = () => {
   return (
@@ -10,13 +11,15 @@ const MyEvents = () => {
       <div className="flex-1 p-8 overflow-y-auto space-y-8">
         <div className="flex-1 flex items-center h-20 justify-between">
           <h1 className="text-3xl font-bold my-6">Todos tus Eventos.</h1>
-          <Button
-            variant="default"
-            className="bg-black flex flex-row gap-2 py-4"
-          >
-            <Calendar className="size-5" />
-            Crear Evento
-          </Button>
+          <Link href={"/create-event"}>
+            <Button
+              variant="default"
+              className="bg-black flex flex-row gap-2 py-4"
+            >
+              <Calendar className="size-5" />
+              Crear Evento
+            </Button>
+          </Link>
         </div>
         <Separator className="mt-3 bg-black/20" />
         <CardEvents />

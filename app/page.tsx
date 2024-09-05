@@ -1,11 +1,9 @@
-import Dashboard from "@/components/dashboard/Dashboard"
-import EnterpriseData from "@/components/forms/EnterpriseData"
+import HeroSection from "@/components/hero-section/HeroSection"
 
 export default function Home() {
   return (
     <>
-      {/* <EnterpriseData /> */}
-      <Dashboard />
+      <HeroSection />
     </>
   )
 }

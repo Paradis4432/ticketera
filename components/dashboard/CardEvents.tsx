@@ -124,7 +124,7 @@ const CardEvents = () => {
                     no se podrá recuperar.
                   </DialogDescription>
                   <div className="flex flex-1 gap-3">
-                    <Button className="w-1/2" variant="secondary">
+                    <Button className="w-1/2" variant="outline">
                       Cancel
                     </Button>
                     <Button className="w-1/2" variant="destructive">

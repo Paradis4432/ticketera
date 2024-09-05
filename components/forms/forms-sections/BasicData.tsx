@@ -1,5 +1,3 @@
-"use client"
-
 import ProgressBar from "@/components/progress-bar/ProgressBar"
 import SideBar from "@/components/sidebar/SideBar"
 import { Button } from "@/components/ui/button"
@@ -7,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@radix-ui/react-label"
-import { Switch } from "@radix-ui/react-switch"
+import { Switch } from "@/components/ui/switch"
 import { Calendar, ImageIcon, Upload } from "lucide-react"
 import React, { useState } from "react"
 
@@ -32,7 +30,7 @@ const BasicData = () => {
     setImagePreview(null)
   }
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-full bg-gray-100">
       {/* Main content */}
       <main className="flex-1 p-8">
         <Card>
@@ -142,10 +140,8 @@ const BasicData = () => {
               </div>
 
               <div className="flex items-center space-x-2">
-                <Switch id="age-restriction" />
-                <Label htmlFor="age-restriction">
-                  Evento para Mayores de Edad
-                </Label>
+                <Switch id="adults-only" />
+                <Label htmlFor="adults-only">Evento para Mayores de Edad</Label>
               </div>
 
               <div className="space-y-2">

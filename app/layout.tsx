@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./globals.css"
 import { Providers } from "@/utils/providers"
 import SideBar from "@/components/sidebar/SideBar"
+import Navbar from "@/components/navbar/Navbar"
 
 const inter = Inter({ subsets: ["latin"] })
 //Koulen Font
@@ -26,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <SideBar />
+          <Navbar />
           {children}
         </Providers>
       </body>
