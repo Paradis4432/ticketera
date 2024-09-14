@@ -107,19 +107,19 @@ export default function UserManagement() {
         <h1 className="text-3xl font-bold mb-6">Creación de Usuarios</h1>
 
         <div className="flex space-x-4 mb-8">
-          <Link href={"/my-users/create/rrpp"}>
+          <Link href={"/dashboard/my-users/create/rrpp"}>
             <Button className="bg-black text-white py-4">
               <UserPlus className="mr-2 h-4 w-4" />
               Crear Usuario RRPP
             </Button>
           </Link>
-          <Link href={"/my-users/create/validate-user"}>
+          <Link href={"/dashboard/my-users/create/validate-user"}>
             <Button className="bg-black text-white py-4">
               <UserPlus className="mr-2 h-4 w-4" />
               Crear Usuario Validador
             </Button>
           </Link>
-          <Link href={"/my-users/create/partner"}>
+          <Link href={"/dashboard/my-users/create/partner"}>
             <Button className="bg-black text-white py-4">
               <UserPlus className="mr-2 h-4 w-4" />
               Crear Usuario Partner
@@ -149,7 +149,7 @@ export default function UserManagement() {
                   </p>
                 </div>
                 <div className="flex justify-between mt-4">
-                  <Link href={"/my-users/edit"}>
+                  <Link href={"/dashboard/my-users/edit"}>
                     <Button
                       variant="outline"
                       size="sm"

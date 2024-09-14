@@ -11,7 +11,7 @@ const MyEvents = () => {
       <div className="flex-1 p-8 overflow-y-auto space-y-8">
         <div className="flex-1 flex items-center h-20 justify-between">
           <h1 className="text-3xl font-bold my-6">Todos tus Eventos.</h1>
-          <Link href={"/create-event"}>
+          <Link href={"/dashboard/create-event"}>
             <Button
               variant="default"
               className="bg-black flex flex-row gap-2 py-4"

@@ -22,7 +22,7 @@ const SideBar = () => {
           <nav className="p-4">
             <ul className="space-y-2">
               <li>
-                <Link href={"/"}>
+                <Link href={"/dashboard"}>
                   <Button
                     variant="ghost"
                     className="w-full justify-start hover:bg-white hover:shadow-[0_2px_5px_#000] transition-all duration-200"
@@ -33,7 +33,7 @@ const SideBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href={"/my-events"}>
+                <Link href={"/dashboard/my-events"}>
                   <Button
                     variant="ghost"
                     className="w-full justify-start hover:bg-white hover:shadow-[0_2px_5px_#000] transition-all duration-200"
@@ -44,7 +44,7 @@ const SideBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href={"/my-users"}>
+                <Link href={"/dashboard/my-users"}>
                   <Button
                     variant="ghost"
                     className="w-full justify-start hover:bg-white hover:shadow-[0_2px_5px_#000] transition-all duration-200"
@@ -55,7 +55,7 @@ const SideBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href={"/analitycs"}>
+                <Link href={"/dashboard/analitycs"}>
                   <Button
                     variant="ghost"
                     className="w-full justify-start hover:bg-white hover:shadow-[0_2px_5px_#000] transition-all duration-200"

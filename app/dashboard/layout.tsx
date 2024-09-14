@@ -1,4 +1,3 @@
-import "./globals.css"
 import SideBar from "@/components/sidebar/SideBar"
 
 export default function RootLayout({

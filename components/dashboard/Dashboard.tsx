@@ -82,7 +82,7 @@ export default function Dashboard() {
               <p className="mb-4">
                 Debes Crear un Evento para poder visualizar todas tus métricas.
               </p>
-              <Button onClick={() => router.push("/create")}>
+              <Button onClick={() => router.push("/dashboard/create")}>
                 <Ticket className="mr-2 h-4 w-4" />
                 Crear Evento
               </Button>

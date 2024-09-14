@@ -4,8 +4,8 @@ import { Koulen } from "next/font/google"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./globals.css"
 import { Providers } from "@/utils/providers"
-import SideBar from "@/components/sidebar/SideBar"
 import Navbar from "@/components/navbar/Navbar"
+import Footer from "@/components/hero-section/footer/Footer"
 
 const inter = Inter({ subsets: ["latin"] })
 //Koulen Font
@@ -29,6 +29,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>

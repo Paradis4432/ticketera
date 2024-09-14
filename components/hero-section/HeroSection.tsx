@@ -22,14 +22,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import {
-  Rocket,
   Calendar,
   MapPin,
   ChevronRight,
   Search,
   ChevronsDown,
 } from "lucide-react"
-import Navbar from "../navbar/Navbar"
 import Background from "../ui/backgrounds"
 import { Badge } from "../ui/badge"
 
@@ -322,45 +320,6 @@ export default function HeroSection() {
           </Accordion>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-blue-600 text-white py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <Rocket className="h-6 w-6" />
-              <span className="font-bold text-xl">Selva Tickets</span>
-            </div>
-            <nav>
-              <ul className="flex space-x-4">
-                <li>
-                  <a href="#" className="hover:underline">
-                    Inicio
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    Eventos
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    Productores
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    Preguntas
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div className="mt-4 text-center text-sm">
-            © 2023 Selva Tickets. Todos los derechos reservados.
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
