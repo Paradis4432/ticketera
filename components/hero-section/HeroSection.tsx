@@ -30,6 +30,8 @@ import {
 } from "lucide-react"
 import Background from "../ui/backgrounds"
 import { Badge } from "../ui/badge"
+import Navbar from "../navbar/Navbar"
+import Footer from "./footer/Footer"
 
 export default function HeroSection() {
   const events = [
@@ -110,6 +112,7 @@ export default function HeroSection() {
 
   return (
     <div className="min-h-screen">
+      <Navbar />
       {/* Hero Section */}
       <section className="w-full text-white h-[calc(100vh_-_84px)]">
         <Background
@@ -320,6 +323,7 @@ export default function HeroSection() {
           </Accordion>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

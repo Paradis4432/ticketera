@@ -14,7 +14,7 @@ export default function EventDetails() {
         <Card>
           <CardHeader className="flex flex-row items-center space-x-4 pb-4">
             <picture className="size-48 rounded-md bg-blue-300"></picture>
-            <div className="flex-grow">
+            <div className="flex-grow max-h-48">
               <div className="flex justify-between flex-col gap-3 items-start">
                 <div>
                   <Badge className="mr-2">Extra Tickets</Badge>
