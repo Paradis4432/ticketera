@@ -1,4 +1,6 @@
-import React from "react"
+"use client"
+
+import React, { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -32,8 +34,12 @@ import Background from "../ui/backgrounds"
 import { Badge } from "../ui/badge"
 import Navbar from "../navbar/Navbar"
 import Footer from "./footer/Footer"
+import Link from "next/link"
+import HeroAuthSection from "./HeroAuthSection"
+import EventCard from "../event-card/EventCard"
 
 export default function HeroSection() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true)
   const events = [
     {
       id: 1,
@@ -114,28 +120,32 @@ export default function HeroSection() {
     <div className="min-h-screen">
       <Navbar />
       {/* Hero Section */}
-      <section className="w-full text-white h-[calc(100vh_-_84px)]">
+      <section className="w-full h-[calc(100vh_-_84px)]">
         <Background
           bg_types="lines"
           animated
           className="w-full h-full bg-box-gradient flex items-center justify-center"
         >
-          <div className="w-full h-full flex items-center flex-col justify-center">
-            <h1 className="text-6xl text-black font-bold mb-4 text-center leading-tight">
-              🚀 Experiencias Unicas Con <br /> Selva Tickets!
-            </h1>
-            <p className="w-1/4 text-center text-base mb-8 text-black/80">
-              Descubre Selva Tickets, compra tus eventos de forma segura, rápida
-              y sencilla, todo en un solo lugar.
-            </p>
-            <Button
-              size="lg"
-              variant="default"
-              className="flex flex-row gap-1 py-4"
-            >
-              <ChevronsDown className="size-5" /> Ver Eventos
-            </Button>
-          </div>
+          {isAuthenticated ? (
+            <HeroAuthSection />
+          ) : (
+            <div className="w-full h-full flex items-center flex-col justify-center">
+              <h1 className="text-6xl text-black font-bold mb-4 text-center leading-tight">
+                🚀 Experiencias Unicas Con <br /> Selva Tickets!
+              </h1>
+              <p className="w-1/4 text-center text-base mb-8 text-black/80">
+                Descubre Selva Tickets, compra tus eventos de forma segura,
+                rápida y sencilla, todo en un solo lugar.
+              </p>
+              <Button
+                size="lg"
+                variant="default"
+                className="flex flex-row gap-1 py-4"
+              >
+                <ChevronsDown className="size-5" /> Ver Eventos
+              </Button>
+            </div>
+          )}
         </Background>
       </section>
 
@@ -178,28 +188,7 @@ export default function HeroSection() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {events.map((event) => (
-              <Card key={event.id}>
-                <CardHeader>
-                  <div className="h-48 bg-gray-200 rounded-t-lg"></div>
-                </CardHeader>
-                <CardContent>
-                  <CardTitle>{event.title}</CardTitle>
-                  <div className="mt-2 space-y-1">
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      {event.date}
-                    </div>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <MapPin className="mr-2 h-4 w-4" />
-                      {event.location}
-                    </div>
-                  </div>
-                </CardContent>
-                <CardFooter className="flex justify-between items-center">
-                  <span className="font-bold">{event.price}</span>
-                  <Button>Comprar Tickets</Button>
-                </CardFooter>
-              </Card>
+              <EventCard key={event.id} event={event} />
             ))}
           </div>
           <div className="text-center mt-8">
