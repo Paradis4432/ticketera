@@ -36,6 +36,7 @@ import Navbar from "../navbar/Navbar"
 import Footer from "./footer/Footer"
 import HeroAuthSection from "./HeroAuthSection"
 import EventCard from "../event-card/EventCard"
+import UpcomingEvents from "./upcoming-events/Features"
 
 export default function HeroSection() {
   const [isAuthenticated, setIsAuthenticated] = useState(true)
@@ -200,40 +201,7 @@ export default function HeroSection() {
 
       {/* Upcoming Events */}
       <section className="bg-gray-100 py-16">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold">
-              Proximamente En Selva Tickets.
-            </h2>
-            <Button variant="outline">Mucho Mas Que Eventos</Button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {upcomingEvents.map((event) => (
-              <Card key={event.id}>
-                <CardHeader>
-                  <div className="h-48 bg-gray-200 rounded-t-lg"></div>
-                </CardHeader>
-                <CardContent>
-                  <CardTitle>{event.title}</CardTitle>
-                  <div className="mt-2 space-y-1">
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      {event.date}
-                    </div>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <MapPin className="mr-2 h-4 w-4" />
-                      {event.location}
-                    </div>
-                  </div>
-                </CardContent>
-                <CardFooter className="flex justify-between items-center">
-                  <span className="font-bold">{event.price}</span>
-                  <Button>Comprar Tickets</Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
+        <UpcomingEvents />
       </section>
 
       {/* Producer CTA */}

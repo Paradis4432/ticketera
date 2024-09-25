@@ -43,7 +43,7 @@ export default function LoginPage() {
           <CardContent>
             <Button
               variant="outline"
-              className="w-full mt-2"
+              className="w-full mt-2 h-11"
               onClick={() => console.log("Google sign-in clicked")}
             >
               <svg
