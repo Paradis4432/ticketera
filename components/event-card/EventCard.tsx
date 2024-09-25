@@ -8,11 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Calendar, MapPin } from "lucide-react"
+import { Calendar, MapPin, QrCode } from "lucide-react"
 import Link from "next/link"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import QrCard from "./QrCard"
 
 interface Event {
   key: number
+  isTicket: boolean
   event: {
     id: number
     title: string
@@ -22,7 +25,7 @@ interface Event {
   }
 }
 
-const EventCard = ({ event }: Event) => {
+const EventCard = ({ event, isTicket }: Event) => {
   return (
     <Card key={event.id}>
       <CardHeader>
@@ -43,9 +46,21 @@ const EventCard = ({ event }: Event) => {
       </CardContent>
       <CardFooter className="flex justify-between items-center">
         <span className="font-bold">{event.price}</span>
-        <Link href={`/buyer-events/${event.id}`}>
-          <Button>Comprar Tickets</Button>
-        </Link>
+        {isTicket ? (
+          <Dialog>
+            <DialogTrigger className="flex flex-row items-center bg-primary p-2 rounded-md text-white text-sm gap-1">
+              <QrCode className="mr-2 h-4 w-4" />
+              Ver QR
+            </DialogTrigger>
+            <DialogContent className="">
+              <QrCard />
+            </DialogContent>
+          </Dialog>
+        ) : (
+          <Link href={`/buyer-events/${event.id}`}>
+            <Button>Comprar Tickets</Button>
+          </Link>
+        )}
       </CardFooter>
     </Card>
   )

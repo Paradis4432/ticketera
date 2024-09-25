@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { QrCode, Ticket, MessageCircle } from "lucide-react"
+import Link from "next/link"
 
 export default function HeroAuthSection() {
   return (
@@ -20,10 +21,12 @@ export default function HeroAuthSection() {
           </div>
           <div className="mt-8">
             <div className="flex flex-row gap-3 items-center justify-center">
-              <Button className="w-full h-12" variant="outline">
-                <QrCode className="mr-2 h-4 w-4" />
-                Mis Tickets
-              </Button>
+              <Link href={"/my-tickets"}>
+                <Button className="w-full h-12" variant="outline">
+                  <QrCode className="mr-2 h-4 w-4" />
+                  Mis Tickets
+                </Button>
+              </Link>
               <Button className="w-full h-12">
                 <Ticket className="mr-2 h-4 w-4 text-white" />
                 Comprar Tickets

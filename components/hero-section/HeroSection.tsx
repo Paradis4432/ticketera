@@ -34,7 +34,6 @@ import Background from "../ui/backgrounds"
 import { Badge } from "../ui/badge"
 import Navbar from "../navbar/Navbar"
 import Footer from "./footer/Footer"
-import Link from "next/link"
 import HeroAuthSection from "./HeroAuthSection"
 import EventCard from "../event-card/EventCard"
 
@@ -188,7 +187,7 @@ export default function HeroSection() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {events.map((event) => (
-              <EventCard key={event.id} event={event} />
+              <EventCard isTicket={false} key={event.id} event={event} />
             ))}
           </div>
           <div className="text-center mt-8">
