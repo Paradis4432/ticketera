@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Dispatch, SetStateAction } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -7,15 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-  Calendar,
-  Home,
-  LogOut,
-  ShoppingCart,
-  Ticket,
-  User,
-  UserCircle,
-} from "lucide-react"
+import { Calendar, Home, LogOut, Ticket, User, UserCircle } from "lucide-react"
 import Link from "next/link"
 import ShoppingCartAside from "../shoping-cart/ShoppingCart"
 
@@ -49,7 +41,7 @@ const AuthNavbar = () => {
               </DropdownMenuItem>
               <DropdownMenuItem className="p-2.5 cursor-pointer">
                 <Calendar className="mr-2 h-4 w-4" />
-                <Link href="my-events">Ver Eventos</Link>
+                <Link href="/my-events">Ver Eventos</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="p-2.5 cursor-pointer text-red-500">
                 <LogOut className="mr-2 h-4 w-4" />

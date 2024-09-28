@@ -37,6 +37,18 @@ const events = [
     location: "Cali, Costa aseguero",
     price: "$8000",
   },
+  {
+    title: "Etiam Nulla Lectus Amet Nunc Molestie At Vulputate",
+    date: "08 de junio 2024 a las 23:30",
+    location: "Cali, Costa aseguero",
+    price: "$8000",
+  },
+  {
+    title: "Etiam Nulla Lectus Amet Nunc Molestie At Vulputate",
+    date: "08 de junio 2024 a las 23:30",
+    location: "Cali, Costa aseguero",
+    price: "$8000",
+  },
 ]
 
 export default function UpcomingEvents() {

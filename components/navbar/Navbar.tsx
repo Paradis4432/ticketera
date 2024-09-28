@@ -1,7 +1,7 @@
 "use client"
 
 import { Rocket } from "lucide-react"
-import React, { useState } from "react"
+import React, { Dispatch, SetStateAction, useState } from "react"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import AuthNavbar from "./AuthNavbar"
