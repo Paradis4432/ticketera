@@ -1,10 +1,11 @@
-
 "use client"
 import { ButtonProps } from "../../types";
 import { useRouter } from "next/navigation";
+import Image from 'next/image';
 
 
-const Buttons = ({text, containerStyle, navigateTo }: ButtonProps) => {
+
+const Buttons = ({text, containerStyle, navigateTo, icon }: ButtonProps) => {
     const router = useRouter();
 
     const onClick = ( ) => {
@@ -17,7 +18,13 @@ const Buttons = ({text, containerStyle, navigateTo }: ButtonProps) => {
     };
 
     return (
-        <button className={containerStyle} onClick={onClick}>
+        <button className={`${containerStyle} flex items-center`} onClick={onClick}>
+            {icon && (
+            <div className="icon-wrapper">
+                <Image src={icon} alt="button icon" width={20} height={20} /> 
+            </div>
+        )}
+        
             {text}
         </button>
     );

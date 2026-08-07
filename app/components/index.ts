@@ -5,6 +5,7 @@ import SearchBar from "./ui/searchbar";
 import SearchEvents from "./ui/searchevents";
 import Productor from "./ui/productor";
 import Pregsec from "./ui/pregsec";
+import Banner from "./ui/banner"
 
 
 export {
@@ -14,5 +15,6 @@ export {
     SearchBar,
     SearchEvents,
     Productor,
-    Pregsec
+    Pregsec,
+    Banner
 }
